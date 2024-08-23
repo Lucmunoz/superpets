@@ -3,6 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "eslintConfig": {
+    "extends":[
+      "./frontend/node_modules/standard/eslintrc.json"
+    ]
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -17,10 +22,7 @@
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",
-    "eslint": "^8.56.0",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.5",
+    "standard": "^17.1.0",
     "vite": "^5.1.4"
   }
 }
