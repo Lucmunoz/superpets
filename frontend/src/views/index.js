@@ -1,0 +1,7 @@
+export { default as Home } from './Home'
+export { default as Tienda } from './Tienda'
+export { default as Producto } from './Producto'
+export { default as Registrarse } from './Registrarse'
+export { default as Ingresar } from './Ingresar'
+export { default as AgregarProducto } from './AgregarProducto'
+export { default as NotFound } from './NotFound'
