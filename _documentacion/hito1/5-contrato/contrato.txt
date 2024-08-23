@@ -1,0 +1,11 @@
+//GET /
+
+//GET /tienda
+//GET /tienda/producto/:id
+//post /registrarse
+//GET  /ingresar
+//GET /usuario
+//GET /favoritos
+//
+//
+
