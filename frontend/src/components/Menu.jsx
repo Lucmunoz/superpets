@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import Buscador from './Buscador'
 
 const Menu = () => {
   const cambiarMenu = ({ isActive }) => isActive ? 'navbar active' : 'navbar'
@@ -17,6 +18,9 @@ const Menu = () => {
           </div>
           <div className='offcanvas-body'>
             <ul className='navbar-nav justify-content-end flex-grow-1 pe-3'>
+              <li>
+                <Buscador />
+              </li>
               <li className='nav-item'>
                 <NavLink to='/' className={cambiarMenu}>
                   <i className='fa-solid fa-house' />
