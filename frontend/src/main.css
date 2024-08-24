@@ -26,3 +26,16 @@
 .active {
   font-weight: 700;
 }
+
+/* buscador */
+.buscador input {
+  border-radius: 20px;
+}
+
+.buscador button {
+  padding: 0;
+  border: none;
+  color: unset;
+}
+
+
