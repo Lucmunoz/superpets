@@ -38,4 +38,16 @@
   color: unset;
 }
 
+/* carrusel */
+.imgCarrusel {
+  height: 550px;
+  width: 100vw;
+}
 
+
+/* media-queries */
+@media (max-width: 576px){
+  .imgCarrusel {
+    height: 200px;
+  }
+}
