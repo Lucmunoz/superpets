@@ -3,3 +3,26 @@
   margin: 0;
   padding: 0;
 }
+
+/* navbar */
+.navbar {
+  height: 55px;
+}
+
+.navbar,
+.offcanvas {
+  background-color: rgb(14, 174, 174);
+  color: #fff;
+  font-weight: 300;
+}
+
+.navbar,
+.offcanvas a {
+  color: #fff;
+  padding: 0 10px;
+  text-decoration: none;
+}
+
+.active {
+  font-weight: 700;
+}
