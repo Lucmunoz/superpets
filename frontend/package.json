@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "eslintConfig": {
-    "extends":[
+    "extends": [
       "./frontend/node_modules/standard/eslintrc.json"
     ]
   },
@@ -16,7 +16,8 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.26.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
