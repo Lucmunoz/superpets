@@ -1,6 +1,10 @@
+import Carrusel from '../components/Carrusel'
+
 const Home = () => {
   return (
-    <div>Home</div>
+    <main className='divMainHome'>
+      <Carrusel />
+    </main>
   )
 }
 
