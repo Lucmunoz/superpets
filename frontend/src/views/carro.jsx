@@ -62,7 +62,7 @@ const Carro = () => {
                         </div>
                         <div className='d-flex flex-column align-items-start'>
                           <h6>{item.nombre}</h6>
-                          <div className='fw-light fst-italic'>{item.descripcion.substring(0, 100)+'...'}</div>
+                          <div className='fw-light fst-italic'>{item.descripcion.substring(0, 100) + '...'}</div>
                         </div>
                       </div>
                     </td>
