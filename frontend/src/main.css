@@ -62,6 +62,7 @@ main {
   width: 300px;
   border-radius: 10px;
   text-align: center;
+  padding: 20px 0;
 }
 
 .card img {
@@ -77,6 +78,18 @@ main {
   padding: 5px;
   border-radius: 20px;
 }
+
+/* footer */
+footer {
+  height: 250px;
+  background-color: #062D3D;
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
 
 /* media-queries */
 @media (max-width: 576px){
