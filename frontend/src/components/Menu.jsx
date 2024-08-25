@@ -37,10 +37,14 @@ const Menu = () => {
               </li>
               {/* rutas protegidas */}
               <li className='nav-item'>
-                <NavLink to='/favoritos' className={cambiarMenu}>Favoritos</NavLink>
+                <NavLink to='/favoritos' className={cambiarMenu}>
+                  <i className='fa-solid fa-heart' />
+                </NavLink>
               </li>
               <li className='nav-item'>
-                <NavLink to='/vender' className={cambiarMenu}>Vender</NavLink>
+                <NavLink to='/carrito' className={cambiarMenu}>
+                  <i className='fa-solid fa-cart-shopping' />
+                </NavLink>
               </li>
             </ul>
 
