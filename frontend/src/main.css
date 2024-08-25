@@ -1,7 +1,9 @@
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Roboto", sans-serif;
 }
 
 /* navbar */
@@ -11,7 +13,7 @@
 
 .navbar,
 .offcanvas {
-  background-color: rgb(14, 174, 174);
+  background-color: #062D3D;
   color: #fff;
   font-weight: 300;
 }
@@ -38,11 +40,89 @@
   color: unset;
 }
 
+/* main */
+main {
+  min-height: calc(100vh - 55px - 250px);
+}
+
 /* carrusel */
 .imgCarrusel {
-  height: 550px;
+  height: 450px;
   width: 100vw;
 }
+
+/* card Home */
+.divCardHome {
+  background-color: #ED5C01;
+  padding: 50px 0;
+}
+
+/* componente CARD */
+.card {
+  width: 300px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.card img {
+  height: 230px;
+  width: 230px;
+  margin: 0 auto;
+}
+
+.card .buttonCard {
+  background-color: #062D3D;
+  color: #fff;
+  width: 150px;
+  padding: 5px;
+  border-radius: 20px;
+}
+
+/* footer */
+footer {
+  height: 250px;
+  background-color: #062D3D;
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+footer div {
+  width: 300px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+footer h3 {
+  font-size: 22px;
+  padding-bottom: 10px;
+}
+
+footer div ul li {
+  list-style-type: none;
+}
+
+.fa-paw {
+  padding-right: 10px;
+}
+
+footer div a {
+  text-decoration: none;
+  color: #fff;
+  transition: 0.3 ease;
+}
+
+footer div a:hover {
+  color: #fff;
+}
+
 
 
 /* media-queries */

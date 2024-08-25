@@ -1,6 +1,11 @@
 import { Route, Routes } from 'react-router-dom'
 import Menu from './components/Menu'
+<<<<<<< HEAD
 import { Home, Tienda, Registrarse, Ingresar, Carro, NotFound, Producto, Favoritos } from './views'
+=======
+import { Home, Tienda, Registrarse, Ingresar, AgregarProducto, NotFound, Producto, Favoritos } from './views'
+import Footer from './components/Footer'
+>>>>>>> f676adea242d14efd90ab1a56ae9ab4dc4393478
 
 const App = () => {
   return (
@@ -18,6 +23,7 @@ const App = () => {
         {/* fin rutas protegidas */}
         <Route path='*' element={<NotFound />} />
       </Routes>
+      <Footer />
     </div>
   )
 }
