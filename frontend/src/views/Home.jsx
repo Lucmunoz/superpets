@@ -5,7 +5,11 @@ const Home = () => {
   return (
     <main className='divMainHome'>
       <Carrusel />
-      <Card />
+      <div className='d-flex gap-5 pt-5 justify-content-center divCardHome'>
+        <Card />
+        <Card />
+        <Card />
+      </div>
     </main>
   )
 }
