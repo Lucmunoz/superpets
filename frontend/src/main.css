@@ -86,9 +86,43 @@ footer {
   color: #fff;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  gap: 40px;
+  justify-content: center;
   align-items: center;
 }
+
+footer div {
+  width: 300px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+footer h3 {
+  font-size: 22px;
+  padding-bottom: 10px;
+}
+
+footer div ul li {
+  list-style-type: none;
+}
+
+.fa-paw {
+  padding-right: 10px;
+}
+
+footer div a {
+  text-decoration: none;
+  color: #fff;
+  transition: 0.3 ease;
+}
+
+footer div a:hover {
+  color: #fff;
+}
+
 
 
 /* media-queries */
