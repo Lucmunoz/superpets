@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer>
       <div>
-        <h3>Síguenos en</h3>
+        <h3>Síguenos</h3>
         <ul>
           <li>
             <a target='_blank' href='https://www.facebook.com/' rel='noreferrer'>
@@ -18,7 +18,6 @@ const Footer = () => {
           </li>
         </ul>
       </div>
-
       <div>
         <h3>
           Enlaces útiles
@@ -43,7 +42,6 @@ const Footer = () => {
           <li>  <i className='fa-solid fa-paw fa-lg' />email: superpets@correo.com</li>
         </ul>
       </div>
-
     </footer>
   )
 }
