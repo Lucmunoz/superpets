@@ -7,12 +7,14 @@ const Producto = () => {
       id: 1,
       sku: 122,
       nombre: 'Disfraz',
+      precio: 19990,
       isFavorite: false
     }
     // {
     //   id: 2,
     //   sku: 123,
     //   nombre: 'Pelota',
+    //   precio: 19990,
     //   isFavorite: false
     // }
   ]
@@ -38,6 +40,7 @@ const Producto = () => {
               <h1 className='m-0'>{p.nombre}</h1>
               <span>SKU-{p.sku}</span>
               <p className='pt-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, autem praesentium! Cumque, dolorem? Consequuntur repellat, repellendus obcaecati recusandae facere asperiores?</p>
+              <span style={{ fontSize: '18px', color: '#062D3D;', fontWeight: '500' }}>${p.precio}</span>
             </div>
             <button type='button' className='btn btn-danger'>Agregar al carro</button>
             <button className='buttonCorazon' onClick={() => changeFavorite(p.id)}>
