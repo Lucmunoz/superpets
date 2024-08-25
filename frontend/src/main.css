@@ -40,6 +40,11 @@
   color: unset;
 }
 
+/* main */
+main {
+  min-height: calc(100vh - 55px - 250px);
+}
+
 /* carrusel */
 .imgCarrusel {
   height: 450px;
@@ -71,7 +76,6 @@
   padding: 5px;
   border-radius: 20px;
 }
-
 
 /* media-queries */
 @media (max-width: 576px){
