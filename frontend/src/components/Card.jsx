@@ -1,20 +1,13 @@
 const Card = () => {
   return (
-    <div className='card' style={{ width: '18rem' }}>
-      <img src='...' className='card-img-top' alt='...' />
+    <div className='card'>
+      <img src='/disfraz-salchicha.jpg' className='card-img-top' alt='disfraz-salchicha' />
       <div className='card-body'>
-        <h5 className='card-title'>Card title</h5>
-        <p className='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <h5 className='card-title'>Disfraz perro salchicha</h5>
+        <p className='card-text'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa, eius?</p>
       </div>
-      <ul className='list-group list-group-flush'>
-        <li className='list-group-item'>An item</li>
-        <li className='list-group-item'>A second item</li>
-        <li className='list-group-item'>A third item</li>
-        <li>hola</li>
-      </ul>
-      <div className='card-body'>
-        {/* <a href='#' className='card-link'>Card link</a>
-        <a href='#' className='card-link'>Another link</a> */}
+      <div>
+        <button className='buttonCard'>Ver más</button>
       </div>
     </div>
   )
