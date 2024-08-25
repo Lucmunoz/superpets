@@ -1,11 +1,12 @@
 import Card from '../components/Card'
+import Footer from '../components/Footer'
 import Carrusel from '../components/Carrusel'
 
 const Home = () => {
   return (
-    <main className='divMainHome'>
+    <main className='main'>
       <Carrusel />
-      <div className='d-flex gap-5 pt-5 justify-content-center divCardHome'>
+      <div className='d-flex gap-5 justify-content-center divCardHome'>
         <Card />
         <Card />
         <Card />
