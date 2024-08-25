@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import Menu from './components/Menu'
-import { Home, Tienda, Registrarse, Ingresar, AgregarProducto, NotFound, Producto, Favoritos } from './views'
+import { Home, Tienda, Registrarse, Ingresar, Carro, NotFound, Producto, Favoritos } from './views'
 
 const App = () => {
   return (
@@ -14,7 +14,7 @@ const App = () => {
         <Route path='/ingresar' element={<Ingresar />} />
         {/* rutas protegidas */}
         <Route path='/favoritos' element={<Favoritos />} />
-        <Route path='/vender' element={<AgregarProducto />} />
+        <Route path='/carrito' element={<Carro />} />
         {/* fin rutas protegidas */}
         <Route path='*' element={<NotFound />} />
       </Routes>
