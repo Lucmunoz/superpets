@@ -5,7 +5,7 @@ const Menu = () => {
   const cambiarMenu = ({ isActive }) => isActive ? 'navbar active' : 'navbar'
 
   return (
-    <nav className='navbar navbar-expand-lg'>
+    <nav className='navbar navbar-dark navbar-expand-lg'>
       <div className='container-fluid'>
         <span className='navbar-brand'>SUPERPETS</span>
         <button className='navbar-toggler' type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvasNavbar' aria-controls='offcanvasNavbar'>
@@ -14,7 +14,7 @@ const Menu = () => {
         <div className='offcanvas offcanvas-end' id='offcanvasNavbar' aria-labelledby='offcanvasNavbarLabel'>
           <div className='offcanvas-header'>
             <h5 className='offcanvas-title' id='offcanvasNavbarLabel'>SUPERPETS</h5>
-            <button type='button' className='btn-close text-reset' data-bs-dismiss='offcanvas' aria-label='Close' />
+            <button type='button' style={{ backgroundColor: 'rgb(221, 217, 217)' }} className='btn-close text-reset' data-bs-dismiss='offcanvas' aria-label='Close' />
           </div>
           <div className='offcanvas-body'>
             <ul className='navbar-nav justify-content-end flex-grow-1 pe-3'>
