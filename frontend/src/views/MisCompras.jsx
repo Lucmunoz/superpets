@@ -1,7 +1,7 @@
 import ProductoCompras
   from '../components/ProductoCompras'
 const MisCompras = () => {
-  const cantidadCompras = 0
+  const cantidadCompras = 1
 
   const arregloComprasUsuario =
     [{
