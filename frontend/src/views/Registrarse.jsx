@@ -13,13 +13,15 @@ const Registrarse = () => {
 
   const [usuario, setUsuario] = useState(usuarioInicial)
   const cambioInput = (e) => {
-    console.log(e.target.name)
+    setUsuario({ ...usuario, [e.target.name]: e.target.value })
   }
+
+  // pendiente encriptar password
 
   return (
     <main className='mainPersonal'>
-      <div className='divFormPersonal'>
-        <h1>Registro nuevo usuario</h1>
+      <div className='divRegistroNuevo'>
+        <h1>Registrate aquí <i className='fa-regular fa-pen-to-square ps-2' /></h1>
         <form>
           <div className='mb-3'>
             <label htmlFor='nombre' className='form-label mb-0'>Nombre</label>

@@ -123,7 +123,7 @@ main {
   border: none;
 }
 
-/* información personal */
+/* registrarse*/
 .mainPersonal {
   min-height: calc(100vh - 55px - 250px);
   display: flex;
@@ -132,24 +132,23 @@ main {
   padding: 30px 0;
 }
 
-.divFormPersonal {
-  width: 700px;
+.divRegistroNuevo {
+  width: 600px;
   margin: 0 auto;
   background-color: #fff;
   text-align: center;
   border-radius: 10px;
-  padding: 50px 0;
+  padding: 30px 0;
 }
 
-.divFormPersonal h1 {
-  font-size: 28px;
+.divRegistroNuevo h1 {
   text-align: center;
   color: #062D3D;
-  font-weight: 400;
-  padding-bottom: 20px;
+  font-size: 28px;
+  padding: 20px 0;
 }
 
-.divFormPersonal form input {
+.divRegistroNuevo form input {
   width: 70%;
   margin: 0 auto;
 }
@@ -237,6 +236,16 @@ footer div a:hover {
   }
 
   .divTextProducto h1 {
+    font-size: 20px;
+  }
+
+  /* registrarse*/
+  .divRegistroNuevo {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  .divRegistroNuevo h1 {
     font-size: 20px;
   }
 
