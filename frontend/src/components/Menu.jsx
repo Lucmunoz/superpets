@@ -7,7 +7,9 @@ const Menu = () => {
   return (
     <nav className='navbar navbar-dark navbar-expand-lg'>
       <div className='container-fluid'>
-        <span className='navbar-brand'>SUPERPETS</span>
+        <span className='navbar-brand'>
+          <img src='/LogoSuperPets.png' alt='logoMarca' style={{ width: '80px' }} />
+        </span>
         <button className='navbar-toggler' type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvasNavbar' aria-controls='offcanvasNavbar'>
           <span className='navbar-toggler-icon' />
         </button>
