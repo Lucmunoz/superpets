@@ -19,9 +19,9 @@ const Registrarse = () => {
   // pendiente encriptar password
 
   return (
-    <main className='mainPersonal'>
+    <main>
       <div className='divRegistroNuevo'>
-        <h1>Registrate aquí <i className='fa-regular fa-pen-to-square ps-2' /></h1>
+        <h1>Registrate aquí<i className='fa-regular fa-pen-to-square ps-2' /></h1>
         <form>
           <div className='mb-3'>
             <label htmlFor='nombre' className='form-label mb-0'>Nombre</label>
