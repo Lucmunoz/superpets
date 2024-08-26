@@ -74,7 +74,7 @@ const MisCompras = () => {
   const mostrarDataCompras = () => {
     return (
       <>
-        <div className='p-4 p-md-5 bg-white d-flex flex-column '>
+        <div className='p-3 p-md-5 bg-white d-flex flex-column'>
           <h1 className='text-center pb-4'>Mis Compras <i className='fa-solid fa-bag-shopping' /></h1>
           {
             arregloComprasUsuario.map((compra) => {
