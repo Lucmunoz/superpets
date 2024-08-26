@@ -224,6 +224,47 @@ footer div a:hover {
   color: #fff;
 }
 
+/* notFound */
+.divNotFound {
+  width: 700px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  background-color:#fff;
+  padding: 30px 0;
+}
+
+.divNotFound img {
+  width: 300px;
+  height: 300px;
+}
+
+.divErrorText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #062D3D;
+}
+
+.divErrorText h1 {
+  margin-bottom: 0;
+}
+
+/* buttonIrHome */
+.buttonIrHome {
+  background-color: #ED5C01;
+  width: 150px;
+  padding: 5px;
+  border-radius: 20px;
+  border: none;
+}
+
+.buttonIrHome  a{
+  color: #fff;
+  text-decoration: none;
+}
+
 /* media-queries first-mobile*/
 @media (max-width: 576px) {
   .imgCarrusel {
@@ -301,6 +342,14 @@ footer div a:hover {
 
   footer li {
     font-size: 14px;
+  }
+
+  /* notFound */
+.divNotFound {
+  width: 300px;
+  flex-direction: column;
 }
+
+
 
 }
