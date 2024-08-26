@@ -1,5 +1,3 @@
-import ProductoResumen from '../components/ProductoResumen'
-
 const Carro = () => {
   const cartElements = 1
   const arreglo = [{
@@ -25,12 +23,12 @@ const Carro = () => {
   const carroVacio = () => {
     return (
       <>
-        <div className='mt-5 p-5 bg-light-subtle border d-flex flex-row align-items-center'>
-          <img src='/emptyCart.png' alt='Imagen carro vacío' />
-          <div className='d-flex flex-column'>
+        <div className='bg-white border d-flex flex-row align-items-center justify-content-center'>
+          <div><img className='img-fluid' src='/emptyCart.png' alt='Imagen carro vacío' /></div>
+          <div className='d-flex flex-column p-4 text-center'>
             <h3>Tu carro está vacío</h3>
             <h5 className='pb-4'>No pierdas mas tiempo. revisa nuestra amplia oferta de productos para tu mascota!</h5>
-            <button type='button ' className='btn btn-secondary col-4 me-auto ms-auto' onClick='/'>Ver pizzas</button>
+            <button type='button ' className='btn btn-secondary col-4 me-auto ms-auto' onClick='/'>Ver productos</button>
           </div>
         </div>
       </>
@@ -38,11 +36,11 @@ const Carro = () => {
     )
   }
 
-  const showCartData = () => {
+  const mostrarDataCarro = () => {
     return (
       <>
-        <div className='mt-3 bg-light-subtle d-flex flex-column align-items-center'>
-          <h1 className='text-center pb-4'>Mi Carro <i class='fa-solid fa-cart-shopping' /></h1>
+        <div className='mt-3 p-5 bg-white d-flex flex-column align-items-center'>
+          <h1 className='text-center pb-4'>Mi Carro <i className='fa-solid fa-cart-shopping' /></h1>
           <table className='table text-center'>
             <thead>
               <tr>
@@ -60,7 +58,7 @@ const Carro = () => {
                       <div className='d-flex gap-4 align-items-center'>
                         <div><img style={{ height: '70px' }} src={item.imagen} alt='MDN' />
                         </div>
-                        <div className='d-flex flex-column align-items-start'>
+                        <div className='d-flex flex-column text-start'>
                           <h6>{item.nombre}</h6>
                           <div className='fw-light fst-italic'>{item.descripcion.substring(0, 100) + '...'}</div>
                         </div>
@@ -71,7 +69,7 @@ const Carro = () => {
                       <div className='d-flex flex-row container-fluid align-items-center justify-content-center'>
                         <div><button type='button' style={{ width: '35px' }} className='bg-success p-1 text-dark bg-opacity-25 border-0 p-0'>-</button></div>
                         <div className='border-0 px-4'>3</div>
-                        <div><button type='button ' style={{ width: '35px' }} className='bg-success p-1 text-dark bg-opacity-25 border-0 p-0'>+</button></div>
+                        <div><button type='button' style={{ width: '35px' }} className='bg-success p-1 text-dark bg-opacity-25 border-0 p-0'>+</button></div>
                       </div>
                     </td>
                     <td>${(item.precio / 1000).toFixed(3)}</td>
@@ -91,10 +89,11 @@ const Carro = () => {
   }
 
   return (
-    <div className='container-fluid col-10 mt-5'>
-
-      {cartElements !== 0 ? showCartData() : carroVacio()}
-    </div>
+    <main className='d-flex align-items-center'>
+      <div className='container-fluid col-10 my-5'>
+        {cartElements !== 0 ? mostrarDataCarro() : carroVacio()}
+      </div>
+    </main>
   )
 }
 

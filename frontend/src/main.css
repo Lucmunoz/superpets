@@ -43,8 +43,10 @@
 /* main */
 main {
   min-height: calc(100vh - 55px - 250px);
+  background-color: #ED5C01;
   background-image: url('/patern.png');
 }
+
 
 /* carrusel */
 .imgCarrusel {

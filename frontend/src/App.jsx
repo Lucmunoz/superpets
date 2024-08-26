@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import Menu from './components/Menu'
 
-import { Home, Tienda, Registrarse, Ingresar, Carro, NotFound, Producto, Favoritos } from './views'
+import { Home, Tienda, Registrarse, Ingresar, Carro, NotFound, Producto, Favoritos, InformacionPersonal } from './views'
 import Footer from './components/Footer'
 
 const App = () => {
@@ -15,6 +15,7 @@ const App = () => {
         <Route path='/registrarse' element={<Registrarse />} />
         <Route path='/ingresar' element={<Ingresar />} />
         {/* rutas protegidas */}
+        <Route path='/informacionpersonal' element={<InformacionPersonal />} />
         <Route path='/favoritos' element={<Favoritos />} />
         <Route path='/carrito' element={<Carro />} />
         {/* fin rutas protegidas */}
