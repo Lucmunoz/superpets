@@ -45,7 +45,10 @@ main {
   min-height: calc(100vh - 55px - 250px);
   background-color: #ED5C01;
   background-image: url('/patern.png');
-  background-color: #ED5C01;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
 }
 
 
@@ -87,12 +90,6 @@ main {
 }
 
 /* /tienda/producto/id */
-.mainProducto {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .divDetalleProducto {
   min-height: 400px;
   width: 800px;
@@ -124,17 +121,8 @@ main {
 }
 
 /* registrarse*/
-.mainPersonal {
-  min-height: calc(100vh - 55px - 250px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 0;
-}
-
 .divRegistroNuevo {
   width: 600px;
-  margin: 0 auto;
   background-color: #fff;
   text-align: center;
   border-radius: 10px;
@@ -148,8 +136,42 @@ main {
   padding: 20px 0;
 }
 
+.divRegistroNuevo label {
+  color: #ED5C01;
+  font-weight: 500;
+}
+
 .divRegistroNuevo form input {
   width: 70%;
+  margin: 0 auto;
+}
+
+/* Información Personal */
+.divInfoPersonal {
+  width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  padding: 30px 0;
+}
+
+.divInfoPersonal h1{
+  text-align: center;
+  color: #062D3D;
+  font-size: 28px;
+  padding: 20px 0;
+}
+
+.divInfoPersonal p {
+  font-weight: 600;
+  color: #ED5C01;
+  margin: 0;
+  padding: 0.5rem 0;
+}
+
+.divInfoPersonal  hr {
+  width: 400px;
   margin: 0 auto;
 }
 
@@ -239,7 +261,7 @@ footer div a:hover {
     font-size: 20px;
   }
 
-  /* registrarse*/
+  /* Registrarse*/
   .divRegistroNuevo {
     width: 85%;
     margin: 0 auto;
@@ -247,6 +269,20 @@ footer div a:hover {
 
   .divRegistroNuevo h1 {
     font-size: 20px;
+  }
+
+  /* Información Personal */
+  .divInfoPersonal {
+    width: 85%;
+  }
+
+  .divInfoPersonal h1{
+    font-size: 20px;
+  }
+
+  .divInfoPersonal  hr {
+    width: 250px;
+    margin: 0 auto;
   }
 
   /* footer */
