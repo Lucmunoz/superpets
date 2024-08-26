@@ -23,8 +23,6 @@ const App = () => {
         <Route path='/login' element={<Login />} />
         <Route path='/perfil' element={<Perfil />} />
         <Route path='/miscompras' element={<MisCompras />} />
-        <Route path='/rutadeprueba' />
-        <Route path='/rutadeprueba2' />
         {/* fin rutas protegidas */}
         <Route path='*' element={<NotFound />} />
       </Routes>
