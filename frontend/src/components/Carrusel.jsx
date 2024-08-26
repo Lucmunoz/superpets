@@ -8,13 +8,13 @@ const Carrusel = () => {
       </div>
       <div className='carousel-inner'>
         <div className='carousel-item active'>
-          <img src='/familia.jpg' className='d-block imgCarrusel' alt='proplan' />
+          <img src='/banner-superpets-01.png' className='d-block imgCarrusel' alt='proplan' />
         </div>
         <div className='carousel-item'>
-          <img src='/mascotas.jpg' className='d-block imgCarrusel' alt='proplan2' />
+          <img src='/banner-superpets-02.png' className='d-block imgCarrusel' alt='proplan2' />
         </div>
         <div className='carousel-item'>
-          <img src='/pasillo.jpg' className='d-block imgCarrusel' alt='proplan3' />
+          <img src='/banner-superpets-03.png' className='d-block imgCarrusel' alt='proplan3' />
         </div>
       </div>
       <button className='carousel-control-prev' type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='prev'>
