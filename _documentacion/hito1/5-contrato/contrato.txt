@@ -53,6 +53,29 @@ response: {
   }
 }
 
+/** CONSULTA PARA MOSTRAR EN PANTALLA LAS COMPRAS DEL USUARIO LOGEADO **/
+//GET  /miscompras
+request:{
+  header: {
+    token: String
+  }
+}
+
+response: [{
+  id(n°boleta): String,
+  total_boleta: Number,
+  fecha: String,
+  productos: {
+    id_productos: String,
+    cantidad_elemento: Number,
+    nombre: String,
+    descripcion: String,
+    imagen: String
+  }
+}
+]
+
+
 POST /tienda/producto
 request:
   header: {
