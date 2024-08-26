@@ -20,6 +20,7 @@ const App = () => {
         <Route path='/favoritos' element={<Favoritos />} />
         <Route path='/carrito' element={<Carro />} />
         <Route path='/rutadeprueba' />
+        <Route path='/rutadeprueba2' />
         {/* fin rutas protegidas */}
         <Route path='*' element={<NotFound />} />
       </Routes>
