@@ -8,17 +8,19 @@ const App = () => {
   return (
     <div>
       <Menu />
+      {/* */}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/tienda' element={<Tienda />} />
         <Route path='/tienda/producto/:id' element={<Producto />} />
         <Route path='/registrarse' element={<Registrarse />} />
         <Route path='/ingresar' element={<Ingresar />} />
-        {/* rutas protegidas */}
+        {/* rutas protegidas fg */}
         <Route path='/informacionpersonal' element={<InformacionPersonal />} />
         <Route path='/favoritos' element={<Favoritos />} />
         <Route path='/carrito' element={<Carro />} />
-        {/* fin rutas protegidas */}
+
+        {/* fin rutas protegidas fg */}
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
