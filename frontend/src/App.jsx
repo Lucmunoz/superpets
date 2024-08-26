@@ -18,6 +18,7 @@ const App = () => {
         <Route path='/informacionpersonal' element={<InformacionPersonal />} />
         <Route path='/favoritos' element={<Favoritos />} />
         <Route path='/carrito' element={<Carro />} />
+        <Route path='/rutadeprueba' />
         {/* fin rutas protegidas */}
         <Route path='*' element={<NotFound />} />
       </Routes>
