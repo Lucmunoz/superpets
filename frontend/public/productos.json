@@ -30,25 +30,25 @@
     "id": 4,
     "id_usuario":1,
     "img": "https://www.tusmascotas.cl/wp-content/uploads/2020/10/easy-clean-limon-2.jpg.webp",
-    "nombre": "Arena para gatos | Easy Clean",
+    "nombre": "Arena para Gatos | Easy Clean",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
-    "precio": 9990,
+    "precio": 8990,
     "isFavorite": false
   },
   {
     "id": 5,
     "id_usuario":1,
     "img": "https://www.clubdeperrosygatos.cl/wp-content/uploads/2024/07/prlotas-gato.webp",
-    "nombre": "Pelota para gatos",
+    "nombre": "Pelota para Gatos",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
-    "precio": 1990,
+    "precio": 1590,
     "isFavorite": false
   },
   {
     "id": 6,
     "id_usuario":2,
     "img": "https://pethome.cl/media/catalog/product/cache/a207c3d3261251c19bb31d3774d0e54e/5/1/5162__28311.jpg",
-    "nombre": "Túnel para gatos",
+    "nombre": "Túnel para Gatos",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
     "precio": 15990,
     "isFavorite": false
@@ -57,7 +57,7 @@
     "id": 7,
     "id_usuario":2,
     "img": "https://dojiw2m9tvv09.cloudfront.net/42482/product/canish-hipoalergenicop0404.jpg",
-    "nombre": "Shampoo Hipoalergénico Perro | Canish",
+    "nombre": "Shampoo Hipoalergénico",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
     "precio": 4990,
     "isFavorite": false
@@ -66,7 +66,7 @@
     "id": 8,
     "id_usuario":2,
     "img": "https://dojiw2m9tvv09.cloudfront.net/42482/product/tidy-gato4433.jpg",
-    "nombre": "Shampoo en seco para gatos | Tidy",
+    "nombre": "Shampoo en seco para Gatos",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
     "precio": 5990,
     "isFavorite": false
@@ -75,7 +75,7 @@
     "id": 9,
     "id_usuario":2,
     "img": "https://www.clubdeperrosygatos.cl/wp-content/uploads/2017/10/Royal-Canin-Kitten.webp",
-    "nombre": "Alimento para gatos | Royal Canin",
+    "nombre": "Alimento para Gatos | Royal",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
     "precio": 17990,
     "isFavorite": false
@@ -84,9 +84,9 @@
     "id": 10,
     "id_usuario":2,
     "img": "https://http2.mlstatic.com/D_NQ_NP_841472-MLC48830750531_012022-O.webp",
-    "nombre": "Alimento para catitas | Champion",
+    "nombre": "Alimento para Catitas",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
-    "precio": 4990,
+    "precio": 3990,
     "isFavorite": false
   }
 
