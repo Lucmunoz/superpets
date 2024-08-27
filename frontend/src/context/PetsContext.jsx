@@ -5,6 +5,7 @@ export const PetsContext = createContext()
 const PetsContextProvider = ({ children }) => {
   const [productos, setProductos] = useState([])
   const [select, setSelect] = useState('az')
+  const [busqueda, setBusqueda] = useState('')
 
   const getData = async () => {
     try {
@@ -28,12 +29,17 @@ const PetsContextProvider = ({ children }) => {
   }
 
   const cambiarSelect = (e) => setSelect(e.target.value)
+  const cambiarInputBusqueda = (e) => {
+    setBusqueda(e.target.value)
+  }
 
   const globalState = {
     productos,
     cambiarFavorito,
     select,
-    cambiarSelect
+    cambiarSelect,
+    busqueda,
+    cambiarInputBusqueda
   }
 
   return (
