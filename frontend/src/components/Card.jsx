@@ -24,10 +24,10 @@ const Card = () => {
           <img src={p.img} className='card-img-top' alt='disfraz-salchicha' />
           <div className='card-body'>
             <h5 className='card-title'>{p.nombre}</h5>
-            <p className='card-text'>{p.descripcion}?</p>
+            <p className='precioCardHome'>${p.precio}</p>
           </div>
           <div>
-            <button className='buttonCard'>Ver más</button>
+            <button className='buttonCard'>Ver detalle</button>
           </div>
         </div>
       )}
