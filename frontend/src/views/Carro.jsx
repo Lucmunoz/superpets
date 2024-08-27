@@ -1,3 +1,5 @@
+import ProductoCarro from '../components/ProductoCarro'
+
 const Carro = () => {
   const cartElements = 1
   const arreglo = [{
@@ -38,59 +40,29 @@ const Carro = () => {
 
   const mostrarDataCarro = () => {
     return (
-      <>
-        <div className='mt-3 p-5 bg-white d-flex flex-column align-items-center'>
-          <h1 className='text-center pb-4'>Mi Carro <i className='fa-solid fa-cart-shopping' /></h1>
-          <table className='table text-center'>
-            <thead>
-              <tr>
-                <th scope='col'>Producto</th>
-                <th scope='col'>Valor Unitario</th>
-                <th scope='col'>Cantidad</th>
-                <th scope='col'>Subtotal</th>
-              </tr>
-            </thead>
-            <tbody>
-              {arreglo.map((item) => {
-                return (
-                  <tr key={item.id} className='align-middle'>
-                    <td className='col-7'>
-                      <div className='d-flex gap-4 align-items-center'>
-                        <div><img style={{ height: '70px' }} src={item.imagen} alt='MDN' />
-                        </div>
-                        <div className='d-flex flex-column text-start'>
-                          <h6>{item.nombre}</h6>
-                          <div className='fw-light fst-italic'>{item.descripcion.substring(0, 100) + '...'}</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td>${(item.precio / 1000).toFixed(3)}</td>
-                    <td>
-                      <div className='d-flex flex-row container-fluid align-items-center justify-content-center'>
-                        <div><button type='button' style={{ width: '35px' }} className='bg-success p-1 text-dark bg-opacity-25 border-0 p-0'>-</button></div>
-                        <div className='border-0 px-4'>3</div>
-                        <div><button type='button' style={{ width: '35px' }} className='bg-success p-1 text-dark bg-opacity-25 border-0 p-0'>+</button></div>
-                      </div>
-                    </td>
-                    <td>${(item.precio / 1000).toFixed(3)}</td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-
-          <div className='d-flex justify-content-center gap-5 pt-5'>
-            <button type='button' className='btn btn-secondary'>Ir a Pagar</button>
-            <button type='button' className='btn btn-danger'>Vaciar el carro</button>
+      <div className='d-flex flex-column'>
+        <h1 className='text-center pt-4'>Mi Carro <i className='fa-solid fa-cart-shopping' /></h1>
+        <div className='d-flex flex-column'>
+          {arreglo.map((elemento) => { return ProductoCarro(elemento) })}
+        </div>
+        <div className='container-fluid bg-light p-2'>
+          <div className='row justify-content-center'>
+            <div className='col-6 col-sm-4 d-flex flex-column justify-content-center align-items-start ps-4 py-2'>
+              <div><h5 className='p-0 m-0'>Total:</h5></div>
+              <div><span className='p-0 m-0'>$12.345</span></div>
+            </div>
+            <div className='col-6 col-sm-4 d-flex align-items-center justify-content-end'>
+              <span><button type='button' className='btn btn-secondary btn-sm py-1 px-4'>Ir a pagar</button></span>
+            </div>
           </div>
         </div>
-      </>
+      </div>
     )
   }
 
   return (
     <main className='d-flex align-items-center'>
-      <div className='container-fluid col-10 my-5'>
+      <div className='container-fluid col-11 col-sm-9  my-5 bg-white'>
         {cartElements !== 0 ? mostrarDataCarro() : carroVacio()}
       </div>
     </main>
