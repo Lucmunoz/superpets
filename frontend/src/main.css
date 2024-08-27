@@ -71,6 +71,13 @@ main {
   background-image: url('/patern.png');
 }
 
+.precioCardHome {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ED5C01;
+  margin: 0;
+}
+
 /* componente CARD */
 .card {
   width: 300px;
@@ -91,6 +98,35 @@ main {
   width: 150px;
   padding: 5px;
   border-radius: 20px;
+}
+
+/* Tienda */
+.divProductosTienda {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap:30px;
+  padding: 50px;
+}
+
+.precioCardTienda {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ED5C01;
+  margin: 0;
+}
+
+.divSelectorTienda {
+  padding-top: 20px;
+}
+
+.divSelectorTienda select {
+  height: 35px;
+  width: 250px;
+  text-align: center;
+  border: none;
+  border-radius: 20px;
+  margin: 0 auto;
 }
 
 /* /tienda/producto/id */
@@ -280,10 +316,6 @@ footer div a:hover {
   .card img {
     height: 150px;
     width: 150px;
-  }
-
-  .card p {
-    display: none;
   }
 
   /* /tienda/producto/id */
