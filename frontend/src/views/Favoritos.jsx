@@ -33,7 +33,6 @@ const Favoritos = () => {
             <button type='button ' className='btn btn-secondary col-4 me-auto ms-auto'>Ver Productos</button>
           </div>
         </div>
-
         {/* Media Query md <992px */}
         <div className='d-lg-none d-flex flex-column justify-content-center align-items-center border bg-white text-center py-3 '>
           <div>
@@ -45,30 +44,24 @@ const Favoritos = () => {
             <button type='button ' className='btn btn-secondary col-4 me-auto ms-auto'>Ver Productos</button>
           </div>
         </div>
-
       </>
-
     )
   }
 
   const mostrarDataFavoritos = () => {
     return (
-      <>
-        <div className='py-5 bg-white d-flex flex-column align-items-center'>
-          <h1 className='text-center pb-4'>Mis Favoritos <i className='fa-solid fa-heart' /></h1>
-          <div className='d-flex col-11 flex-column align-items-center gap-3'>
-            {arreglo.map((producto) => {
-              return ProductoFavorito(producto)
-            })}
-          </div>
+      <div className='d-flex flex-column py-5'>
+        <h1 className='text-center pb-3'>Mis Favoritos <i className='fa-solid fa-cart-shopping' /></h1>
+        <div className='d-flex flex-column p-0 px-3'>
+          {arreglo.map((producto) => { return ProductoFavorito(producto) })}
         </div>
-      </>
+      </div>
     )
   }
 
   return (
     <main className='d-flex align-items-center'>
-      <div className='main container-fluid col-10 my-5'>
+      <div className='container-fluid col-11 col-xl-10 col-xxl-9 my-3 bg-white'>
         {favElements !== 0 ? mostrarDataFavoritos() : sinFavoritos()}
       </div>
     </main>

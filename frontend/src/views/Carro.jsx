@@ -40,8 +40,8 @@ const Carro = () => {
 
   const mostrarDataCarro = () => {
     return (
-      <div className='d-flex flex-column'>
-        <h1 className='text-center pt-4'>Mi Carro <i className='fa-solid fa-cart-shopping' /></h1>
+      <div className='d-flex flex-column py-5'>
+        <h1 className='text-center '>Mi Carro <i className='fa-solid fa-cart-shopping' /></h1>
         <div className='d-flex flex-column'>
           {arreglo.map((elemento) => { return ProductoCarro(elemento) })}
         </div>
@@ -62,7 +62,7 @@ const Carro = () => {
 
   return (
     <main className='d-flex align-items-center'>
-      <div className='container-fluid col-11 col-sm-9  my-5 bg-white'>
+      <div className='container-fluid col-11 col-sm-9 my-3 bg-white'>
         {cartElements !== 0 ? mostrarDataCarro() : carroVacio()}
       </div>
     </main>
