@@ -25,12 +25,14 @@ const Carro = () => {
   const carroVacio = () => {
     return (
       <>
-        <div className='bg-white border d-flex flex-row align-items-center justify-content-center'>
-          <div><img className='img-fluid' src='/emptyCart.png' alt='Imagen carro vacío' /></div>
-          <div className='d-flex flex-column p-4 text-center'>
+        <div className='bg-white d-flex flex-column align-items-center justify-content-center'>
+          <div>
+            <img style={{ height: '200px' }} src='/emptyCart.png' alt='Imagen carro vacío' />
+          </div>
+          <div className='d-flex flex-column px-4 pb-4 text-center'>
             <h3>Tu carro está vacío</h3>
             <h5 className='pb-4'>No pierdas mas tiempo. revisa nuestra amplia oferta de productos para tu mascota!</h5>
-            <button type='button ' className='btn btn-secondary col-4 me-auto ms-auto' onClick='/'>Ver productos</button>
+            <button type='button ' className='btn btn-sm btn-secondary me-auto ms-auto' onClick='/'>Ver productos</button>
           </div>
         </div>
       </>
@@ -62,7 +64,7 @@ const Carro = () => {
 
   return (
     <main className='d-flex align-items-center'>
-      <div className='container-fluid col-11 col-sm-9 my-3 bg-white'>
+      <div className='container-fluid col-11 col-xl-10 col-xxl-9 my-3 bg-white'>
         {cartElements !== 0 ? mostrarDataCarro() : carroVacio()}
       </div>
     </main>

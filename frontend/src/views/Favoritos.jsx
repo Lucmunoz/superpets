@@ -25,23 +25,15 @@ const Favoritos = () => {
   const sinFavoritos = () => {
     return (
       <>
-        <div className='mt-5 d-flex flex-row justify-content-center align-items-center border bg-white text-center d-none d-lg-flex'>
-          <div> <img className='img-fluid' src='/Perro-triste.jpg' alt='Imagen carro vacío' /></div>
-          <div className='d-flex flex-column'>
-            <h3>No tienes producto Favoritos</h3>
-            <h5 className='p-4'>No pierdas mas tiempo. revisa nuestra amplia oferta de productos para tu mascota!</h5>
-            <button type='button ' className='btn btn-secondary col-4 me-auto ms-auto'>Ver Productos</button>
-          </div>
-        </div>
-        {/* Media Query md <992px */}
-        <div className='d-lg-none d-flex flex-column justify-content-center align-items-center border bg-white text-center py-3 '>
+
+        <div className='bg-white d-flex flex-column align-items-center justify-content-center'>
           <div>
-            <img className='img-fluid w-75' src='/Perro-triste.jpg' alt='Imagen carro vacío' />
+            <img style={{ height: '200px' }} src='/Perro-triste.jpg' alt='Imagen perro triste' />
           </div>
-          <div className='p-4'>
+          <div className='d-flex flex-column px-4 pb-4 text-center'>
             <h3>No tienes producto Favoritos</h3>
-            <h5 className=''>No pierdas mas tiempo. revisa nuestra amplia oferta de productos para tu mascota!</h5>
-            <button type='button ' className='btn btn-secondary col-4 me-auto ms-auto'>Ver Productos</button>
+            <h5 className='pb-4'>No pierdas mas tiempo. revisa nuestra amplia oferta de productos para tu mascota!</h5>
+            <button type='button ' className='btn btn-sm btn-secondary me-auto ms-auto' onClick='/'>Ver productos</button>
           </div>
         </div>
       </>
