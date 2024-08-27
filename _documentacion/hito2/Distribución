@@ -1,9 +1,11 @@
 Paula:
-- Landing page
-- Busqueda productos
-- Detalle productos
-- Información personal
-- Pagina de registro
+- Landing page (OK)
+- Detalle productos (OK)
+- Información personal (OK)
+- Pagina de registro (OK)
+- NotFound (OK)
+- Busqueda productos (P)
+- Tienda (P)
 
 Lucas:
 - Mis Favoritos (OK)
