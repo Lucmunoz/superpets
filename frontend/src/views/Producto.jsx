@@ -1,49 +1,28 @@
-import { useState } from 'react'
+import { useContext } from 'react'
 import CorazonFav from '../components/CorazonFav'
+import { PetsContext } from '../context/PetsContext'
+import { useParams } from 'react-router-dom'
 
 const Producto = () => {
-  const estadoInicial = [
-    {
-      id: 1,
-      sku: 122,
-      nombre: 'Disfraz',
-      precio: 19990,
-      isFavorite: false
-    }
-    // {
-    //   id: 2,
-    //   sku: 123,
-    //   nombre: 'Pelota',
-    //   precio: 19990,
-    //   isFavorite: false
-    // }
-  ]
-
-  const [productos, setProductos] = useState(estadoInicial)
-
-  const changeFavorite = (id) => {
-    const nuevosProductos = [...productos]
-    const index = nuevosProductos.findIndex((p) => p.id === id)
-    nuevosProductos[index].isFavorite = !nuevosProductos[index].isFavorite
-    setProductos(nuevosProductos)
-  }
+  const { id } = useParams()
+  const { productos, cambiarFavorito } = useContext(PetsContext)
+  const producto = [...productos].filter((p) => p.id === Number(id))
 
   return (
     <main className='mainProducto'>
-      {productos.map((p) =>
+      {producto?.map((p) =>
         <div className='divDetalleProducto' key={p.id}>
           <div>
-            <img src='/disfraz-salchicha.jpg' alt='producto-detalle' />
+            <img src={p.img} alt='producto-detalle' />
           </div>
           <div style={{ textAlign: 'center' }}>
             <div className='divTextProducto'>
               <h1 className='m-0'>{p.nombre}</h1>
-              <span>SKU-{p.sku}</span>
-              <p className='pt-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, autem praesentium! Cumque, dolorem? Consequuntur repellat, repellendus obcaecati recusandae facere asperiores?</p>
-              <span style={{ fontSize: '18px', color: '#062D3D;', fontWeight: '500' }}>${p.precio}</span>
+              <p className='pt-3'>{p.descripcion}</p>
+              <span style={{ fontSize: '20px', color: '#ED5C01', fontWeight: '700', margin: '0' }}>${p.precio}</span>
             </div>
             <button type='button' className='btn btn-danger'>Agregar al carro</button>
-            <button className='buttonCorazon' onClick={() => changeFavorite(p.id)}>
+            <button className='buttonCorazon' onClick={() => cambiarFavorito(p.id)}>
               <CorazonFav
                 filled={!!p.isFavorite}
               />
