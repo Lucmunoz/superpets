@@ -1,9 +1,15 @@
 import { useContext } from 'react'
 import CorazonFav from '../components/CorazonFav'
 import { PetsContext } from '../context/PetsContext'
+import { useNavigate } from 'react-router-dom'
 
 const Tienda = () => {
   const { productos, cambiarFavorito, select, cambiarSelect } = useContext(PetsContext)
+  const navigate = useNavigate()
+  const irDetalleProducto = (id) => {
+    navigate(`/tienda/producto/${id}`)
+  }
+
   let productosOrdenados = [...productos]
   if (select === 'az') productosOrdenados = [...productos].sort((a, b) => a.nombre.localeCompare(b.nombre))
   if (select === 'za') productosOrdenados = [...productos].sort((a, b) => b.nombre.localeCompare(a.nombre))
@@ -39,7 +45,7 @@ const Tienda = () => {
                 <p className='precioCardHome'>${p.precio}</p>
               </div>
               <div>
-                <button className='buttonCard'>Ver detalle</button>
+                <button className='buttonCard' onClick={() => irDetalleProducto(p.id)}>Ver detalle</button>
               </div>
             </div>
           )}
