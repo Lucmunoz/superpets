@@ -261,6 +261,33 @@ footer div a:hover {
   color: #fff;
 }
 
+/* acerca de nosotros */
+.divAcerca {
+  width: 800px;
+  min-height: 350px;
+  border-radius: 10px;
+  display: flex;
+  background-color:#fff;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.divTextAcerca {
+  padding: 30px 30px 30px 0;
+}
+
+.divTextAcerca h1 {
+  font-size: 24px;
+  color: #ED5C01;
+  font-weight: 700;
+  padding-bottom: 10px;
+}
+
+.divAcerca p {
+  text-align: justify;
+}
+
 /* notFound */
 .divNotFound {
   width: 700px;
@@ -321,7 +348,7 @@ footer div a:hover {
   /* /tienda/producto/id */
   .divDetalleProducto {
     min-height: 200px;
-    width: 75%;
+    width: 80%;
     flex-direction: column;
   }
 
@@ -377,10 +404,25 @@ footer div a:hover {
     font-size: 14px;
   }
 
+/* acerca de nosotros */
+.divAcerca {
+  width: 80%;
+  flex-direction: column;
+}
+
+.divTextAcerca {
+  padding: 20px;
+}
+
+.divTextAcerca h1 {
+  font-size: 20px;
+}
+
   /* notFound */
 .divNotFound {
-  width: 300px;
+  width: 80%;
   flex-direction: column;
+  align-items: center;
 }
 
 
