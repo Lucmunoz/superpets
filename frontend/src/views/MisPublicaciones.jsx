@@ -43,14 +43,14 @@ const MisPublicaciones = () => {
 
   const mostrarPublicaciones = () => {
     return (
-      <div className='bg-white border d-flex flex-column align-items-center justify-content-center pb-5'>
-        <h1 className='p-4'>Mis publicaciones <i class='fa-solid fa-pen-to-square' /></h1>
-        <div className='d-flex flex-row container-fluid justify-content-end bg-light p-3 gap-4'>
-          <div className='d-flex align-items-center gap-2 col-4'>
+      <div className='bg-white d-flex flex-column align-items-center justify-content-center pb-5'>
+        <h1 className='p-4'>Mis publicaciones </h1>
+        <div className='d-flex flex-column flex-md-row container-fluid align-items-center justify-content-md-end bg-light  py-4 gap-2 gap-md-4'>
+          <div className='d-flex flex-column flex-sm-row align-items-center gap-2 '>
             <h5 className='p-0 m-0'>Busqueda</h5>
             <input type='text' id='busqueda-publicaciones' className='form-control fst-italic' placeholder='Título, nombre, precio, etc...' />
           </div>
-          <div className='d-flex align-items-center gap-2'>
+          <div className='d-flex flex-column flex-sm-row align-items-center gap-2 '>
             <h5 className='p-0 m-0'>Ordenar</h5>
             <select className='form-select fst-italic' aria-label='Default select example'>
               <option value='DEFAULT'>Seleccione...</option>
@@ -61,8 +61,8 @@ const MisPublicaciones = () => {
             </select>
           </div>
         </div>
-        <div className='container-fluid p-0 pt-3 d-flex flex-column'>
-          {arregloPublicaciones.map((publicacion) => { return PublicacionListada(publicacion) })}
+        <div className='container-fluid p-0 pt-3 d-flex flex-column gap-2'>
+          {arregloPublicaciones.map((publicacion) => { return (PublicacionListada(publicacion)) })}
         </div>
       </div>
     )

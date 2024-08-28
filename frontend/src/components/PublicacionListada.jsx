@@ -1,23 +1,24 @@
 const PublicacionListada = (publicacion) => {
   return (
-    <div className='container-fluid border-bottom px-4 m-0' key={publicacion.id}>
-      <div className='d-flex gap-4 align-items-center py-2'>
-        <div className='col-1 text-center'>
-          <img style={{ height: '70px' }} src={publicacion.imagen} alt='MDN' />
+    <div className='container-fluid bg-light p-0' key={publicacion.id}>
+      <div className='row container-fluid m-0 p-1'>
+        <div className='col-3 col-sm-2 p-0 '>
+          <div className='text-center'>
+            <img className='' style={{ height: '70px' }} src={publicacion.imagen} alt='MDN' />
+          </div>
         </div>
-        <div className='d-flex flex-column text-start col-6'>
-          <h6>{publicacion.nombre}</h6>
-          <div className='fw-light fst-italic'>{publicacion.descripcion.substring(0, 70) + '...'}</div>
+        <div className='col-9  col-md-7 d-flex flex-column justify-content-center p-0'>
+          <h6 className='p-0 m-0'>{publicacion.nombre}</h6>
+          <div className='text-truncate fst-italic fw-light text-muted'>
+            {publicacion.descripcion}
+          </div>
         </div>
-        <div className='d-flex flex-column text-start ms-auto'>
-          <h6>Precio</h6>
-          <div className='fw-light fst-italic'>${(publicacion.precio / 1000).toFixed(3)}</div>
-        </div>
-        <div className='d-flex flex-row gap-4 ms-auto justify-content-center'>
-          <button type='button' className='btn btn-secondary'>Ver publicacion</button>
-          <button type='button' className='btn btn-danger'>Eliminar publicacion</button>
+        <div className='d-flex col-md-3  gap-2 justify-content-center align-items-center p-0 py-2 ms-auto'>
+          <button type='button' className='btn btn-sm btn-secondary'>editar</button>
+          <button type='button' className='btn btn-sm btn-danger'>Eliminar</button>
         </div>
       </div>
+
     </div>
   )
 }
