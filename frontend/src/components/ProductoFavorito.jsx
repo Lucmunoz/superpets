@@ -1,6 +1,6 @@
 const ProductoFavorito = (producto) => {
   return (
-    <div className='container-fluid bg-light p-0'  key={producto.id}>
+    <div className='container-fluid bg-light p-0' key={producto.id}>
       <div className='row'>
         <div className='col-3 col-sm-2 p-0 '>
           <div className='text-center'>
