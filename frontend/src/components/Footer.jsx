@@ -25,11 +25,11 @@ const Footer = () => {
         <ul>
           <li>
             <i className='fa-solid fa-paw fa-lg' />
-            <Link> Acerca de nosotros</Link>
+            <Link to='/acercadenosotros'> Acerca de nosotros</Link>
           </li>
           <li>
             <i className='fa-solid fa-paw fa-lg' />
-            <Link>
+            <Link to='/preguntasfrecuentes'>
               Preguntas frecuentes
             </Link>
           </li>
