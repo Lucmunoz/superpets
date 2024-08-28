@@ -58,17 +58,14 @@ main {
 
 /* carrusel */
 .imgCarrusel {
-  height: 450px;
-  width: 100vw;
+  width: 100%;
 }
 
 /* card Home */
 .divCardHome {
-  background-color: #ED5C01;
   padding: 50px 0;
   display: flex;
   flex-wrap: wrap;
-  background-image: url('/patern.png');
 }
 
 .precioCardHome {
