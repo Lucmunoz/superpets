@@ -1,21 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
+import { PetsContext } from '../context/PetsContext'
+import { useNavigate } from 'react-router-dom'
 
 const Card = () => {
-  const [productos, setProductos] = useState([])
-  const getData = async () => {
-    try {
-      const response = await fetch('/productos.json')
-      const data = await response.json()
-      setProductos(data)
-      console.log(productos)
-    } catch (error) {
-      console.log(error)
-    }
+  const { productos } = useContext(PetsContext)
+  const navigate = useNavigate()
+  const irDetalleProducto = (id) => {
+    navigate(`/tienda/producto/${id}`)
   }
-
-  useEffect(() => {
-    getData()
-  }, [])
 
   return (
     <>
@@ -27,7 +19,7 @@ const Card = () => {
             <p className='precioCardHome'>${p.precio}</p>
           </div>
           <div>
-            <button className='buttonCard'>Ver detalle</button>
+            <button className='buttonCard' onClick={() => irDetalleProducto(p.id)}>Ver detalle</button>
           </div>
         </div>
       )}
