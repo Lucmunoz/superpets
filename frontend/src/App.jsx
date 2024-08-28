@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import Menu from './components/Menu'
 
-import { Home, Tienda, Registrarse, Carro, NotFound, Producto, Favoritos, InformacionPersonal, MisPublicaciones, Login, Perfil, MisCompras, BuscadorVista, AcercaDeNosotros, PreguntasFrecuentes } from './views'
+import { Home, Tienda, Registrarse, Carro, NotFound, Producto, Favoritos, InformacionPersonal, MisPublicaciones, Login, Perfil, MisCompras, BuscadorVista, AcercaDeNosotros, PreguntasFrecuentes, CrearPublicacion, ActualizarPublicacion } from './views'
 import Footer from './components/Footer'
 
 const App = () => {
@@ -26,6 +26,8 @@ const App = () => {
         <Route path='/buscar' element={<BuscadorVista />} />
         <Route path='/acercadenosotros' element={<AcercaDeNosotros />} />
         <Route path='/preguntasfrecuentes' element={<PreguntasFrecuentes />} />
+        <Route path='/crearpublicacion' element={<CrearPublicacion />} />
+        <Route path='/actualizarpublicacion' element={<ActualizarPublicacion />} />
         {/* fin rutas protegidas */}
         <Route path='*' element={<NotFound />} />
       </Routes>
