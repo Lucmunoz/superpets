@@ -28,7 +28,7 @@ const Carro = () => {
 
   useEffect(() => {
     if (window.sessionStorage.getItem('token')) { // <----- ELIMINAR
-    //if (!window.sessionStorage.getItem('token')) {
+      // if (!window.sessionStorage.getItem('token')) {
       navigate('/ingresar')
     }
   }, [])
