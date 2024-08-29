@@ -1,6 +1,16 @@
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import PublicacionListada
   from '../components/PublicacionListada'
 const MisPublicaciones = () => {
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (!window.sessionStorage.getItem('token')) {
+      // navigate('/ingresar')
+    }
+  }, [])
+
   const cantidadPublicaciones = 1
 
   const arregloPublicaciones = [{
