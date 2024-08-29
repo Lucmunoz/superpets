@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const datosPublicacion = {
   nombre: '',
@@ -8,6 +9,7 @@ const datosPublicacion = {
 }
 
 const CrearPublicacion = () => {
+  const navigate = useNavigate()
   const [publicacion, setPublicacion] = useState(datosPublicacion)
   const handlePublicacion = (event) => setPublicacion({ ...publicacion, [event.target.name]: event.target.value })
 
@@ -29,6 +31,14 @@ const CrearPublicacion = () => {
       return window.alert('Debe ingresar una URL para la imágen.')
     }
   }
+
+  useEffect(() => {
+    if (!window.sessionStorage.getItem('token')) {
+      /* Solo los usuarios logeados pueden crear una publicación. En la eventualidad de que el usuario no esté logeado y acceda a
+          esta vista, será redirigido a la vista de inicio de sesión. */
+      // navigate('/login')
+    }
+  }, [])
 
   return (
     <main className='d-flex align-items-center'>
