@@ -20,7 +20,7 @@ const App = () => {
         <Route path='/favoritos' element={<Favoritos />} />
         <Route path='/carrito' element={<Carro />} />
         <Route path='/mispublicaciones' element={<MisPublicaciones />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/ingresar' element={<Login />} />
         <Route path='/perfil' element={<Perfil />} />
         <Route path='/miscompras' element={<MisCompras />} />
         <Route path='/buscar' element={<BuscadorVista />} />
