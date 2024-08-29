@@ -13,7 +13,7 @@ const Producto = () => {
       {producto?.map((p) =>
         <div className='divDetalleProducto' key={p.id}>
           <div>
-            <img src={p.img} alt='producto-detalle' />
+            <img src={p.imagen} alt='producto-detalle' />
           </div>
           <div style={{ textAlign: 'center' }}>
             <div className='divTextProducto'>

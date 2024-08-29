@@ -15,6 +15,7 @@ const Tienda = () => {
   if (select === 'za') productosOrdenados = [...productos].sort((a, b) => b.nombre.localeCompare(a.nombre))
   if (select === 'menor') productosOrdenados = [...productos].sort((a, b) => a.precio - b.precio)
   if (select === 'mayor') productosOrdenados = [...productos].sort((a, b) => b.precio - a.precio)
+  console.log(productosOrdenados)
 
   return (
     <main>
@@ -39,7 +40,7 @@ const Tienda = () => {
                   />
                 </button>
               </div>
-              <img src={p.img} className='card-img-top' alt='disfraz-salchicha' />
+              <img src={p.imagen} className='card-img-top' alt='disfraz-salchicha' />
               <div className='card-body'>
                 <h5 className='card-title'>{p.nombre}</h5>
                 <p className='precioCardHome'>${p.precio}</p>

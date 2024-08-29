@@ -13,7 +13,7 @@ const Card = () => {
     <>
       {productos.slice(6).map((p) =>
         <div className='card' key={p.id}>
-          <img src={p.img} className='card-img-top' alt='disfraz-salchicha' />
+          <img src={p.imagen} className='card-img-top' alt='disfraz-salchicha' />
           <div className='card-body'>
             <h5 className='card-title'>{p.nombre}</h5>
             <p className='precioCardHome'>${p.precio}</p>
