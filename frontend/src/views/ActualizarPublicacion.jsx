@@ -9,7 +9,7 @@ const ActualizarPublicacion = () => {
 
   useEffect(() => {
     if (!window.sessionStorage.getItem('token')) {
-      // navigate('/login')
+      navigate('/ingresar')
     }
   }, [])
 
