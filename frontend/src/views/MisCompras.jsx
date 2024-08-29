@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import ProductoCompras from '../components/ProductoCompras'
 
-import ProductoCompras
-  from '../components/ProductoCompras'
 const MisCompras = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!window.sessionStorage.getItem('token')) {
-      // navigate('/ingresar')
+    if (window.sessionStorage.getItem('token')) { // <----- ELIMINAR
+      // if (!window.sessionStorage.getItem('token')) {
+      navigate('/ingresar')
     }
   }, [])
 

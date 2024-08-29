@@ -1,7 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useEffect, useState, useContext } from 'react'
-
-import { PetsContext } from '../context/PetsContext'
+import { useEffect, useState } from 'react'
 
 const Perfil = () => {
   const navigate = useNavigate()

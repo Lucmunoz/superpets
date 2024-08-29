@@ -6,8 +6,9 @@ import PublicacionListada
 const MisPublicaciones = () => {
   const navigate = useNavigate()
   useEffect(() => {
-    if (!window.sessionStorage.getItem('token')) {
-      // navigate('/ingresar')
+    if (window.sessionStorage.getItem('token')) { // <----- ELIMINAR
+      // if (!window.sessionStorage.getItem('token')) {
+      navigate('/ingresar')
     }
   }, [])
 
