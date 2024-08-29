@@ -1,6 +1,16 @@
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import ProductoFavorito from '../components/ProductoFavorito'
 
 const Favoritos = () => {
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (window.sessionStorage.getItem('token')) { // <----- ELIMINAR
+      // if (!window.sessionStorage.getItem('token')) {
+      navigate('/ingresar')
+    }
+  }, [])
+
   const favElements = 1
   const arreglo = [{
     id: '123',
