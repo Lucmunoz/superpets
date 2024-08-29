@@ -27,8 +27,9 @@ const Carro = () => {
   const cartElements = 1
 
   useEffect(() => {
-    if (!window.sessionStorage.getItem('token')) {
-      navigate('/login')
+    if (window.sessionStorage.getItem('token')) { // <----- ELIMINAR
+    //if (!window.sessionStorage.getItem('token')) {
+      navigate('/ingresar')
     }
   }, [])
 
