@@ -26,7 +26,7 @@ const Login = () => {
     if (!emailRegex.test(userTemp.correo)) {
       return window.alert('El formato del email no es correcto!')
     }
-    /* Reemplazar codigo al iniciar sesión para obtener token válido*/
+    /* Reemplazar codigo al iniciar sesión para obtener token */
     /* axios.post(ENDPOINT.login, user)
       .then(({ data }) => {
         window.sessionStorage.setItem('token', data.token)
