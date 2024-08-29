@@ -36,7 +36,7 @@ const CrearPublicacion = () => {
     if (!window.sessionStorage.getItem('token')) {
       /* Solo los usuarios logeados pueden crear una publicación. En la eventualidad de que el usuario no esté logeado y acceda a
           esta vista, será redirigido a la vista de inicio de sesión. */
-      // navigate('/login')
+      navigate('/ingresar')
     }
   }, [])
 
