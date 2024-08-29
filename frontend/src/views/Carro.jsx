@@ -1,26 +1,36 @@
+import { useEffect } from 'react'
 import ProductoCarro from '../components/ProductoCarro'
+import { useNavigate } from 'react-router-dom'
+const arreglo = [{
+  id: '123',
+  nombre: 'Pelota Respira Fácil',
+  descripcion: 'Pelota de diseño especial, similar a una malla, que facilita la respiración y el flujo de aire hacia los pulmones del animal mientras juega',
+  precio: 9594,
+  imagen: 'https://cdnx.jumpseller.com/bigotes-pet-store-coffee/image/31906761/resize/610/610?1676288218'
+}, {
+  id: '1234',
+  nombre: 'Hueso Doble Capa',
+  descripcion: 'Hueso impregnado con esencia natural de mantequilla de mani. Fabricado con materiales extra resistente que garantiza durabilidad del producto.',
+  precio: 15990,
+  imagen: 'https://www.petco.cl/medias/?context=bWFzdGVyfGltYWdlc3wyNzE0NDZ8aW1hZ2UvanBlZ3xpbWFnZXMvaDA4L2hkMi85MjU4NjM1NjI0NDc4LmpwZ3xjZTMwZDkyMDgzMGU4YzUxMmFjZjIzYmUzY2E0NzM0ODQzMDY2OTU1NmJmOTU5Yjg5YzAxZjk0ZjIwYWNhMmEy'
+}, {
+  id: '12345',
+  nombre: 'Harnes Hiking',
+  descripcion: 'Arnes que ofrese toda la seguridad que tu mascota necesita para salir paseos largos y evitar que se escape',
+  precio: 25990,
+  imagen: 'https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dwf12355c9/images/40985-hiking-harness-camuflado-001.jpg'
+}]
 
 const Carro = () => {
+  const navigate = useNavigate()
+
   const cartElements = 1
-  const arreglo = [{
-    id: '123',
-    nombre: 'Pelota Respira Fácil',
-    descripcion: 'Pelota de diseño especial, similar a una malla, que facilita la respiración y el flujo de aire hacia los pulmones del animal mientras juega',
-    precio: 9594,
-    imagen: 'https://cdnx.jumpseller.com/bigotes-pet-store-coffee/image/31906761/resize/610/610?1676288218'
-  }, {
-    id: '1234',
-    nombre: 'Hueso Doble Capa',
-    descripcion: 'Hueso impregnado con esencia natural de mantequilla de mani. Fabricado con materiales extra resistente que garantiza durabilidad del producto.',
-    precio: 15990,
-    imagen: 'https://www.petco.cl/medias/?context=bWFzdGVyfGltYWdlc3wyNzE0NDZ8aW1hZ2UvanBlZ3xpbWFnZXMvaDA4L2hkMi85MjU4NjM1NjI0NDc4LmpwZ3xjZTMwZDkyMDgzMGU4YzUxMmFjZjIzYmUzY2E0NzM0ODQzMDY2OTU1NmJmOTU5Yjg5YzAxZjk0ZjIwYWNhMmEy'
-  }, {
-    id: '12345',
-    nombre: 'Harnes Hiking',
-    descripcion: 'Arnes que ofrese toda la seguridad que tu mascota necesita para salir paseos largos y evitar que se escape',
-    precio: 25990,
-    imagen: 'https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dwf12355c9/images/40985-hiking-harness-camuflado-001.jpg'
-  }]
+
+  useEffect(() => {
+    if (!window.sessionStorage.getItem('token')) {
+      navigate('/login')
+    }
+  }, [])
 
   const carroVacio = () => {
     return (
