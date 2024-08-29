@@ -6,6 +6,7 @@ const PetsContextProvider = ({ children }) => {
   const [productos, setProductos] = useState([])
   const [select, setSelect] = useState('az')
   const [busqueda, setBusqueda] = useState('')
+  const [usuario, setUsuario] = useState(null)
 
   const getData = async () => {
     try {
@@ -39,7 +40,9 @@ const PetsContextProvider = ({ children }) => {
     select,
     cambiarSelect,
     busqueda,
-    cambiarInputBusqueda
+    cambiarInputBusqueda,
+    usuario,
+    setUsuario
   }
 
   return (
