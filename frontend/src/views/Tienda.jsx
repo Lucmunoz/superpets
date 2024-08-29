@@ -4,17 +4,20 @@ import { PetsContext } from '../context/PetsContext'
 import { useNavigate } from 'react-router-dom'
 
 const Tienda = () => {
-  const { productos, cambiarFavorito, select, cambiarSelect } = useContext(PetsContext)
+  const { productos, cambiarFavorito, select, cambiarSelect, usuario } = useContext(PetsContext)
   const navigate = useNavigate()
   const irDetalleProducto = (id) => {
     navigate(`/tienda/producto/${id}`)
   }
+  // función que muestra los productos distintos a los que el usuario creo
+  let productosTienda = [...productos]
+  if (usuario !== null) productosTienda = [...productos].filter((p) => p.id_usuario !== usuario.id_usuario)
 
-  let productosOrdenados = [...productos]
-  if (select === 'az') productosOrdenados = [...productos].sort((a, b) => a.nombre.localeCompare(b.nombre))
-  if (select === 'za') productosOrdenados = [...productos].sort((a, b) => b.nombre.localeCompare(a.nombre))
-  if (select === 'menor') productosOrdenados = [...productos].sort((a, b) => a.precio - b.precio)
-  if (select === 'mayor') productosOrdenados = [...productos].sort((a, b) => b.precio - a.precio)
+  let productosOrdenados = [...productosTienda]
+  if (select === 'az') productosOrdenados = [...productosTienda].sort((a, b) => a.nombre.localeCompare(b.nombre))
+  if (select === 'za') productosOrdenados = [...productosTienda].sort((a, b) => b.nombre.localeCompare(a.nombre))
+  if (select === 'menor') productosOrdenados = [...productosTienda].sort((a, b) => a.precio - b.precio)
+  if (select === 'mayor') productosOrdenados = [...productosTienda].sort((a, b) => b.precio - a.precio)
   console.log(productosOrdenados)
 
   return (
