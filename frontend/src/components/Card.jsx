@@ -3,15 +3,20 @@ import { PetsContext } from '../context/PetsContext'
 import { useNavigate } from 'react-router-dom'
 
 const Card = () => {
-  const { productos } = useContext(PetsContext)
+  const { productos, usuario } = useContext(PetsContext)
   const navigate = useNavigate()
   const irDetalleProducto = (id) => {
     navigate(`/tienda/producto/${id}`)
   }
 
+  // función que muestra los productos distintos a los que el usuario creo
+  let productosTienda = [...productos]
+  if (usuario !== null) productosTienda = [...productos].filter((p) => p.id_usuario !== usuario.id_usuario)
+  console.log(productosTienda)
+
   return (
     <>
-      {productos.slice(6).map((p) =>
+      {productosTienda.slice(0, 3).map((p) =>
         <div className='card' key={p.id}>
           <img src={p.imagen} className='card-img-top' alt='disfraz-salchicha' />
           <div className='card-body'>
