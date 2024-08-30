@@ -43,7 +43,7 @@ const Registrarse = () => {
     axios.post(ENDPOINT.registrarse, nuevoUsuario)
       .then(({ data }) => {
         window.alert(`${data.message} 😀.`)
-        navigate('/perfil')
+        // navigate('/perfil')
       })
       .catch(({ response: { data } }) => {
         console.error(data)
