@@ -34,6 +34,8 @@ const PetsContextProvider = ({ children }) => {
     setBusqueda(e.target.value)
   }
 
+  // función que cambia el estado del usuario, valores permitidos null y  {}
+  const cambiarUsuario = (valor) => setUsuario(valor)
   const globalState = {
     productos,
     cambiarFavorito,
@@ -42,7 +44,8 @@ const PetsContextProvider = ({ children }) => {
     busqueda,
     cambiarInputBusqueda,
     usuario,
-    setUsuario
+    setUsuario,
+    cambiarUsuario
   }
 
   return (
