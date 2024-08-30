@@ -3,8 +3,10 @@ import CorazonFav from '../components/CorazonFav'
 import { PetsContext } from '../context/PetsContext'
 
 const BuscadorVista = () => {
-  const { productos, cambiarFavorito, busqueda } = useContext(PetsContext)
-  const productosFiltrados = [...productos].filter((p) => p.nombre.trim().toLowerCase().includes(busqueda.toLowerCase()))
+  const { productos, cambiarFavorito, busqueda, usuario } = useContext(PetsContext)
+  let productosdeOtros = [...productos]
+  if (usuario !== null) productosdeOtros = productosdeOtros.filter((p) => p.id_usuario !== usuario.id_usuario)
+  const productosFiltrados = [...productosdeOtros].filter((p) => p.nombre.trim().toLowerCase().includes(busqueda.toLowerCase()))
 
   return (
     <main>
@@ -25,7 +27,7 @@ const BuscadorVista = () => {
                     />
                   </button>
                 </div>
-                <img src={p.img} className='card-img-top' alt='disfraz-salchicha' />
+                <img src={p.imagen} className='card-img-top' alt='disfraz-salchicha' />
                 <div className='card-body'>
                   <h5 className='card-title'>{p.nombre}</h5>
                   <p className='precioCardHome'>${p.precio}</p>
