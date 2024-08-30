@@ -1,36 +1,78 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { ENDPOINT } from '../config/constants.js'
 
 const Registrarse = () => {
   const usuarioInicial = {
-    nombreUsuario: '',
-    apellidoUsuario: '',
-    emailUsuario: '',
-    passwordUsuario: '',
-    rutUsuario: '',
-    telefonoUsuario: '',
-    direccionUsuario: ''
+    nombre: '',
+    apellido: '',
+    correo: '',
+    contrasena: '',
+    rut: '',
+    telefono: '',
+    direccion: ''
   }
 
-  const [usuario, setUsuario] = useState(usuarioInicial)
-  const cambioInput = (e) => {
-    setUsuario({ ...usuario, [e.target.name]: e.target.value })
+  const [nuevoUsuario, setNuevoUsuario] = useState(usuarioInicial)
+  const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+  const navigate = useNavigate()
+  const cambioInput = (e) => setNuevoUsuario({ ...nuevoUsuario, [e.target.name]: e.target.value })
+
+  const enviarFormulario = (e) => {
+    e.preventDefault()
+
+    if (nuevoUsuario.nombre.trim() === '' ||
+    nuevoUsuario.apellido.trim() === '' ||
+    nuevoUsuario.correo.trim() === '' ||
+    nuevoUsuario.contrasena.trim() === '' ||
+    nuevoUsuario.rut.trim() === '' ||
+    nuevoUsuario.telefono.trim() === '' ||
+    nuevoUsuario.direccion.trim() === '') {
+      return window.alert('Campos vacíos')
+    }
+
+    if (!emailRegex.test(nuevoUsuario.correo)) {
+      return window.alert('El formato del email ingresado no es correcto!')
+    }
+
+    if (nuevoUsuario.contrasena.length !== 8) {
+      return window.alert('La contraseña debe ser de 8 caracteres')
+    }
+
+    window.alert('formulario completo')
+    setNuevoUsuario(usuarioInicial)
+
+    axios.post(ENDPOINT.users, nuevoUsuario)
+      .then(() => {
+        window.alert('Usuario registrado con éxito 😀.')
+        navigate('/login')
+      })
+      .catch(({ response: { data } }) => {
+        console.error(data)
+        window.alert(`${data.message} 🙁.`)
+      })
   }
 
-  // pendiente encriptar password
+  useEffect(() => {
+    if (window.sessionStorage.getItem('token')) {
+      navigate('/perfil')
+    }
+  }, [])
 
   return (
     <main>
       <div className='divRegistroNuevo'>
         <h1>Registrate aquí<i className='fa-regular fa-pen-to-square ps-2' /></h1>
-        <form>
+        <form onSubmit={enviarFormulario}>
           <div className='mb-3'>
             <label htmlFor='nombre' className='form-label mb-0'>Nombre</label>
             <input
               type='text'
               className='form-control'
               id='nombre'
-              name='nombreUsuario'
-              value={usuario.nombreUsuario}
+              name='nombre'
+              value={nuevoUsuario.nombre}
               onChange={cambioInput}
             />
           </div>
@@ -40,8 +82,8 @@ const Registrarse = () => {
               type='text'
               className='form-control'
               id='apellido'
-              name='apellidoUsuario'
-              value={usuario.apellidoUsuario}
+              name='apellido'
+              value={nuevoUsuario.apellido}
               onChange={cambioInput}
             />
           </div>
@@ -52,19 +94,19 @@ const Registrarse = () => {
               className='form-control'
               id='email'
               aria-describedby='emailHelp'
-              name='emailUsuario'
-              value={usuario.emailUsuario}
+              name='correo'
+              value={nuevoUsuario.correo}
               onChange={cambioInput}
             />
           </div>
           <div className='mb-3'>
-            <label htmlFor='password' className='form-label mb-0'>Password</label>
+            <label htmlFor='password' className='form-label mb-0'>Contraseña (8 caracteres)</label>
             <input
               type='password'
               className='form-control'
               id='password'
-              name='passwordUsuario'
-              value={usuario.passwordUsuario}
+              name='contrasena'
+              value={nuevoUsuario.contrasena}
               onChange={cambioInput}
             />
           </div>
@@ -74,8 +116,8 @@ const Registrarse = () => {
               type='text'
               className='form-control'
               id='rut'
-              name='rutUsuario'
-              value={usuario.rutUsuario}
+              name='rut'
+              value={nuevoUsuario.rut}
               onChange={cambioInput}
             />
           </div>
@@ -85,8 +127,8 @@ const Registrarse = () => {
               type='text'
               className='form-control'
               id='telefono'
-              name='telefonoUsuario'
-              value={usuario.telefonoUsuario}
+              name='telefono'
+              value={nuevoUsuario.telefono}
               onChange={cambioInput}
             />
           </div>
@@ -96,8 +138,8 @@ const Registrarse = () => {
               type='text'
               className='form-control'
               id='direccion'
-              name='direccionUsuario'
-              value={usuario.direccionUsuario}
+              name='direccion'
+              value={nuevoUsuario.direccion}
               onChange={cambioInput}
             />
           </div>
