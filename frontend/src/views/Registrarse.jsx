@@ -40,13 +40,10 @@ const Registrarse = () => {
       return window.alert('La contraseña debe ser de 8 caracteres')
     }
 
-    window.alert('formulario completo')
-    setNuevoUsuario(usuarioInicial)
-
-    axios.post(ENDPOINT.users, nuevoUsuario)
-      .then(() => {
-        window.alert('Usuario registrado con éxito 😀.')
-        navigate('/login')
+    axios.post(ENDPOINT.registrarse, nuevoUsuario)
+      .then(({ data }) => {
+        window.alert(`${data.message} 😀.`)
+        navigate('/perfil')
       })
       .catch(({ response: { data } }) => {
         console.error(data)
