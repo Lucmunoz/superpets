@@ -1,6 +1,8 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { PetsContext } from '../context/PetsContext'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { ENDPOINT } from '../config/constants.js'
 
 const Card = () => {
   const { productos, usuario } = useContext(PetsContext)
@@ -9,10 +11,28 @@ const Card = () => {
     navigate(`/tienda/producto/${id}`)
   }
 
+  // función que trae todos los productos del backend
+  // const [productosData, setProductosData] = useState([])
+  // const getData = () => {
+  //   axios.get(ENDPOINT.home)
+  //     .then(({ data }) => {
+  //       setProductosData(data)
+  //     })
+  //     .catch(({ response: { data } }) => {
+  //       console.log(data.message)
+  //       window.alert(`${data.message}`)
+  //     })
+  // }
+  // console.log(productosData, 'soy productos data')
+
+  // useEffect(() => {
+  //   getData()
+  // }, [])
+
   // función que muestra los productos distintos a los que el usuario creo
   let productosTienda = [...productos]
-  if (usuario !== null) productosTienda = [...productos].filter((p) => p.id_usuario !== usuario.id_usuario)
-  console.log(productosTienda)
+  if (usuario !== null) productosTienda = [...productos].filter((p) => p.id_usuarios !== usuario.id_usuarios)
+  console.log(productosTienda, 'soy prod.tienda')
 
   return (
     <>
