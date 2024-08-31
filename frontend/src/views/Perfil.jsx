@@ -5,19 +5,20 @@ import { PetsContext } from '../context/PetsContext'
 const Perfil = () => {
   const navigate = useNavigate()
   const [isloading, setIsloading] = useState(true)
-  const { usuario } = useContext(PetsContext)
+  const { usuario, cerrarSesion } = useContext(PetsContext)
   const [nombre, setNombre] = useState('')
 
-  const getUserData = () => {
-    setNombre(usuario.nombre)
-  }
-
   useEffect(() => {
-    if (window.sessionStorage.getItem('token')) { // <----- ELIMINAR
-      // if (!window.sessionStorage.getItem('token')) {
+    /* //Código para verificar existencia de token. De lo contrario, redirigir a ingresar
+     if (!window.sessionStorage.getItem('token')) {navigate('/ingresar')} */
+
+    /* *Reemplazar codigo cuando se realice backend***/
+    if (!window.sessionStorage.getItem('usuario')) {
       navigate('/ingresar')
+    } else {
+      setNombre(JSON.parse(window.sessionStorage.getItem('usuario')).nombre)
     }
-    getUserData()
+    /* *Reemplazar codigo cuando se realice backend***/
   }, [])
 
   useEffect(() => {
@@ -27,6 +28,11 @@ const Perfil = () => {
       setIsloading(true)
     }
   }, [nombre])
+
+  const cerrarSesión = () => {
+    cerrarSesion()
+    navigate('/ingresar')
+  }
 
   const mostrarData = () => {
     return (
@@ -56,6 +62,9 @@ const Perfil = () => {
               </div>
             </NavLink>
 
+            <div className='pt-3'>
+              <button type='button' className='btn btn-primary' onClick={() => cerrarSesión()}>Cerrar Sesión</button>
+            </div>
           </div>
         </div>
       </div>
