@@ -9,6 +9,7 @@ const PetsContextProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(null)
   const [arregloMisPublicaciones, setArregloMisPublicaciones] = useState('')
   const [productosCarro, setProductosCarro] = useState([])
+  const [totalCarro, setTotalCarro] = useState(0)
 
   const getData = async () => {
     try {
@@ -23,6 +24,11 @@ const PetsContextProvider = ({ children }) => {
   useEffect(() => {
     getData()
   }, [])
+
+  useEffect(() => {
+    setTotalCarro(calcularTotal(productosCarro))
+    console.log(totalCarro)
+  }, [productosCarro])
 
   const cambiarFavorito = (id) => {
     const nuevosProductos = [...productos]
@@ -39,26 +45,53 @@ const PetsContextProvider = ({ children }) => {
   // función que cambia el estado del usuario, valores permitidos null y  {}
   const cambiarUsuario = (valor) => setUsuario(valor)
 
-  // función que quita 1  al carro
+  // función que agrega 1 al carro
   const agregarCarro = (id) => {
-    const nuevoProducto = [...productos].filter((p) => p.id === id)[0]
-    setProductosCarro([...productosCarro, nuevoProducto])
+    // Creo una copia del arreglo de productos que hay en el carro.
+    const productosCarroTemp = [...productosCarro]
+    // En el arreglo, busco el id del elemento a actualizar.
+    const objectIndex = productosCarro.findIndex(obj => obj.id === id)
+    // si findIndex devuelve un valor valido, quiere decir que producto ya existe en el carro->modifico cantidad
+    if (objectIndex !== -1) {
+      productosCarroTemp[objectIndex].cantidad += 1
+      setProductosCarro(productosCarroTemp)
+    } else { // si findIndex devuelve un valor invalido (-1), quiere decir que producto NO existe en el carro-> Lo agrego con cantidad 1.
+      // Agrego la key cantidad y lo agrego al estado arreglo productos carro
+      const productoTemporal = productos[+id - 1]
+      const productoTemporalConCantidad = { ...productoTemporal, cantidad: 1 }
+      // finalmente, seteo el arreglo de productosCarro con el arreglo temporal
+      setProductosCarro([...productosCarro, productoTemporalConCantidad])
+    }
   }
 
   // función que quita 1 del carro
   const quitarCarro = (id) => {
+    // Creo una copia del arreglo de productos que hay en el carro.
     const carroActual = [...productosCarro]
-    console.log(id, 'a eliminar')
+    // En el arreglo, busco el id del elemento a actualizar.
     const index = carroActual.findIndex((p) => p.id === id)
-    carroActual.splice(index, 1)
+    // si findIndex devuelve un valor valido, quiere decir que producto ya existe en el carro->modifico cantidad
+    if (index !== -1) {
+      if (carroActual[index].cantidad !== 0) {
+        carroActual[index].cantidad -= 1
+      }
+      // Si la cantidad es 0, tengo que eliminar el producto del arreglo
+      if (carroActual[index].cantidad === 0) {
+        carroActual.splice(index, 1)
+      }
+    }
+    // finalmente, seteo el arreglo de productosCarro con el arreglo temporal
     setProductosCarro(carroActual)
   }
 
+  const calcularTotal = (array) => {
+    if (productosCarro.length === 0) { return 0 } else {
+      const valor = array.reduce((acumulator, currentValue) => acumulator + (currentValue.cantidad * currentValue.precio), 0)
+      return (valor)
+    }
+  }
   // valor a pagar
-  const totalCarro = [...productosCarro].reduce((acumulador, item) => acumulador + item.precio, 0)
-  console.log(totalCarro, 'pagar')
 
-  console.log(productosCarro, 'carro actual')
   const globalState = {
     productos,
     cambiarFavorito,
@@ -72,7 +105,9 @@ const PetsContextProvider = ({ children }) => {
     arregloMisPublicaciones,
     setArregloMisPublicaciones,
     agregarCarro,
-    quitarCarro
+    quitarCarro,
+    productosCarro,
+    totalCarro
   }
 
   return (
