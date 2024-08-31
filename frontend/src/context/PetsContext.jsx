@@ -90,7 +90,8 @@ const PetsContextProvider = ({ children }) => {
       return (valor)
     }
   }
-  // valor a pagar
+  // numero de productos
+  const numeroTotalProductos = [...productosCarro].reduce((acumulador, item) => acumulador + item.cantidad, 0)
 
   const globalState = {
     productos,
