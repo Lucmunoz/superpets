@@ -108,7 +108,8 @@ const PetsContextProvider = ({ children }) => {
     agregarCarro,
     quitarCarro,
     productosCarro,
-    totalCarro
+    totalCarro,
+    numeroTotalProductos
   }
 
   return (
