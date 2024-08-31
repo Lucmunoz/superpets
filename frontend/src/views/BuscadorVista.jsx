@@ -3,9 +3,14 @@ import CorazonFav from '../components/CorazonFav'
 import { PetsContext } from '../context/PetsContext'
 import axios from 'axios'
 import { ENDPOINT } from '../config/constants.js'
+import { useNavigate } from 'react-router-dom'
 
 const BuscadorVista = () => {
   const { productos, cambiarFavorito, busqueda, usuario, agregarCarro } = useContext(PetsContext)
+  const navigate = useNavigate()
+  const irDetalleProducto = (id) => {
+    navigate(`/tienda/producto/${id}`)
+  }
 
   // función que trae todos los productos comentar después
   // const [productosData, setProductosData] = useState([])
@@ -53,7 +58,7 @@ const BuscadorVista = () => {
                   <p className='precioCardHome'>${p.precio}</p>
                 </div>
                 <div>
-                  <button className='buttonCard'>Ver detalle</button>
+                  <button className='buttonCard' onClick={() => irDetalleProducto(p.id)}>Ver detalle</button>
                   <br />
                   <button className='buttonAgregar' onClick={() => agregarCarro(p.id)}> <i className='fa-solid fa-cart-shopping fa-lg' /></button>
                 </div>
