@@ -4,8 +4,12 @@ import { useContext } from 'react'
 import { PetsContext } from '../context/PetsContext'
 
 const Menu = () => {
-  const { totalCarro, numeroTotalProductos, usuario, cerrarSesion } = useContext(PetsContext)
+  const { numeroTotalProductos, usuario, cerrarSesion } = useContext(PetsContext)
   const cambiarMenu = ({ isActive }) => isActive ? 'navbar active' : 'navbar'
+  const irACerrar = () => {
+    cerrarSesion()
+    window.alert('Has cerrado la sesión, te llevaremos a la Home')
+  }
 
   return (
     <nav className='navbar navbar-dark navbar-expand-lg'>
@@ -54,7 +58,7 @@ const Menu = () => {
                   </div>
                 </NavLink>
               </li>
-              {usuario !== null && <li className='cerrarSesion'> <NavLink onClick={cerrarSesion}> <i className='fa-solid fa-arrow-right-from-bracket' /></NavLink></li>}
+              {usuario !== null && <li className='cerrarSesion'> <NavLink to='/' onClick={irACerrar}> <i className='fa-solid fa-arrow-right-from-bracket' /></NavLink></li>}
             </ul>
 
           </div>
