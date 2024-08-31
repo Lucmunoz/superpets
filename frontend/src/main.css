@@ -29,6 +29,24 @@
   font-weight: 700;
 }
 
+.divContainerTotal {
+  height: 35px;
+  display: flex;
+  align-items: end;
+}
+
+.totalNav {
+  display: flex;
+  background-color: #ED5C01;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  border-radius: 25px ;
+  font-size: 10px;
+  font-weight: 700;
+  justify-content: center;
+}
+
 /* buscador */
 .buscador input {
   width: 300px;
@@ -340,6 +358,10 @@ footer div a:hover {
   .card img {
     height: 150px;
     width: 150px;
+  }
+
+  .divContainerTotal, .totalNav  {
+    display: none;
   }
 
   /* /tienda/producto/id */

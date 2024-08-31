@@ -1,7 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import Buscador from './Buscador'
+import { useContext } from 'react'
+import { PetsContext } from '../context/PetsContext'
 
 const Menu = () => {
+  const { totalCarro, numeroTotalProductos } = useContext(PetsContext)
   const cambiarMenu = ({ isActive }) => isActive ? 'navbar active' : 'navbar'
 
   return (
@@ -46,6 +49,9 @@ const Menu = () => {
               <li className='nav-item'>
                 <NavLink to='/carrito' className={cambiarMenu}>
                   <i className='fa-solid fa-cart-shopping' />
+                  <div className='divContainerTotal'>
+                    <span className='totalNav'>{numeroTotalProductos}</span>
+                  </div>
                 </NavLink>
               </li>
             </ul>
