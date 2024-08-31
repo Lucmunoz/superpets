@@ -3,7 +3,7 @@
     "id": "1",
     "id_usuarios":"1",
     "imagen": "https://media.milesdefiestas.com/galeria/articulos/disfraz-superman-para-perro_16872_1.jpg",
-    "nombre": "Dizfraz para Perro",
+    "nombre": "Disfraz para Perro",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
     "precio": 9990,
     "isFavorite": false
@@ -30,7 +30,7 @@
     "id": "4",
     "id_usuarios":"1",
     "imagen": "https://www.tusmascotas.cl/wp-content/uploads/2020/10/easy-clean-limon-2.jpg.webp",
-    "nombre": "Arena para Gatos | Easy Clean",
+    "nombre": "Arena para Gatos | Easy",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
     "precio": 8990,
     "isFavorite": false
