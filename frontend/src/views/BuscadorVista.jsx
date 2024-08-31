@@ -1,13 +1,33 @@
-import { useContext } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import CorazonFav from '../components/CorazonFav'
 import { PetsContext } from '../context/PetsContext'
+import axios from 'axios'
+import { ENDPOINT } from '../config/constants.js'
 
 const BuscadorVista = () => {
   const { productos, cambiarFavorito, busqueda, usuario } = useContext(PetsContext)
-  let productosdeOtros = [...productos]
-  if (usuario !== null) productosdeOtros = productosdeOtros.filter((p) => p.id_usuario !== usuario.id_usuario)
-  const productosFiltrados = [...productosdeOtros].filter((p) => p.nombre.trim().toLowerCase().includes(busqueda.toLowerCase()))
 
+  // función que trae todos los productos comentar después
+  // const [productosData, setProductosData] = useState([])
+  // const getData = () => {
+  //   axios.get(ENDPOINT.home)
+  //     .then(({ data }) => {
+  //       setProductosData(data)
+  //     })
+  //     .catch(({ response: { data } }) => {
+  //       console.log(data.message)
+  //       window.alert(`${data.message}`)
+  //     })
+  // }
+
+  // useEffect(() => {
+  //   getData()
+  // }, [])
+
+  let productosdeOtros = [...productos]
+  if (usuario !== null) productosdeOtros = [...productos].filter((p) => p.id_usuarios !== usuario.id_usuarios)
+  const productosFiltrados = [...productosdeOtros].filter((p) => p.nombre.trim().toLowerCase().includes(busqueda.toLowerCase()))
+  console.log(productosFiltrados, 'prod filtrados')
   return (
     <main>
       <div className='divTienda'>
