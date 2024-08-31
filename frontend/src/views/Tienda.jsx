@@ -1,7 +1,9 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import CorazonFav from '../components/CorazonFav'
 import { PetsContext } from '../context/PetsContext'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { ENDPOINT } from '../config/constants.js'
 
 const Tienda = () => {
   const { productos, cambiarFavorito, select, cambiarSelect, usuario } = useContext(PetsContext)
@@ -9,16 +11,35 @@ const Tienda = () => {
   const irDetalleProducto = (id) => {
     navigate(`/tienda/producto/${id}`)
   }
+
+  // función que trae todos los productos comentar después
+  // const [productosDataTienda, setProductosDataTienda] = useState([])
+  // const getData = () => {
+  //   axios.get(ENDPOINT.tienda)
+  //     .then(({ data }) => {
+  //       setProductosDataTienda(data)
+  //     })
+  //     .catch(({ response: { data } }) => {
+  //       console.log(data.message)
+  //       window.alert(`${data.message}`)
+  //     })
+  // }
+
+  // useEffect(() => {
+  //   getData()
+  // }, [])
+
   // función que muestra los productos distintos a los que el usuario creo
   let productosTienda = [...productos]
-  if (usuario !== null) productosTienda = [...productos].filter((p) => p.id_usuario !== usuario.id_usuario)
+  if (usuario !== null) productosTienda = [...productos].filter((p) => p.id_usuarios !== usuario.id_usuarios)
+  console.log(productosTienda, 'prod tienda')
 
   let productosOrdenados = [...productosTienda]
   if (select === 'az') productosOrdenados = [...productosTienda].sort((a, b) => a.nombre.localeCompare(b.nombre))
   if (select === 'za') productosOrdenados = [...productosTienda].sort((a, b) => b.nombre.localeCompare(a.nombre))
   if (select === 'menor') productosOrdenados = [...productosTienda].sort((a, b) => a.precio - b.precio)
   if (select === 'mayor') productosOrdenados = [...productosTienda].sort((a, b) => b.precio - a.precio)
-  console.log(productosOrdenados)
+  console.log(productosOrdenados, 'prod.ordenados')
 
   return (
     <main>
