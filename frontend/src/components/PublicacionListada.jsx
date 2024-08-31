@@ -7,18 +7,19 @@ const PublicacionListada = () => {
   const { arregloMisPublicaciones } = useContext(PetsContext)
 
   const goToActualizarPublicacion = (id) => {
+    /* Se debe ingresar petición al backend que permita actualizar la publicación */
     navigate(`/actualizarpublicacion/${id}`)
   }
 
   const eliminarPublicacion = (id) => {
-    alert('publicacion eliminada')
+    /* Se debe ingresar petición al backend que permita eliminar la publicación */
+    alert(`publicacion ${id} eliminada exitosamente`)
   }
 
   return (
     <>
       {arregloMisPublicaciones.map((publicacion) => {
         return (
-
           <div className='container-fluid bg-light p-0' key={publicacion.id}>
             <div className='row container-fluid m-0 p-1'>
               <div className='col-3 col-sm-2 p-0 '>
