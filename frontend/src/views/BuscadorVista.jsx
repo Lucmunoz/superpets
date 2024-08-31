@@ -5,7 +5,7 @@ import axios from 'axios'
 import { ENDPOINT } from '../config/constants.js'
 
 const BuscadorVista = () => {
-  const { productos, cambiarFavorito, busqueda, usuario } = useContext(PetsContext)
+  const { productos, cambiarFavorito, busqueda, usuario, agregarCarro } = useContext(PetsContext)
 
   // función que trae todos los productos comentar después
   // const [productosData, setProductosData] = useState([])
@@ -54,6 +54,8 @@ const BuscadorVista = () => {
                 </div>
                 <div>
                   <button className='buttonCard'>Ver detalle</button>
+                  <br />
+                  <button className='buttonAgregar' onClick={() => agregarCarro(p.id)}> <i className='fa-solid fa-cart-shopping fa-lg' /></button>
                 </div>
               </div>
             )}

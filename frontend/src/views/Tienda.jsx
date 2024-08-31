@@ -6,7 +6,7 @@ import axios from 'axios'
 import { ENDPOINT } from '../config/constants.js'
 
 const Tienda = () => {
-  const { productos, cambiarFavorito, select, cambiarSelect, usuario } = useContext(PetsContext)
+  const { productos, cambiarFavorito, select, cambiarSelect, usuario, agregarCarro, quitarCarro } = useContext(PetsContext)
   const navigate = useNavigate()
   const irDetalleProducto = (id) => {
     navigate(`/tienda/producto/${id}`)
@@ -32,14 +32,14 @@ const Tienda = () => {
   // función que muestra los productos distintos a los que el usuario creo
   let productosTienda = [...productos]
   if (usuario !== null) productosTienda = [...productos].filter((p) => p.id_usuarios !== usuario.id_usuarios)
-  console.log(productosTienda, 'prod tienda')
+  // console.log(productosTienda, 'prod tienda')
 
   let productosOrdenados = [...productosTienda]
   if (select === 'az') productosOrdenados = [...productosTienda].sort((a, b) => a.nombre.localeCompare(b.nombre))
   if (select === 'za') productosOrdenados = [...productosTienda].sort((a, b) => b.nombre.localeCompare(a.nombre))
   if (select === 'menor') productosOrdenados = [...productosTienda].sort((a, b) => a.precio - b.precio)
   if (select === 'mayor') productosOrdenados = [...productosTienda].sort((a, b) => b.precio - a.precio)
-  console.log(productosOrdenados, 'prod.ordenados')
+  // console.log(productosOrdenados, 'prod.ordenados')
 
   return (
     <main>
@@ -71,6 +71,8 @@ const Tienda = () => {
               </div>
               <div>
                 <button className='buttonCard' onClick={() => irDetalleProducto(p.id)}>Ver detalle</button>
+                <br />
+                <button className='buttonAgregar' onClick={() => agregarCarro(p.id)}> <i className='fa-solid fa-cart-shopping fa-lg' /></button>
               </div>
             </div>
           )}
