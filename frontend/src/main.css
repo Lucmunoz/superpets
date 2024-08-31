@@ -29,6 +29,10 @@
   font-weight: 700;
 }
 
+.cerrarSesion {
+  line-height: 55px;
+}
+
 .divContainerTotal {
   height: 35px;
   display: flex;

@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import { PetsContext } from '../context/PetsContext'
 
 const Menu = () => {
-  const { totalCarro, numeroTotalProductos } = useContext(PetsContext)
+  const { totalCarro, numeroTotalProductos, usuario, cerrarSesion } = useContext(PetsContext)
   const cambiarMenu = ({ isActive }) => isActive ? 'navbar active' : 'navbar'
 
   return (
@@ -54,6 +54,7 @@ const Menu = () => {
                   </div>
                 </NavLink>
               </li>
+              {usuario !== null && <li className='cerrarSesion'> <NavLink onClick={cerrarSesion}> <i className='fa-solid fa-arrow-right-from-bracket' /></NavLink></li>}
             </ul>
 
           </div>
