@@ -10,6 +10,7 @@ const PetsContextProvider = ({ children }) => {
   const [arregloMisPublicaciones, setArregloMisPublicaciones] = useState('')
   const [productosCarro, setProductosCarro] = useState([])
   const [totalCarro, setTotalCarro] = useState(0)
+  const [productosFavoritos, setProductosFavoritos] = useState([])
 
   const getData = async () => {
     try {
@@ -29,13 +30,6 @@ const PetsContextProvider = ({ children }) => {
     setTotalCarro(calcularTotal(productosCarro))
     console.log(totalCarro)
   }, [productosCarro])
-
-  const cambiarFavorito = (id) => {
-    const nuevosProductos = [...productos]
-    const index = nuevosProductos.findIndex((p) => p.id === id)
-    nuevosProductos[index].isFavorite = !nuevosProductos[index].isFavorite
-    setProductos(nuevosProductos)
-  }
 
   const cambiarSelect = (e) => setSelect(e.target.value)
   const cambiarInputBusqueda = (e) => {
@@ -93,6 +87,15 @@ const PetsContextProvider = ({ children }) => {
   // numero de productos
   const numeroTotalProductos = [...productosCarro].reduce((acumulador, item) => acumulador + item.cantidad, 0)
 
+  // favoritos
+  const cambiarFavorito = (id) => {
+    const copiaParaFav = [...productos]
+    const index = copiaParaFav.findIndex((p) => p.id === id)
+    copiaParaFav[index].isFavorite = !copiaParaFav[index].isFavorite
+    const soloFavoritos = copiaParaFav.filter((p) => p.isFavorite === true)
+    setProductosFavoritos(soloFavoritos)
+  }
+
   const globalState = {
     productos,
     cambiarFavorito,
@@ -109,7 +112,8 @@ const PetsContextProvider = ({ children }) => {
     quitarCarro,
     productosCarro,
     totalCarro,
-    numeroTotalProductos
+    numeroTotalProductos,
+    productosFavoritos
   }
 
   return (
