@@ -12,6 +12,22 @@ const Tienda = () => {
     navigate(`/tienda/producto/${id}`)
   }
 
+  const cambiosFavorito = (id) => {
+    if (usuario === null) {
+      window.alert('Para agregar favoritos debes iniciar sesión, te redirigiremos!')
+      return navigate('/ingresar')
+    }
+    cambiarFavorito(id)
+  }
+
+  const botonAgregar = (id) => {
+    if (usuario === null) {
+      window.alert('Para agregar productos debes iniciar sesión, te redirigiremos!')
+      return navigate('/ingresar')
+    }
+    agregarCarro(id)
+  }
+
   // función que trae todos los productos comentar después
   // const [productosDataTienda, setProductosDataTienda] = useState([])
   // const getData = () => {
@@ -58,7 +74,7 @@ const Tienda = () => {
           {productosOrdenados?.map((p) =>
             <div className='card' key={p.id}>
               <div className='text-end pe-3'>
-                <button className='buttonCorazon' onClick={() => cambiarFavorito(p.id)}>
+                <button className='buttonCorazon' onClick={() => cambiosFavorito(p.id)}>
                   <CorazonFav
                     filled={!!p.isFavorite}
                   />
@@ -72,7 +88,7 @@ const Tienda = () => {
               <div>
                 <button className='buttonCard' onClick={() => irDetalleProducto(p.id)}>Ver detalle</button>
                 <br />
-                <button className='buttonAgregar' onClick={() => agregarCarro(p.id)}> <i className='fa-solid fa-cart-shopping fa-lg' /></button>
+                <button className='buttonAgregar' onClick={() => botonAgregar(p.id)}> <i className='fa-solid fa-cart-shopping fa-lg' /></button>
               </div>
             </div>
           )}
