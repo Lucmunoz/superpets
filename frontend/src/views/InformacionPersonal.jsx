@@ -20,6 +20,17 @@ const InformacionPersonal = () => {
       })
   }
 
+  useEffect(() => {
+    /* //Código para verificar existencia de token. De lo contrario, redirigir a ingresar
+     if (!window.sessionStorage.getItem('token')) {navigate('/ingresar')} */
+
+    /* *Reemplazar codigo cuando se realice backend***/
+    if (!window.sessionStorage.getItem('usuario')) {
+      navigate('/ingresar')
+    }
+    /* *Reemplazar codigo cuando se realice backend***/
+  }, [])
+
   useEffect(getDeveloperData, [])
 
   const eliminarcuenta = () => { window.alert('cuenta eliminada') }

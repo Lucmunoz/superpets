@@ -20,11 +20,11 @@ const App = () => {
         <Route path='/acercadenosotros' element={<AcercaDeNosotros />} />
         <Route path='/preguntasfrecuentes' element={<PreguntasFrecuentes />} />
         {/* rutas protegidas */}
+        <Route path='/perfil' element={<Perfil />} />
         <Route path='/informacionpersonal' element={<InformacionPersonal />} />
         <Route path='/favoritos' element={<Favoritos />} />
         <Route path='/carrito' element={<Carro />} />
         <Route path='/mispublicaciones' element={<MisPublicaciones />} />
-        <Route path='/perfil' element={<Perfil />} />
         <Route path='/miscompras' element={<MisCompras />} />
         <Route path='/crearpublicacion' element={<CrearPublicacion />} />
         <Route path='/actualizarpublicacion/:id' element={<ActualizarPublicacion />} />
