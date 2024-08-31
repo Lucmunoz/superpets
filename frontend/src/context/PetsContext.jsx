@@ -44,6 +44,7 @@ const PetsContextProvider = ({ children }) => {
 
   const cerrarSesion = () => {
     // console.log('cierro sesion')
+    setUsuario(null)
     window.sessionStorage.removeItem('usuario')
   }
 
