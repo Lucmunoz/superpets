@@ -1,12 +1,37 @@
-import { useContext } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import CorazonFav from '../components/CorazonFav'
 import { PetsContext } from '../context/PetsContext'
 import { useParams } from 'react-router-dom'
+import axios from 'axios'
+import { ENDPOINT } from '../config/constants.js'
 
 const Producto = () => {
   const { id } = useParams()
-  const { productos, cambiarFavorito } = useContext(PetsContext)
-  const producto = [...productos].filter((p) => p.id === Number(id))
+  const { usuario, productos, cambiarFavorito } = useContext(PetsContext)
+
+  // función que trae todos los productos comentar después
+  // const [productosData, setProductosData] = useState([])
+  // const getData = () => {
+  //   axios.get(ENDPOINT.tienda)
+  //     .then(({ data }) => {
+  //       setProductosData(data)
+  //     })
+  //     .catch(({ response: { data } }) => {
+  //       console.log(data.message)
+  //       window.alert(`${data.message}`)
+  //     })
+  // }
+
+  // useEffect(() => {
+  //   getData()
+  // }, [])
+
+  let productosTienda = [...productos]
+  if (usuario !== null) productosTienda = [...productos].filter((p) => p.id_usuarios !== usuario.id_usuarios)
+  console.log(productosTienda, 'prod tienda')
+
+  const producto = [...productosTienda].filter((p) => p.id === (id))
+  console.log(producto)
 
   return (
     <main className='mainProducto'>
