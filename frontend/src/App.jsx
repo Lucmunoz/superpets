@@ -15,17 +15,17 @@ const App = () => {
         <Route path='/tienda' element={<Tienda />} />
         <Route path='/tienda/producto/:id' element={<Producto />} />
         <Route path='/registrarse' element={<Registrarse />} />
+        <Route path='/ingresar' element={<Login />} />
+        <Route path='/buscar' element={<BuscadorVista />} />
+        <Route path='/acercadenosotros' element={<AcercaDeNosotros />} />
+        <Route path='/preguntasfrecuentes' element={<PreguntasFrecuentes />} />
         {/* rutas protegidas */}
         <Route path='/informacionpersonal' element={<InformacionPersonal />} />
         <Route path='/favoritos' element={<Favoritos />} />
         <Route path='/carrito' element={<Carro />} />
         <Route path='/mispublicaciones' element={<MisPublicaciones />} />
-        <Route path='/ingresar' element={<Login />} />
         <Route path='/perfil' element={<Perfil />} />
         <Route path='/miscompras' element={<MisCompras />} />
-        <Route path='/buscar' element={<BuscadorVista />} />
-        <Route path='/acercadenosotros' element={<AcercaDeNosotros />} />
-        <Route path='/preguntasfrecuentes' element={<PreguntasFrecuentes />} />
         <Route path='/crearpublicacion' element={<CrearPublicacion />} />
         <Route path='/actualizarpublicacion/:id' element={<ActualizarPublicacion />} />
         {/* fin rutas protegidas */}
