@@ -7,6 +7,7 @@ const PetsContextProvider = ({ children }) => {
   const [select, setSelect] = useState('az')
   const [busqueda, setBusqueda] = useState('')
   const [usuario, setUsuario] = useState(null)
+  const [productosCarro, setProductosCarro] = useState([])
 
   const getData = async () => {
     try {
@@ -36,6 +37,27 @@ const PetsContextProvider = ({ children }) => {
 
   // función que cambia el estado del usuario, valores permitidos null y  {}
   const cambiarUsuario = (valor) => setUsuario(valor)
+
+  // función que quita 1  al carro
+  const agregarCarro = (id) => {
+    const nuevoProducto = [...productos].filter((p) => p.id === id)[0]
+    setProductosCarro([...productosCarro, nuevoProducto])
+  }
+
+  // función que quita 1 del carro
+  const quitarCarro = (id) => {
+    const carroActual = [...productosCarro]
+    console.log(id, 'a eliminar')
+    const index = carroActual.findIndex((p) => p.id === id)
+    carroActual.splice(index, 1)
+    setProductosCarro(carroActual)
+  }
+
+  // valor a pagar
+  const totalCarro = [...productosCarro].reduce((acumulador, item) => acumulador + item.precio, 0)
+  console.log(totalCarro, 'pagar')
+
+  console.log(productosCarro, 'carro actual')
   const globalState = {
     productos,
     cambiarFavorito,
@@ -45,7 +67,9 @@ const PetsContextProvider = ({ children }) => {
     cambiarInputBusqueda,
     usuario,
     setUsuario,
-    cambiarUsuario
+    cambiarUsuario,
+    agregarCarro,
+    quitarCarro
   }
 
   return (
