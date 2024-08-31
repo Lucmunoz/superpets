@@ -38,12 +38,13 @@ const Menu = () => {
               <li className='nav-item'>
                 <NavLink to='/tienda' className={cambiarMenu}>Tienda</NavLink>
               </li>
-              <li className='nav-item'>
-                <NavLink to='/registrarse' className={cambiarMenu}>Registrarse</NavLink>
-              </li>
-              <li className='nav-item'>
-                <NavLink to='/ingresar' className={cambiarMenu}>Ingresar</NavLink>
-              </li>
+              {usuario === null &&
+                <li className='nav-item'><NavLink to='/registrarse' className={cambiarMenu}>Registrarse</NavLink></li>}
+              {usuario === null &&
+                <li className='nav-item'>
+                  <NavLink to='/ingresar' className={cambiarMenu}>Ingresar</NavLink>
+                </li>}
+
               {/* rutas protegidas */}
               <li className='nav-item'>
                 <NavLink to='/favoritos' className={cambiarMenu}>
