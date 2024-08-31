@@ -57,7 +57,7 @@ const Perfil = () => {
             </NavLink>
             <NavLink to='/mispublicaciones' className='text-decoration-none'>
               <div className='d-flex flex-column text-decoration-none text-center list-group-item list-group-item-action border-0 p-0 py-2 w-100 justify-content-center'>
-                <h5 className='mb-1'>Mis Publicacionesl</h5>
+                <h5 className='mb-1'>Mis Publicaciones</h5>
                 <p className='mb-0 fst-italic text-muted'>Revisa y/o actualiza tus publicaciones.</p>
               </div>
             </NavLink>
