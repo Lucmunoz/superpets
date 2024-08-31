@@ -28,7 +28,7 @@ const PetsContextProvider = ({ children }) => {
 
   useEffect(() => {
     setTotalCarro(calcularTotal(productosCarro))
-    console.log(totalCarro)
+    // console.log(totalCarro)
   }, [productosCarro])
 
   const cambiarSelect = (e) => setSelect(e.target.value)
@@ -37,7 +37,15 @@ const PetsContextProvider = ({ children }) => {
   }
 
   // función que cambia el estado del usuario, valores permitidos null y  {}
-  const cambiarUsuario = (valor) => setUsuario(valor)
+  const cambiarUsuario = (valor) => {
+    setUsuario(valor)
+    window.sessionStorage.setItem('usuario', JSON.stringify(valor))
+  }
+
+  const cerrarSesion = () => {
+    // console.log('cierro sesion')
+    window.sessionStorage.removeItem('usuario')
+  }
 
   // función que agrega 1 al carro
   const agregarCarro = (id) => {
@@ -104,8 +112,8 @@ const PetsContextProvider = ({ children }) => {
     busqueda,
     cambiarInputBusqueda,
     usuario,
-    setUsuario,
     cambiarUsuario,
+    cerrarSesion,
     arregloMisPublicaciones,
     setArregloMisPublicaciones,
     agregarCarro,

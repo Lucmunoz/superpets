@@ -1,6 +1,6 @@
 // import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { PetsContext } from '../context/PetsContext'
 // import { ENDPOINT } from '../config/constans'
 
@@ -13,8 +13,15 @@ const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 const Login = () => {
   const navigate = useNavigate()
   const [userTemp, setUserTemp] = useState(credencialesUsuario)
-  const { setUsuario } = useContext(PetsContext)
+  const { cambiarUsuario } = useContext(PetsContext)
   const handleUser = (event) => setUserTemp({ ...userTemp, [event.target.name]: event.target.value })
+
+  useEffect(() => {
+    if (window.sessionStorage.getItem('usuario')) { // <----- ELIMINAR
+      // usuario logeado
+      navigate('/perfil')
+    }
+  }, [])
 
   const handleForm = (event) => {
     event.preventDefault()
@@ -26,6 +33,7 @@ const Login = () => {
     if (!emailRegex.test(userTemp.correo)) {
       return window.alert('El formato del email no es correcto!')
     }
+
     /* Reemplazar codigo al iniciar sesión para obtener token */
     /* axios.post(ENDPOINT.login, user)
       .then(({ data }) => {
@@ -38,12 +46,12 @@ const Login = () => {
         console.error(data)
         window.alert(`${data.message} 🙁.`)
       }) */
+
     const usuarioTemporal = {
       id: '1',
       nombre: 'lucas'
     }
-
-    setUsuario(usuarioTemporal)
+    cambiarUsuario(usuarioTemporal)
     navigate('/perfil')
   }
 
