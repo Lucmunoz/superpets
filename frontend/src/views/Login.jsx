@@ -38,8 +38,12 @@ const Login = () => {
         console.error(data)
         window.alert(`${data.message} 🙁.`)
       }) */
+    const usuarioTemporal = {
+      id: '1',
+      nombre: 'lucas'
+    }
 
-    setUsuario(userTemp)
+    setUsuario(usuarioTemporal)
     navigate('/perfil')
   }
 
