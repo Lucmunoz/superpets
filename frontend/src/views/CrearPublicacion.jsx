@@ -30,11 +30,14 @@ const CrearPublicacion = () => {
   }
 
   useEffect(() => {
-    if (!window.sessionStorage.getItem('token')) {
-      /* Solo los usuarios logeados pueden crear una publicación. En la eventualidad de que el usuario no esté logeado y acceda a
-          esta vista, será redirigido a la vista de inicio de sesión. */
+    /* //Código para verificar existencia de token. De lo contrario, redirigir a ingresar
+     if (!window.sessionStorage.getItem('token')) {navigate('/ingresar')} */
+
+    /* *Reemplazar codigo cuando se realice backend***/
+    if (!window.sessionStorage.getItem('usuario')) {
       navigate('/ingresar')
     }
+    /* *Reemplazar codigo cuando se realice backend***/
   }, [])
 
   return (

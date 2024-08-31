@@ -113,7 +113,6 @@ const Favoritos = () => {
   const sinFavoritos = () => {
     return (
       <>
-
         <div className='bg-white d-flex flex-column align-items-center justify-content-center'>
           <div>
             <img style={{ height: '200px' }} src='/Perro-triste.jpg' alt='Imagen perro triste' />
