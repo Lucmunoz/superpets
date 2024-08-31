@@ -1,24 +1,15 @@
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { PetsContext } from '../context/PetsContext'
 
 const Perfil = () => {
   const navigate = useNavigate()
   const [isloading, setIsloading] = useState(true)
+  const { usuario } = useContext(PetsContext)
   const [nombre, setNombre] = useState('')
 
   const getUserData = () => {
-    /* Reemplazar codigo para obtener el nombre del usuario haciendo la consulta a la Db. */
-
-    /* const token = window.sessionStorage.getItem('token')
-    axios.get(ENDPOINT.users, { headers: { Authorization: `Bearer ${token}` } })
-      .then(({ data: [user] }) => setDeveloper({ ...user }))
-      .catch(({ response: { data } }) => {
-        console.error(data)
-        window.sessionStorage.removeItem('token')
-        setNombre('nombre_usuario')
-      }) */
-
-    setNombre('nombre_usuario')
+    setNombre(usuario.nombre)
   }
 
   useEffect(() => {

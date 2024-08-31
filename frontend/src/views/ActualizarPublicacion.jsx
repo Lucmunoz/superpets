@@ -1,24 +1,47 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const ActualizarPublicacion = () => {
+  const { id: idPublicacion } = useParams()
   const navigate = useNavigate()
   const [isloading, setIsloading] = useState(true)
-  const [publicacion, setPublicacion] = useState('')
-  const handlePublicacion = (event) => setPublicacion({ ...publicacion, [event.target.name]: event.target.value })
+  const [publicacionTemporal, setPublicacionTemporal] = useState('')
+
+  const handlePublicacion = (event) => setPublicacionTemporal({ ...publicacionTemporal, [event.target.name]: event.target.value })
+
+  const handleForm = (event) => {
+    event.preventDefault()
+    if (!publicacionTemporal.nombre.trim()) {
+      return window.alert('Ingrese un nombre válido')
+    }
+    if (!publicacionTemporal.descripcion.trim()) {
+      return window.alert('Ingrese una descripcion válida')
+    }
+    if (!publicacionTemporal.imagen.trim()) {
+      return window.alert('Debe ingresar una URL para la imágen.')
+    }
+    alert('publicación modificada')
+    navigate('/mispublicaciones')
+  }
+
+  const goBack = (id) => {
+    navigate('/mispublicaciones')
+  }
 
   useEffect(() => {
-    if (!window.sessionStorage.getItem('token')) {
+    if (window.sessionStorage.getItem('token')) {
       navigate('/ingresar')
     }
   }, [])
 
   const getData = async () => {
     try {
-      /* Reemplazar por consulta para obtener datos de la publicación a editar */
+      // Reemplazar por consulta para obtener datos de la publicación a editar
       const response = await fetch('/productos.json')
       const data = await response.json()
-      setPublicacion(data[0])
+      console.log(data)
+      const index = data.findIndex((publicacion) => publicacion.id === idPublicacion)
+      setPublicacionTemporal(data[index])
     } catch (error) {
       console.log(error)
     }
@@ -29,12 +52,12 @@ const ActualizarPublicacion = () => {
   }, [])
 
   useEffect(() => {
-    if (Object.keys(publicacion).length !== 0) {
+    if (publicacionTemporal !== '') {
       setIsloading(false)
     } else {
       setIsloading(true)
     }
-  }, [publicacion])
+  }, [publicacionTemporal])
 
   const mostrarCargando = () => {
     return (
@@ -53,30 +76,30 @@ const ActualizarPublicacion = () => {
           <div className='d-flex justify-content-center pb-3'>
             <h2 className=''>Actualizar publicación</h2>
           </div>
-          <form>
+          <form onSubmit={handleForm}>
             <div className='form-group pb-3'>
               <label htmlFor='exampleFormControlInput1'>Nombre producto </label>
-              <input type='text' name='nombre' className='d-sm-none form-control fst-italic' placeholder='...' value={publicacion.nombre} onChange={handlePublicacion} />
-              <input type='text' name='nombre' className='d-none d-sm-flex form-control fst-italic' style={{ width: '467px' }} id='nombre' placeholder='...' value={publicacion.nombre} onChange={handlePublicacion} />
+              <input type='text' name='nombre' className='d-sm-none form-control fst-italic' placeholder='...' value={publicacionTemporal.nombre} onChange={handlePublicacion} />
+              <input type='text' name='nombre' className='d-none d-sm-flex form-control fst-italic' style={{ width: '467px' }} id='nombre' placeholder='...' value={publicacionTemporal.nombre} onChange={handlePublicacion} />
             </div>
             <div className='form-group pb-3'>
               <label htmlFor='exampleFormControlTextarea1'>Descripción del producto</label>
-              <textarea className='form-control fst-italic' name='descripcion' rows='3' placeholder='...' value={publicacion.descripcion} onChange={handlePublicacion} />
+              <textarea className='form-control fst-italic' name='descripcion' rows='3' placeholder='...' value={publicacionTemporal.descripcion} onChange={handlePublicacion} />
             </div>
             <div className='form-group pb-3'>
               <label htmlFor='exampleFormControlTextarea1'>Precio del producto</label>
-              <input type='number' className='form-control fst-italic' name='precio' placeholder='...' value={publicacion.precio} onChange={handlePublicacion} />
+              <input type='number' className='form-control fst-italic' name='precio' placeholder='...' value={publicacionTemporal.precio} onChange={handlePublicacion} />
             </div>
             <div className='form-group pb-3'>
               <label htmlFor='exampleFormControlInput1'>Ingresa la URL de tu imagen</label>
-              <input type='text' className='form-control fst-italic' name='imagen' placeholder='...' value={publicacion.imagen} onChange={handlePublicacion} />
+              <input type='text' className='form-control fst-italic' name='imagen' placeholder='...' value={publicacionTemporal.imagen} onChange={handlePublicacion} />
               <div className='d-flex justify-content-center p-3'>
-                <img style={{ height: '70px' }} src={publicacion.imagen} alt='MDN' />
+                <img style={{ height: '70px' }} src={publicacionTemporal.imagen} alt='MDN' />
               </div>
             </div>
             <div className='d-flex gap-2 justify-content-center'>
               <button type='submit' className='btn btn-sm btn-success'>Guardar Cambios</button>
-              <button type='submit' className='btn btn-sm btn-danger'>Eliminar Publicación</button>
+              <button type='button' className='btn btn-sm btn-danger' onClick={() => goBack()}>Regresar</button>
             </div>
           </form>
         </div>

@@ -24,9 +24,6 @@ const CrearPublicacion = () => {
       !publicacion.descripcion.trim()) {
       return window.alert('Ingrese una descripcion válida')
     }
-    if (!publicacion.precio.trim()) {
-      return window.alert('Debe ingresar un valor válido.')
-    }
     if (!publicacion.imagen.trim()) {
       return window.alert('Debe ingresar una URL para la imágen.')
     }

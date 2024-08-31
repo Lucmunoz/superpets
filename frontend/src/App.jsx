@@ -27,7 +27,7 @@ const App = () => {
         <Route path='/acercadenosotros' element={<AcercaDeNosotros />} />
         <Route path='/preguntasfrecuentes' element={<PreguntasFrecuentes />} />
         <Route path='/crearpublicacion' element={<CrearPublicacion />} />
-        <Route path='/actualizarpublicacion' element={<ActualizarPublicacion />} />
+        <Route path='/actualizarpublicacion/:id' element={<ActualizarPublicacion />} />
         {/* fin rutas protegidas */}
         <Route path='*' element={<NotFound />} />
       </Routes>

@@ -12,8 +12,6 @@ const MisCompras = () => {
     }
   }, [])
 
-  const cantidadCompras = 0
-
   const arregloComprasUsuario =
     [{
       idCompra: 1,
@@ -114,7 +112,7 @@ const MisCompras = () => {
   return (
     <main className='d-flex align-items-center'>
       <div className='container-fluid col-10 my-5'>
-        {cantidadCompras !== 0 ? mostrarDataCompras() : sinCompras()}
+        {arregloComprasUsuario.lenght !== 0 ? mostrarDataCompras() : sinCompras()}
       </div>
     </main>
   )
