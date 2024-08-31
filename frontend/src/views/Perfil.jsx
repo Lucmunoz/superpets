@@ -5,7 +5,7 @@ import { PetsContext } from '../context/PetsContext'
 const Perfil = () => {
   const navigate = useNavigate()
   const [isloading, setIsloading] = useState(true)
-  const { usuario, cerrarSesion } = useContext(PetsContext)
+  const {cerrarSesion } = useContext(PetsContext)
   const [nombre, setNombre] = useState('')
 
   useEffect(() => {
