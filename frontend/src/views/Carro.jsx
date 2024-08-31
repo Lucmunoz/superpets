@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { PetsContext } from '../context/PetsContext'
 
 const Carro = () => {
-  const { productosCarro, agregarCarro, quitarCarro, totalCarro } = useContext(PetsContext)
+  const { productosCarro, totalCarro } = useContext(PetsContext)
   const navigate = useNavigate()
 
   useEffect(() => {
