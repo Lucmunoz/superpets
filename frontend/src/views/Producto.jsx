@@ -1,30 +1,30 @@
 import { useContext, useState, useEffect } from 'react'
 import CorazonFav from '../components/CorazonFav'
 import { PetsContext } from '../context/PetsContext'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
-import { ENDPOINT } from '../config/constants.js'
+import { useParams, useNavigate } from 'react-router-dom'
+
+// import axios from 'axios'
+// import { ENDPOINT } from '../config/constants.js'
 
 const Producto = () => {
   const { id } = useParams()
-  const { usuario, productos, cambiarFavorito, agregarCarro, quitarCarro } = useContext(PetsContext)
+  const { usuario, productos, cambiarFavorito, setearFavoritos, agregarCarro } = useContext(PetsContext)
+  const navigate = useNavigate()
 
-  // función que trae todos los productos comentar después
-  // const [productosData, setProductosData] = useState([])
-  // const getData = () => {
-  //   axios.get(ENDPOINT.tienda)
-  //     .then(({ data }) => {
-  //       setProductosData(data)
-  //     })
-  //     .catch(({ response: { data } }) => {
-  //       console.log(data.message)
-  //       window.alert(`${data.message}`)
-  //     })
-  // }
+  const cambiosFavorito = (id) => {
+    if (!window.sessionStorage.getItem('usuario')) {
+      window.alert('Para agregar favoritos debes iniciar sesión, te redirigiremos!')
+      return navigate('/ingresar')
+    }
+    cambiarFavorito(id)
+  }
 
-  // useEffect(() => {
-  //   getData()
-  // }, [])
+  useEffect(() => {
+    if (window.sessionStorage.getItem('favoritos')) {
+      const arregloTemporalFavoritos = JSON.parse(window.sessionStorage.getItem('favoritos'))
+      setearFavoritos(arregloTemporalFavoritos)
+    }
+  }, [])
 
   let productosTienda = [...productos]
   if (usuario !== null) productosTienda = [...productos].filter((p) => p.id_usuarios !== usuario.id_usuarios)
@@ -47,10 +47,8 @@ const Producto = () => {
               <span style={{ fontSize: '20px', color: '#ED5C01', fontWeight: '700', margin: '0' }}>${p.precio}</span>
             </div>
             <button type='button' className='btn btn-danger' onClick={() => agregarCarro(p.id)}>Agregar al carro</button>
-            <button className='buttonCorazon' onClick={() => cambiarFavorito(p.id)}>
-              <CorazonFav
-                filled={!!p.isFavorite}
-              />
+            <button className='buttonCorazon' onClick={() => cambiosFavorito(p.id)}>
+              <CorazonFav id={p.id} />
             </button>
           </div>
         </div>)}
