@@ -1,20 +1,12 @@
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
+import { PetsContext } from '../context/PetsContext'
+
 import { useNavigate } from 'react-router-dom'
 import ProductoCompras from '../components/ProductoCompras'
 
 const MisCompras = () => {
+  const { setearComprasRealizadas, comprasRealizadas } = useContext(PetsContext)
   const navigate = useNavigate()
-
-  useEffect(() => {
-    /* //Código para verificar existencia de token. De lo contrario, redirigir a ingresar
-     if (!window.sessionStorage.getItem('token')) {navigate('/ingresar')} */
-
-    /* *Reemplazar codigo cuando se realice backend***/
-    if (!window.sessionStorage.getItem('usuario')) {
-      navigate('/ingresar')
-    }
-    /* *Reemplazar codigo cuando se realice backend***/
-  }, [])
 
   const arregloComprasUsuario =
     [{
@@ -91,16 +83,29 @@ const MisCompras = () => {
       }]
     }]
 
+  const getData = () => {
+    /* El siguiente codigo se debe reemplazar por aquel que realice el llamado al backend y obtenga la data de las compras del usuario */
+    setearComprasRealizadas(arregloComprasUsuario)
+  }
+
+  useEffect(() => {
+    /* //Código para verificar existencia de token. De lo contrario, redirigir a ingresar
+     if (!window.sessionStorage.getItem('token')) {navigate('/ingresar')} */
+
+    /* *Reemplazar codigo cuando se realice backend***/
+    if (!window.sessionStorage.getItem('usuario')) {
+      navigate('/ingresar')
+    }
+    getData()
+    /* *Reemplazar codigo cuando se realice backend***/
+  }, [])
+
   const mostrarDataCompras = () => {
     return (
       <>
         <div className='p-3 p-md-5 bg-white d-flex flex-column'>
           <h1 className='text-center pb-4'>Mis Compras <i className='fa-solid fa-bag-shopping' /></h1>
-          {
-            arregloComprasUsuario.map((compra) => {
-              return (ProductoCompras(compra))
-            })
-          }
+          <ProductoCompras />
         </div>
       </>
     )
@@ -123,7 +128,7 @@ const MisCompras = () => {
   return (
     <main className='d-flex align-items-center'>
       <div className='container-fluid col-10 my-5'>
-        {arregloComprasUsuario.lenght !== 0 ? mostrarDataCompras() : sinCompras()}
+        {comprasRealizadas.length !== 0 ? mostrarDataCompras() : sinCompras()}
       </div>
     </main>
   )
