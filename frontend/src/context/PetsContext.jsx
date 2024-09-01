@@ -137,7 +137,6 @@ const PetsContextProvider = ({ children }) => {
       // Si existe, debo removerlo porque ya dejó de ser favrito
       arregloTemporalFavoritos.splice(objectIndex, 1)
     } else {
-      console.log('no existe')
       // Si no existe, tengo que agregar el objeto del producto en mi arreglo de favoritos. Voy y lo busco en mi matriz de productos y lo copio.
       const objectIndex = productos.findIndex(obj => obj.id === id)
       const productoTemporal = productos[objectIndex]
@@ -152,6 +151,7 @@ const PetsContextProvider = ({ children }) => {
   const cerrarSesion = () => {
     // console.log('cierro sesion')
     setUsuario(null)
+    setProductosFavoritos([])
     window.sessionStorage.removeItem('usuario')
     window.sessionStorage.removeItem('favoritos')
 

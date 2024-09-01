@@ -1,7 +1,17 @@
+import { useEffect, useContext } from 'react'
+import { PetsContext } from '../context/PetsContext'
 import Card from '../components/Card'
 import Carrusel from '../components/Carrusel'
 
 const Home = () => {
+  const { cambiarUsuario } = useContext(PetsContext)
+
+  useEffect(() => {
+    if (window.sessionStorage.getItem('usuario')) {
+      cambiarUsuario(JSON.parse(window.sessionStorage.getItem('usuario')))
+    }
+  }, [])
+
   return (
     <main className='mainHome'>
       <div>
