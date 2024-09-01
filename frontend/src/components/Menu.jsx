@@ -55,7 +55,7 @@ const Menu = () => {
                 <NavLink to='/carrito' className={cambiarMenu}>
                   <i className='fa-solid fa-cart-shopping' />
                   <div className='divContainerTotal'>
-                    <span className='totalNav'>{numeroTotalProductos}</span>
+                    <span className='totalNav'>{numeroTotalProductos()}</span>
                   </div>
                 </NavLink>
               </li>

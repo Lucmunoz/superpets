@@ -22,6 +22,8 @@ const PetsContextProvider = ({ children }) => {
     }
   }
 
+  const setearProductosCarro = (valor) => { setProductosCarro(valor) }
+
   useEffect(() => {
     getData()
   }, [])
@@ -104,7 +106,15 @@ const PetsContextProvider = ({ children }) => {
     }
   }
   // numero de productos
-  const numeroTotalProductos = JSON.parse(window.sessionStorage.getItem('carro')).reduce((acumulador, item) => acumulador + item.cantidad, 0)
+  const numeroTotalProductos = () => {
+    if (window.sessionStorage.getItem('carro')) {
+      return JSON.parse(window.sessionStorage.getItem('carro')).reduce((acumulador, item) => acumulador + item.cantidad, 0)
+    } else {
+      return 0
+    }
+  }
+
+  // const numeroTotalProductos =
 
   // favoritos
   const cambiarFavorito = (id) => {
@@ -152,7 +162,7 @@ const PetsContextProvider = ({ children }) => {
     agregarCarro,
     quitarCarro,
     productosCarro,
-    setProductosCarro,
+    setearProductosCarro,
     totalCarro,
     numeroTotalProductos,
     productosFavoritos,
