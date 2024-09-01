@@ -5,8 +5,7 @@
     "imagen": "https://media.milesdefiestas.com/galeria/articulos/disfraz-superman-para-perro_16872_1.jpg",
     "nombre": "Disfraz para Perro",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
-    "precio": 9990,
-    "isFavorite": false
+    "precio": 9990
   },
   {
     "id": "2",
@@ -14,8 +13,7 @@
     "imagen": "https://bestforpets.cl/tienda/8990-large_default/pawise-cuerda-nudos.jpg",
     "nombre": "Cuerda para Perro",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
-    "precio": 1990,
-    "isFavorite": false
+    "precio": 1990
   },
   {
     "id": "3",
@@ -23,8 +21,7 @@
     "imagen": "https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dwecc9797d/images/Nath%20adulto%20Medium%20sabor%20pollo%20y%20arroz%20integral%20alimento%20para%20perros.jpg",
     "nombre": "Alimento para Perro | Nath",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
-    "precio": 20990,
-    "isFavorite": false
+    "precio": 20990
   },
   {
     "id": "4",
@@ -32,8 +29,7 @@
     "imagen": "https://www.tusmascotas.cl/wp-content/uploads/2020/10/easy-clean-limon-2.jpg.webp",
     "nombre": "Arena para Gatos | Easy",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
-    "precio": 8990,
-    "isFavorite": false
+    "precio": 8990
   },
   {
     "id": "5",
@@ -50,8 +46,7 @@
     "imagen": "https://pethome.cl/media/catalog/product/cache/a207c3d3261251c19bb31d3774d0e54e/5/1/5162__28311.jpg",
     "nombre": "Túnel para Gatos",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
-    "precio": 15990,
-    "isFavorite": false
+    "precio": 15990
   },
   {
     "id": "7",
@@ -59,8 +54,7 @@
     "imagen": "https://dojiw2m9tvv09.cloudfront.net/42482/product/canish-hipoalergenicop0404.jpg",
     "nombre": "Shampoo Hipoalergénico",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
-    "precio": 4990,
-    "isFavorite": false
+    "precio": 4990
   },
   {
     "id": "8",
@@ -68,8 +62,7 @@
     "imagen": "https://dojiw2m9tvv09.cloudfront.net/42482/product/tidy-gato4433.jpg",
     "nombre": "Shampoo en seco para Gatos",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
-    "precio": 5990,
-    "isFavorite": false
+    "precio": 5990
   },
   {
     "id": "9",
@@ -77,8 +70,7 @@
     "imagen": "https://www.clubdeperrosygatos.cl/wp-content/uploads/2017/10/Royal-Canin-Kitten.webp",
     "nombre": "Alimento para Gatos | Royal",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
-    "precio": 17990,
-    "isFavorite": false
+    "precio": 17990
   },
   {
     "id": "10",
@@ -86,8 +78,7 @@
     "imagen": "https://http2.mlstatic.com/D_NQ_NP_841472-MLC48830750531_012022-O.webp",
     "nombre": "Alimento para Catitas",
     "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!",
-    "precio": 3990,
-    "isFavorite": false
+    "precio": 3990
   }
 
 ]
