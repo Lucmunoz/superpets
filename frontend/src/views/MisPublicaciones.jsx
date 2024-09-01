@@ -50,7 +50,7 @@ const MisPublicaciones = () => {
     if (opcion === '4') {
       publicacionesUsuarioOrdenadas = [...publicacionesUsuario].sort((a, b) => b.precio - (a.precio))
     }
-    setArregloMisPublicaciones(publicacionesUsuarioOrdenadas)
+    setearMisPublicaciones(publicacionesUsuarioOrdenadas)
   }
 
   useEffect(() => {
