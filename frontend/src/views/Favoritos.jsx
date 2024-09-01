@@ -85,7 +85,6 @@ const Favoritos = () => {
     /* *Reemplazar codigo cuando se realice backend***/
   }, [])
 
-
   return (
     <main className='d-flex align-items-center'>
       <div className='container-fluid col-11 col-xl-10 col-xxl-9 my-3'>

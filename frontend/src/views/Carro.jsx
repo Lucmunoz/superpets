@@ -13,10 +13,6 @@ const Carro = () => {
     vaciarCarro()
   }
 
-  const gotoLogin = () => {
-    navigate('/ingresar')
-  }
-
   const mostrarSpinner = () => {
     <div class='spinner-border' role='status'>
       <span class='visually-hidden'>Loading...</span>

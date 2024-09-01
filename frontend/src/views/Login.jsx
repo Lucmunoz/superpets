@@ -21,6 +21,13 @@ const Login = () => {
       // usuario logeado
       navigate('/perfil')
     }
+
+    if (window.sessionStorage.getItem('favoritos')) { // <----- ELIMINAR
+      window.sessionStorage.removeItem('favoritos')
+    }
+    if (window.sessionStorage.getItem('carro')) { // <----- ELIMINAR
+      window.sessionStorage.removeItem('carro')
+    }
   }, [])
 
   const handleForm = (event) => {
