@@ -10,26 +10,13 @@ const Favoritos = () => {
     navigate(`/tienda/producto/${id}`)
   }
 
-  useEffect(() => {
-    /* //Código para verificar existencia de token. De lo contrario, redirigir a ingresar
-     if (!window.sessionStorage.getItem('token')) {navigate('/ingresar')} */
+  const gotoLogin = () => {
+    navigate('/ingresar')
+  }
 
-    /* *Reemplazar codigo cuando se realice backend***/
-    if (!window.sessionStorage.getItem('usuario')) {
-      navigate('/ingresar')
-    } else {
-      // Reviso si mi session activa tiene un arreglo de favoritos ya creado.
-      if (window.sessionStorage.getItem('favoritos')) {
-        const arregloTemporal = JSON.parse(window.sessionStorage.getItem('favoritos'))
-        setearFavoritos(arregloTemporal)
-      }
-    }
-    /* *Reemplazar codigo cuando se realice backend***/
-  }, [])
-
-  return (
-    <main className='d-flex align-items-center'>
-      <div className='container-fluid col-11 col-xl-10 col-xxl-9 my-3'>
+  const cargoData = () => {
+    return (
+      <>
         {productosFavoritos.length === 0 &&
           <h1 className='text-center pb-3' style={{ color: 'white' }}>Aún no has agregado favoritos <i className='fa-solid fa-face-sad-tear fa-xl ps-3' /></h1>}
         <div className={`container-fluid col-11 col-xl-10 col-xxl-9 p-4 bordesRed ${productosFavoritos.length >= 1 ? 'bg-white' : ''}`}>
@@ -63,6 +50,33 @@ const Favoritos = () => {
             })}
           </div>
         </div>
+      </>
+    )
+  }
+
+  useEffect(() => {
+    /* //Código para verificar existencia de token. De lo contrario, redirigir a ingresar
+     if (!window.sessionStorage.getItem('token')) {navigate('/ingresar')} */
+
+    /* *Reemplazar codigo cuando se realice backend***/
+    if (!window.sessionStorage.getItem('usuario')) {
+      navigate('/ingresar')
+    } else {
+      // Reviso si mi session activa tiene un arreglo de favoritos ya creado.
+      if (window.sessionStorage.getItem('favoritos')) {
+        const arregloTemporal = JSON.parse(window.sessionStorage.getItem('favoritos'))
+        setearFavoritos(arregloTemporal)
+      }
+    }
+    /* *Reemplazar codigo cuando se realice backend***/
+  }, [])
+
+  return (
+    <main className='d-flex align-items-center'>
+      <div className='container-fluid col-11 col-xl-10 col-xxl-9 my-3'>
+
+        {window.sessionStorage.getItem('usuario') ? cargoData() : gotoLogin()}
+
       </div>
     </main>
 
