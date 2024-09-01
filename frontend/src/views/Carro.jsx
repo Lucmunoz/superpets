@@ -54,14 +54,15 @@ const Carro = () => {
         <div className='d-flex flex-column'>
           <ProductoCarro />
         </div>
-        <div className='container-fluid bg-light p-2'>
+        <div className='container-fluid bg-light'>
           <div className='row justify-content-center'>
-            <div className='col-6 col-sm-4 d-flex flex-column justify-content-center align-items-start ps-4 py-2'>
-              <div><h5 className='p-0 m-0'>Total:</h5></div>
-              <div><span className='p-0 m-0'>${(totalCarro / 1000).toFixed(3)}</span></div>
-            </div>
-            <div className='col-6 col-sm-4 d-flex align-items-center justify-content-end'>
-              <span><button type='button' className='botonEstilos' onClick={() => goToPagar()}>Ir a pagar</button></span>
+            <div className='col-6 col-sm-4 d-flex justify-content-center py-3'>
+              <div className='pe-2'>
+                <span><strong>Total:</strong> ${(totalCarro / 1000).toFixed(3)}</span>
+              </div>
+              <div className='ps-2'>
+                <button type='button' className='botonEstilos' onClick={() => goToPagar()}>Ir a pagar</button>
+              </div>
             </div>
           </div>
         </div>

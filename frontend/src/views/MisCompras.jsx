@@ -107,13 +107,13 @@ const MisCompras = () => {
 
   const mostrarDataCompras = () => {
     return (
-      <>
-        <div className='p-3 p-md-5 bg-white d-flex flex-column'>
-          <h1 className='text-center pb-4'>Mis Compras <i className='fa-solid fa-bag-shopping' /></h1>
-          <ProductoCompras />
-          <button type='button ' className='btn btn-sm btn-danger me-auto ms-auto '> <Link to='/perfil'>Regresar</Link> </button>
+      <div className='bg-white d-flex flex-column'>
+        <h1 className='tituloForm'>Mis Compras <i className='fa-solid fa-bag-shopping' /></h1>
+        <ProductoCompras />
+        <div style={{ textAlign: 'center' }}>
+          <button type='button' className='botonEstilos'> <Link to='/perfil' className='text-white text-decoration-none'>Regresar</Link> </button>
         </div>
-      </>
+      </div>
     )
   }
 
@@ -125,7 +125,7 @@ const MisCompras = () => {
           <h1>Hey!</h1>
           <h3>Aún no has visto nuestras ofertas?</h3>
           <h5 className=''>No pierdas mas tiempo, hay increibles descuento esperando! Ellos, lo merecen!</h5>
-          <button type='button ' className='btn btn-secondary col-4 me-auto ms-auto'>Ver Productos</button>
+          <button type='button' className='btn btn-secondary col-4 me-auto ms-auto'>Ver Productos</button>
         </div>
       </div>
     )
@@ -133,7 +133,7 @@ const MisCompras = () => {
 
   return (
     <main className='d-flex align-items-center'>
-      <div className='container-fluid col-10 my-5'>
+      <div className='container-fluid col-10 bg-white bordesRed'>
         {comprasRealizadas.length !== 0 ? mostrarDataCompras() : sinCompras()}
       </div>
     </main>
