@@ -4,7 +4,7 @@ import { PetsContext } from '../context/PetsContext'
 import CorazonFav from '../components/CorazonFav'
 
 const Favoritos = () => {
-  const { agregarCarro, productosFavoritos, cambiarFavorito, setProductosFavoritos } = useContext(PetsContext)
+  const { agregarCarro, productosFavoritos, cambiarFavorito, setearFavoritos } = useContext(PetsContext)
   const navigate = useNavigate()
   const irDetalleProducto = (id) => {
     navigate(`/tienda/producto/${id}`)
@@ -18,13 +18,12 @@ const Favoritos = () => {
     if (!window.sessionStorage.getItem('usuario')) {
       navigate('/ingresar')
     } else {
+      // Reviso si mi session activa tiene un arreglo de favoritos ya creado.
       if (window.sessionStorage.getItem('favoritos')) {
         const arregloTemporal = JSON.parse(window.sessionStorage.getItem('favoritos'))
-        console.log(arregloTemporal)
-        setProductosFavoritos(arregloTemporal)
+        setearFavoritos(arregloTemporal)
       }
     }
-
     /* *Reemplazar codigo cuando se realice backend***/
   }, [])
 
@@ -55,9 +54,7 @@ const Favoritos = () => {
                       <button className='buttonCard' onClick={() => irDetalleProducto(producto.id)}>Ver detalle</button>
                       <button className='buttonAgregar' onClick={() => agregarCarro(producto.id)}> <i className='fa-solid fa-cart-shopping fa-lg' /></button>
                       <button className='buttonCorazon' onClick={() => cambiarFavorito(producto.id)}>
-                        <CorazonFav
-                          filled={!!producto.isFavorite}
-                        />
+                        <CorazonFav id={producto.id} />
                       </button>
                     </div>
                   </div>

@@ -38,11 +38,11 @@ const Menu = () => {
               <li className='nav-item'>
                 <NavLink to='/tienda' className={cambiarMenu}>Tienda</NavLink>
               </li>
-              {window.sessionStorage.getItem('usuario') &&
+              {usuario &&
                 <li className='nav-item'><NavLink to='/perfil' className={cambiarMenu}> <i className='fa-solid fa-user' /></NavLink></li>}
-              {!window.sessionStorage.getItem('usuario') &&
+              {!usuario &&
                 <li className='nav-item'><NavLink to='/registrarse' className={cambiarMenu}>Registrarse</NavLink></li>}
-              {!window.sessionStorage.getItem('usuario') &&
+              {!usuario &&
                 <li className='nav-item'>
                   <NavLink to='/ingresar' className={cambiarMenu}>Ingresar</NavLink>
                 </li>}
@@ -61,7 +61,7 @@ const Menu = () => {
                   </div>
                 </NavLink>
               </li>
-              {window.sessionStorage.getItem('usuario') && <li className='cerrarSesion'> <NavLink to='/' onClick={irACerrar}> <i className='fa-solid fa-arrow-right-from-bracket' /></NavLink></li>}
+              {usuario && <li className='cerrarSesion'> <NavLink to='/' onClick={irACerrar}> <i className='fa-solid fa-arrow-right-from-bracket' /></NavLink></li>}
             </ul>
 
           </div>
