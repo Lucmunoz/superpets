@@ -1,6 +1,6 @@
 import { ENDPOINT } from '../config/constants.js'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
 import { PetsContext } from '../context/PetsContext.jsx'
 
@@ -56,7 +56,10 @@ const InformacionPersonal = () => {
         <hr />
         <br />
         <br />
-        <button type='button' className='btn btn-danger' onClick={eliminarcuenta}>Eliminar Cuenta</button>
+        <div class='d-flex justify-content-center gap-4'>
+          <button type='button' className='btn btn-danger btn-sm' onClick={eliminarcuenta}>Eliminar Cuenta</button>
+          <button type='button' className='btn btn-sm btn-secondary '> <Link to='/perfil'>Regresar</Link> </button>
+        </div>
       </div>
     </main>
   )

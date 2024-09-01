@@ -1,7 +1,6 @@
 import { useContext, useEffect } from 'react'
 import { PetsContext } from '../context/PetsContext'
-
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import ProductoCompras from '../components/ProductoCompras'
 
 const MisCompras = () => {
@@ -112,6 +111,7 @@ const MisCompras = () => {
         <div className='p-3 p-md-5 bg-white d-flex flex-column'>
           <h1 className='text-center pb-4'>Mis Compras <i className='fa-solid fa-bag-shopping' /></h1>
           <ProductoCompras />
+          <button type='button ' className='btn btn-sm btn-danger me-auto ms-auto '> <Link to='/perfil'>Regresar</Link> </button>
         </div>
       </>
     )
