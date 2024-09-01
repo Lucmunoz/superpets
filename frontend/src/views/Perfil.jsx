@@ -63,7 +63,7 @@ const Perfil = () => {
             </NavLink>
 
             <div className='pt-3'>
-              <button type='button' className='btn btn-primary' onClick={() => cerrarSesión()}>Cerrar Sesión</button>
+              <button type='button' className='btn btn-danger btn-sm' onClick={() => cerrarSesión()}>Cerrar Sesión</button>
             </div>
           </div>
         </div>
