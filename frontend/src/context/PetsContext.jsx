@@ -11,6 +11,7 @@ const PetsContextProvider = ({ children }) => {
   const [productosCarro, setProductosCarro] = useState([])
   const [totalCarro, setTotalCarro] = useState(0)
   const [productosFavoritos, setProductosFavoritos] = useState([])
+  const [comprasRealizadas, setComprasRealizadas] = useState('')
 
   const getData = async () => {
     try {
@@ -22,6 +23,7 @@ const PetsContextProvider = ({ children }) => {
     }
   }
 
+  const setearComprasRealizadas = (valor) => { setComprasRealizadas(valor) }
   const setearProductosCarro = (valor) => { setProductosCarro(valor) }
 
   useEffect(() => {
@@ -166,7 +168,9 @@ const PetsContextProvider = ({ children }) => {
     totalCarro,
     numeroTotalProductos,
     productosFavoritos,
-    setProductosFavoritos
+    setProductosFavoritos,
+    comprasRealizadas,
+    setearComprasRealizadas
   }
 
   return (
