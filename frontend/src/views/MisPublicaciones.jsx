@@ -113,7 +113,7 @@ const MisPublicaciones = () => {
   }
 
   return (
-    <main className='d-flex align-items-center'>
+    <main className='d-flex align-items-start'>
       <div className='container-fluid col-11 col-xl-10 col-xxl-9 my-3 bg-white'>
         {arregloMisPublicaciones.length !== 0 ? mostrarPublicaciones() : sinPublicaciones()}
       </div>
