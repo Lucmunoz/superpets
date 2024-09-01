@@ -119,6 +119,15 @@ main {
   border-radius: 20px;
 }
 
+.botonEstilosEliminar {
+  background-color: red;
+  border: none;
+  color: #fff;
+  width: 150px;
+  padding: 5px;
+  border-radius: 20px;
+}
+
 /* button agregar al carro */
 .buttonAgregar {
   border: none;
