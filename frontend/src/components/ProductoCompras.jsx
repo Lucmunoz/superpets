@@ -22,7 +22,7 @@ const ProductoCompras = (compra) => {
                   <div className='d-lg-flex flex-column flex-lg-row text-center align-items-center gap-1'><h6 className='p-0 m-0'>Total de la compra:</h6> <span className='fw-light fst-italic'>${(compra.total / 1000).toFixed(3)}</span></div>
                 </div>
                 <div className='ms-sm-auto pt-2 pt-sm-0'>
-                  <button type='button' className='btn btn-danger btn-sm p-1 px-2'>Ver detalle</button>
+                  <button type='button' className='botonEstilos'>Ver detalle</button>
                 </div>
               </div>
             </div>
@@ -31,14 +31,13 @@ const ProductoCompras = (compra) => {
                 return (
                   <div className='container-fluid p-0 pb-md-3' key={compra.idCompra + '-' + producto.id}>
                     <div className='row p-0 m-0'>
-                      <div className='col-md-2 p-0 d-flex justify-content-center '>
-                        <div className='text-center d-md-none'><img className='d-lg-none' style={{ height: '200px' }} src={producto.imagen} alt='MDN' /></div>
+                      <div className='col-md-2 p-0 d-flex justify-content-center'>
+                        <div className='text-center d-md-none'><img className='d-lg-none' style={{ height: '150px', padding: '10px' }} src={producto.imagen} alt='MDN' /></div>
                         <div className='text-center d-none d-md-flex'><img className='' style={{ height: '75px' }} src={producto.imagen} alt='MDN' /></div>
                       </div>
                       <div className='d-flex flex-column text-center text-md-start justify-content-center col-md-8 col-lg-4 p-0'>
                         <h6>{producto.nombre}</h6>
                         <div className='fw-light fst-italic text-truncate'>{producto.descripcion}</div>
-
                       </div>
                       <div className='container-fluid d-flex p-0 m-0 align-items-center justify-content-center col-md-2 col-lg-6 col-xxl-6'>
                         <div className='container-fluid d-flex justify-content-center p-0'>
@@ -55,6 +54,7 @@ const ProductoCompras = (compra) => {
                         <div><button type='button' className='btn btn-secondary btn-sm p-1 px-1' onClick={() => goToPublicacion(producto.id)}>Ver producto</button></div>
                       </div>
                     </div>
+                    <hr />
                   </div>
                 )
               })}

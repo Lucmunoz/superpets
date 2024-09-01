@@ -57,8 +57,8 @@ const InformacionPersonal = () => {
         <br />
         <br />
         <div className='d-flex justify-content-center gap-4'>
-          <button type='button' className='botonEstilos' onClick={eliminarcuenta}>Eliminar Cuenta</button>
           <button type='button' className='botonEstilos '> <Link to='/perfil' className='text-white text-decoration-none'>Regresar</Link> </button>
+          <button type='button' className='botonEstilosEliminar' onClick={eliminarcuenta}>Eliminar Cuenta</button>
         </div>
       </div>
     </main>
