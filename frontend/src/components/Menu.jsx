@@ -38,9 +38,9 @@ const Menu = () => {
               <li className='nav-item'>
                 <NavLink to='/tienda' className={cambiarMenu}>Tienda</NavLink>
               </li>
-              {usuario === null &&
+              {!window.sessionStorage.getItem('usuario') &&
                 <li className='nav-item'><NavLink to='/registrarse' className={cambiarMenu}>Registrarse</NavLink></li>}
-              {usuario === null &&
+              {!window.sessionStorage.getItem('usuario') &&
                 <li className='nav-item'>
                   <NavLink to='/ingresar' className={cambiarMenu}>Ingresar</NavLink>
                 </li>}
@@ -59,7 +59,7 @@ const Menu = () => {
                   </div>
                 </NavLink>
               </li>
-              {usuario !== null && <li className='cerrarSesion'> <NavLink to='/' onClick={irACerrar}> <i className='fa-solid fa-arrow-right-from-bracket' /></NavLink></li>}
+              {window.sessionStorage.getItem('usuario') && <li className='cerrarSesion'> <NavLink to='/' onClick={irACerrar}> <i className='fa-solid fa-arrow-right-from-bracket' /></NavLink></li>}
             </ul>
 
           </div>
