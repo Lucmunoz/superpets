@@ -1,10 +1,10 @@
 import { useEffect, useContext } from 'react'
 import ProductoCarro from '../components/ProductoCarro'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { PetsContext } from '../context/PetsContext'
 
 const Carro = () => {
-  const { productosCarro, totalCarro } = useContext(PetsContext)
+  const { productosCarro, totalCarro, setProductosCarro } = useContext(PetsContext)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -14,6 +14,12 @@ const Carro = () => {
     /* *Reemplazar codigo cuando se realice backend***/
     if (!window.sessionStorage.getItem('usuario')) {
       navigate('/ingresar')
+    } else {
+      if (window.sessionStorage.getItem('carro')) {
+        const arregloTemporal = JSON.parse(window.sessionStorage.getItem('carro'))
+        console.log(arregloTemporal)
+        setProductosCarro(arregloTemporal)
+      }
     }
     /* *Reemplazar codigo cuando se realice backend***/
   }, [])
@@ -28,11 +34,10 @@ const Carro = () => {
           <div className='d-flex flex-column px-4 pb-4 text-center'>
             <h3>Tu carro está vacío</h3>
             <h5 className='pb-4'>No pierdas mas tiempo. revisa nuestra amplia oferta de productos para tu mascota!</h5>
-            <button type='button ' className='btn btn-sm btn-secondary me-auto ms-auto'>Ver productos</button>
+            <button type='button ' className='btn btn-sm btn-secondary me-auto ms-auto'> <Link to='/tienda'>Ir a tienda</Link> </button>
           </div>
         </div>
       </>
-
     )
   }
 

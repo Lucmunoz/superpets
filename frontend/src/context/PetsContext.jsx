@@ -42,29 +42,38 @@ const PetsContextProvider = ({ children }) => {
     window.sessionStorage.setItem('usuario', JSON.stringify(valor))
   }
 
-  const cerrarSesion = () => {
-    // console.log('cierro sesion')
-    setUsuario(null)
-    window.sessionStorage.removeItem('usuario')
-  }
-
   // función que agrega 1 al carro
   const agregarCarro = (id) => {
-    // Creo una copia del arreglo de productos que hay en el carro.
-    const productosCarroTemp = [...productosCarro]
-    // En el arreglo, busco el id del elemento a actualizar.
-    const objectIndex = productosCarro.findIndex(obj => obj.id === id)
+    let carroTemporal = ''
+    let productosCarroTemp = []
+    /* Antes de modificar la cantidad del carro, reviso si mi carro existe en el session storage. Esto, ya que el usuario puede haber
+        refrescado la pagina y si leyera el estado, estaría vacío. Si existe el session estorage del carro, traigo su valor y seteo
+        nuevamente el carro. */
+    if (window.sessionStorage.getItem('carro')) {
+      productosCarroTemp = JSON.parse(window.sessionStorage.getItem('carro'))
+      setProductosCarro(productosCarroTemp)
+    }
+    // Como recibo el ID de una publicación cuya cantidad debe ser incrementada en 1, reviso si ese id existe en mi carro.
+    const objectIndex = productosCarroTemp.findIndex(obj => obj.id === id)
     // si findIndex devuelve un valor valido, quiere decir que producto ya existe en el carro->modifico cantidad
     if (objectIndex !== -1) {
       productosCarroTemp[objectIndex].cantidad += 1
+      carroTemporal = productosCarroTemp
       setProductosCarro(productosCarroTemp)
-    } else { // si findIndex devuelve un valor invalido (-1), quiere decir que producto NO existe en el carro-> Lo agrego con cantidad 1.
+    } else { // si findIndex devuelve un valor -1, quiere decir que producto NO existe en el carro-> Lo agrego con cantidad 1.
       // Agrego la key cantidad y lo agrego al estado arreglo productos carro
-      const productoTemporal = productos[+id - 1]
+      const objectIndex = productos.findIndex(obj => obj.id === id)
+      const productoTemporal = productos[objectIndex]
       const productoTemporalConCantidad = { ...productoTemporal, cantidad: 1 }
       // finalmente, seteo el arreglo de productosCarro con el arreglo temporal
-      setProductosCarro([...productosCarro, productoTemporalConCantidad])
+      carroTemporal = [...productosCarroTemp, productoTemporalConCantidad]
+      setProductosCarro(carroTemporal)
     }
+
+    if (!window.sessionStorage.getItem('usuario')) {
+      window.sessionStorage.setItem('carro', JSON.stringify(carroTemporal))
+    }
+    window.sessionStorage.setItem('carro', JSON.stringify(carroTemporal))
   }
 
   // función que quita 1 del carro
@@ -85,6 +94,7 @@ const PetsContextProvider = ({ children }) => {
     }
     // finalmente, seteo el arreglo de productosCarro con el arreglo temporal
     setProductosCarro(carroActual)
+    window.sessionStorage.setItem('carro', JSON.stringify(carroActual))
   }
 
   const calcularTotal = (array) => {
@@ -94,7 +104,7 @@ const PetsContextProvider = ({ children }) => {
     }
   }
   // numero de productos
-  const numeroTotalProductos = [...productosCarro].reduce((acumulador, item) => acumulador + item.cantidad, 0)
+  const numeroTotalProductos = JSON.parse(window.sessionStorage.getItem('carro')).reduce((acumulador, item) => acumulador + item.cantidad, 0)
 
   // favoritos
   const cambiarFavorito = (id) => {
@@ -103,6 +113,28 @@ const PetsContextProvider = ({ children }) => {
     copiaParaFav[index].isFavorite = !copiaParaFav[index].isFavorite
     const soloFavoritos = copiaParaFav.filter((p) => p.isFavorite === true)
     setProductosFavoritos(soloFavoritos)
+
+    /*
+      traer el sesion storage
+      pasarlo a un arreglo de objetos
+      agregarle al final el nuevo producto favorito o carro
+      stringyfy
+      setearlo denuevo en el sesion storage
+ */
+
+    if (!window.sessionStorage.getItem('favoritos')) {
+      window.sessionStorage.setItem('favoritos', JSON.stringify(productosFavoritos))
+    }
+    window.sessionStorage.setItem('favoritos', JSON.stringify(productosFavoritos))
+  }
+
+  const cerrarSesion = () => {
+    // console.log('cierro sesion')
+    setUsuario(null)
+    window.sessionStorage.removeItem('usuario')
+    window.sessionStorage.removeItem('favoritos')
+
+    window.sessionStorage.removeItem('carro')
   }
 
   const globalState = {
@@ -120,9 +152,11 @@ const PetsContextProvider = ({ children }) => {
     agregarCarro,
     quitarCarro,
     productosCarro,
+    setProductosCarro,
     totalCarro,
     numeroTotalProductos,
-    productosFavoritos
+    productosFavoritos,
+    setProductosFavoritos
   }
 
   return (
