@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const datosPublicacion = {
   nombre: '',
@@ -27,6 +27,10 @@ const CrearPublicacion = () => {
     if (!publicacion.imagen.trim()) {
       return window.alert('Debe ingresar una URL para la imágen.')
     }
+    // Reemplazar codigo por peticion del tipo post al backend
+    alert('Publicacion creada exitosament')
+    setPublicacion(datosPublicacion)
+    navigate('/mispublicaciones')
   }
 
   useEffect(() => {
@@ -65,8 +69,9 @@ const CrearPublicacion = () => {
               <label htmlFor='exampleFormControlInput1'>Ingresa la URL de tu imagen</label>
               <input type='text' name='imagen' className='form-control fst-italic' placeholder='Ingresa la URL de la imágen' value={publicacion.imagen} onChange={handlePublicacion} />
             </div>
-            <div className='text-center'>
-              <button type='submit' className='btn btn-danger'>Crear Publicación</button>
+            <div className='d-flex gap-4 justify-content-center'>
+              <button type='submit' className='btn btn-success btn-sm'>Crear Publicación</button>
+              <button type='button ' className='btn btn-sm btn-danger '> <Link to='/mispublicaciones'>Regresar</Link> </button>
             </div>
           </form>
         </div>
