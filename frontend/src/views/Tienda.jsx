@@ -25,11 +25,6 @@ const Tienda = () => {
   }
 
   useEffect(() => {
-    if (!window.sessionStorage.getItem('usuario')) {
-      window.alert('Para agregar favoritos debes iniciar sesión, te redirigiremos!')
-      return navigate('/ingresar')
-    }
-
     if (window.sessionStorage.getItem('favoritos')) {
       const arregloTemporalFavoritos = JSON.parse(window.sessionStorage.getItem('favoritos'))
       setearFavoritos(arregloTemporalFavoritos)
