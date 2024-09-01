@@ -60,10 +60,10 @@ const Registrarse = () => {
   return (
     <main>
       <div className='divRegistroNuevo'>
-        <h1>Registrate aquí<i className='fa-regular fa-pen-to-square ps-2' /></h1>
+        <h1 className='titutoFom'>Registrate aquí<i className='fa-regular fa-pen-to-square ps-2' /></h1>
         <form onSubmit={enviarFormulario}>
           <div className='mb-3'>
-            <label htmlFor='nombre' className='form-label mb-0'>Nombre</label>
+            <label htmlFor='nombre' className='form-label labelEstilos'>Nombre</label>
             <input
               type='text'
               className='form-control'
@@ -74,7 +74,7 @@ const Registrarse = () => {
             />
           </div>
           <div className='mb-3'>
-            <label htmlFor='apellido' className='form-label mb-0'>Apellido</label>
+            <label htmlFor='apellido' className='form-label labelEstilos'>Apellido</label>
             <input
               type='text'
               className='form-control'
@@ -85,7 +85,7 @@ const Registrarse = () => {
             />
           </div>
           <div className='mb-3'>
-            <label htmlFor='email' className='form-label mb-0'>Email</label>
+            <label htmlFor='email' className='form-label labelEstilos'>Email</label>
             <input
               type='email'
               className='form-control'
@@ -97,7 +97,7 @@ const Registrarse = () => {
             />
           </div>
           <div className='mb-3'>
-            <label htmlFor='password' className='form-label mb-0'>Contraseña (8 caracteres)</label>
+            <label htmlFor='password' className='form-label labelEstilos'>Contraseña (8 caracteres)</label>
             <input
               type='password'
               className='form-control'
@@ -108,7 +108,7 @@ const Registrarse = () => {
             />
           </div>
           <div className='mb-3'>
-            <label htmlFor='rut' className='form-label mb-0'>RUT</label>
+            <label htmlFor='rut' className='form-label labelEstilos'>RUT</label>
             <input
               type='text'
               className='form-control'
@@ -119,7 +119,7 @@ const Registrarse = () => {
             />
           </div>
           <div className='mb-3'>
-            <label htmlFor='telefono' className='form-label mb-0'>Teléfono</label>
+            <label htmlFor='telefono' className='form-label labelEstilos'>Teléfono</label>
             <input
               type='text'
               className='form-control'
@@ -130,7 +130,7 @@ const Registrarse = () => {
             />
           </div>
           <div className='mb-3'>
-            <label htmlFor='direccion' className='form-label mb-0'>Dirección</label>
+            <label htmlFor='direccion' className='form-label labelEstilos'>Dirección</label>
             <input
               type='text'
               className='form-control'
@@ -140,7 +140,7 @@ const Registrarse = () => {
               onChange={cambioInput}
             />
           </div>
-          <button type='submit' className='btn btn-danger'>Crear cuenta</button>
+          <button type='submit' className='botonEstilos'>Crear cuenta</button>
         </form>
       </div>
     </main>

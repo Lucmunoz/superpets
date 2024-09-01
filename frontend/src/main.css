@@ -111,7 +111,7 @@ main {
   margin: 0 auto;
 }
 
-.buttonCard {
+.botonEstilos {
   background-color: #062D3D;
   color: #fff;
   width: 150px;
@@ -196,16 +196,17 @@ main {
   padding: 30px 0;
 }
 
-.divRegistroNuevo h1 {
+.titutoFom {
   text-align: center;
   color: #062D3D;
   font-size: 28px;
   padding: 20px 0;
 }
 
-.divRegistroNuevo label {
+.labelEstilos {
   color: #ED5C01;
   font-weight: 500;
+  margin-bottom: 0;
 }
 
 .divRegistroNuevo form input {
@@ -290,7 +291,7 @@ footer div a:hover {
 
 .bordesRed {
   border-radius: 10px;
-  padding: 30px 0;
+  padding: 30px;
 }
 
 /* acerca de nosotros */

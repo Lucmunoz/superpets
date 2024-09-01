@@ -44,7 +44,7 @@ const Card = () => {
             <p className='precioCardHome'>${p.precio}</p>
           </div>
           <div>
-            <button className='buttonCard' onClick={() => irDetalleProducto(p.id)}>Ver detalle</button>
+            <button className='botonEstilos' onClick={() => irDetalleProducto(p.id)}>Ver detalle</button>
           </div>
         </div>
       )}
