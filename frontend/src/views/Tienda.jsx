@@ -13,7 +13,7 @@ const Tienda = () => {
   }
 
   const cambiosFavorito = (id) => {
-    if (usuario === null) {
+    if (!window.sessionStorage.getItem('usuario')) {
       window.alert('Para agregar favoritos debes iniciar sesión, te redirigiremos!')
       return navigate('/ingresar')
     }
@@ -21,7 +21,7 @@ const Tienda = () => {
   }
 
   const botonAgregar = (id) => {
-    if (usuario === null) {
+    if (!window.sessionStorage.getItem('usuario')) {
       window.alert('Para agregar productos debes iniciar sesión, te redirigiremos!')
       return navigate('/ingresar')
     }
