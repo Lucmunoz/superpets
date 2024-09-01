@@ -22,41 +22,46 @@ const MisCompras = () => {
       total: 35250,
       fecha: '24-05-2014',
       productos: [{
-        id: '12345',
-        cantidad: 3,
-        nombre: 'Harnes Hiking',
-        descripcion: 'Arnes que ofrese toda la seguridad que tu mascota necesita para salir paseos largos y evitar que se escape',
-        imagen: 'https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dwf12355c9/images/40985-hiking-harness-camuflado-001.jpg'
+        id: '1',
+        id_usuarios: '1',
+        imagen: 'https://media.milesdefiestas.com/galeria/articulos/disfraz-superman-para-perro_16872_1.jpg',
+        nombre: 'Disfraz para Perro',
+        descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!',
+        precio: 9990
       }, {
-        id: '1234',
-        cantidad: 1,
-        nombre: 'Hueso Doble Capa',
-        descripcion: 'Hueso impregnado con esencia natural de mantequilla de mani. Fabricado con materiales extra resistente que garantiza durabilidad del producto.',
-        imagen: 'https://www.petco.cl/medias/?context=bWFzdGVyfGltYWdlc3wyNzE0NDZ8aW1hZ2UvanBlZ3xpbWFnZXMvaDA4L2hkMi85MjU4NjM1NjI0NDc4LmpwZ3xjZTMwZDkyMDgzMGU4YzUxMmFjZjIzYmUzY2E0NzM0ODQzMDY2OTU1NmJmOTU5Yjg5YzAxZjk0ZjIwYWNhMmEy'
+        id: '6',
+        id_usuarios: '2',
+        imagen: 'https://pethome.cl/media/catalog/product/cache/a207c3d3261251c19bb31d3774d0e54e/5/1/5162__28311.jpg',
+        nombre: 'Túnel para Gatos',
+        descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!',
+        precio: 15990
       }, {
-        id: '123',
-        cantidad: 12,
-        nombre: 'Pelota Respira Fácil',
-        descripcion: 'Pelota de diseño especial, similar a una malla, que facilita la respiración y el flujo de aire hacia los pulmones del animal mientras juega',
-        imagen: 'https://cdnx.jumpseller.com/bigotes-pet-store-coffee/image/31906761/resize/610/610?1676288218'
+        id: '3',
+        id_usuarios: '1',
+        imagen: 'https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dwecc9797d/images/Nath%20adulto%20Medium%20sabor%20pollo%20y%20arroz%20integral%20alimento%20para%20perros.jpg',
+        nombre: 'Alimento para Perro | Nath',
+        descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!',
+        precio: 20990
       }]
     }, {
       idCompra: 2,
       total: 16990,
       fecha: '05-07-2020',
       productos: [{
-        id: '1234',
-        cantidad: 1,
-        nombre: 'Hueso Doble Capa',
-        descripcion: 'Hueso impregnado con esencia natural de mantequilla de mani. Fabricado con materiales extra resistente que garantiza durabilidad del producto.',
-
-        imagen: 'https://www.petco.cl/medias/?context=bWFzdGVyfGltYWdlc3wyNzE0NDZ8aW1hZ2UvanBlZ3xpbWFnZXMvaDA4L2hkMi85MjU4NjM1NjI0NDc4LmpwZ3xjZTMwZDkyMDgzMGU4YzUxMmFjZjIzYmUzY2E0NzM0ODQzMDY2OTU1NmJmOTU5Yjg5YzAxZjk0ZjIwYWNhMmEy'
+        id: '5',
+        id_usuarios: '1',
+        imagen: 'https://www.clubdeperrosygatos.cl/wp-content/uploads/2024/07/prlotas-gato.webp',
+        nombre: 'Pelota para Gatos',
+        descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!',
+        precio: 1590,
+        isFavorite: false
       }, {
-        id: '12345',
-        cantidad: 2,
-        nombre: 'Harnes Hiking',
-        descripcion: 'Arnes que ofrese toda la seguridad que tu mascota necesita para salir paseos largos y evitar que se escape',
-        imagen: 'https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dwf12355c9/images/40985-hiking-harness-camuflado-001.jpg'
+        id: '8',
+        id_usuarios: '2',
+        imagen: 'https://dojiw2m9tvv09.cloudfront.net/42482/product/tidy-gato4433.jpg',
+        nombre: 'Shampoo en seco para Gatos',
+        descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!',
+        precio: 5990
       }]
     },
     {
@@ -64,11 +69,12 @@ const MisCompras = () => {
       total: 14990,
       fecha: '02-04-1989',
       productos: [{
-        id: '123',
-        cantidad: 1,
-        nombre: 'Pelota Respira Fácil',
-        descripcion: 'Pelota de diseño especial, similar a una malla, que facilita la respiración y el flujo de aire hacia los pulmones del animal mientras juega',
-        imagen: 'https://cdnx.jumpseller.com/bigotes-pet-store-coffee/image/31906761/resize/610/610?1676288218'
+        id: '3',
+        id_usuarios: '1',
+        imagen: 'https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dwecc9797d/images/Nath%20adulto%20Medium%20sabor%20pollo%20y%20arroz%20integral%20alimento%20para%20perros.jpg',
+        nombre: 'Alimento para Perro | Nath',
+        descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!',
+        precio: 20990
       }]
     },
     {
@@ -76,11 +82,12 @@ const MisCompras = () => {
       total: 5200,
       fecha: '02-07-2024',
       productos: [{
-        id: '12345',
-        cantidad: 6,
-        nombre: 'Harnes Hiking',
-        descripcion: 'Arnes que ofrese toda la seguridad que tu mascota necesita para salir paseos largos y evitar que se escape',
-        imagen: 'https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dwf12355c9/images/40985-hiking-harness-camuflado-001.jpg'
+        id: '2',
+        id_usuarios: '1',
+        imagen: 'https://bestforpets.cl/tienda/8990-large_default/pawise-cuerda-nudos.jpg',
+        nombre: 'Cuerda para Perro',
+        descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!',
+        precio: 1990
       }]
     }]
 
