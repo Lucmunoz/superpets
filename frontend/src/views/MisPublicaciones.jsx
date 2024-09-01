@@ -78,6 +78,9 @@ const MisPublicaciones = () => {
         </div>
         <div className='container-fluid p-0 pt-3 d-flex flex-column gap-2' />
         <PublicacionListada />
+        <div className='pt-4'>
+          <button type='button ' className='btn btn-sm btn-secondary me-auto ms-auto'>Crear Publicación</button>
+        </div>
       </div>
     )
   }
