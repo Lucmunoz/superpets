@@ -74,10 +74,6 @@ const PetsContextProvider = ({ children }) => {
       carroTemporal = [...productosCarroTemp, productoTemporalConCantidad]
       setProductosCarro(carroTemporal)
     }
-
-    if (!window.sessionStorage.getItem('usuario')) {
-      window.sessionStorage.setItem('carro', JSON.stringify(carroTemporal))
-    }
     window.sessionStorage.setItem('carro', JSON.stringify(carroTemporal))
   }
 
@@ -100,6 +96,11 @@ const PetsContextProvider = ({ children }) => {
     // finalmente, seteo el arreglo de productosCarro con el arreglo temporal
     setProductosCarro(carroActual)
     window.sessionStorage.setItem('carro', JSON.stringify(carroActual))
+  }
+
+  const vaciarCarro = () => {
+    setProductosCarro([])
+    window.sessionStorage.removeItem('carro')
   }
 
   const calcularTotal = (array) => {
@@ -166,6 +167,7 @@ const PetsContextProvider = ({ children }) => {
     quitarCarro,
     productosCarro,
     setearProductosCarro,
+    vaciarCarro,
     totalCarro,
     numeroTotalProductos,
     productosFavoritos,

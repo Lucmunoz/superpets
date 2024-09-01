@@ -4,8 +4,13 @@ import { useNavigate, Link } from 'react-router-dom'
 import { PetsContext } from '../context/PetsContext'
 
 const Carro = () => {
-  const { productosCarro, totalCarro, setearProductosCarro } = useContext(PetsContext)
+  const { productosCarro, totalCarro, setearProductosCarro, vaciarCarro } = useContext(PetsContext)
   const navigate = useNavigate()
+
+  const goToPagar = () => {
+    alert('Pago Exitoso')
+    vaciarCarro()
+  }
 
   useEffect(() => {
     /* //Código para verificar existencia de token. De lo contrario, redirigir a ingresar
@@ -55,7 +60,7 @@ const Carro = () => {
               <div><span className='p-0 m-0'>${(totalCarro / 1000).toFixed(3)}</span></div>
             </div>
             <div className='col-6 col-sm-4 d-flex align-items-center justify-content-end'>
-              <span><button type='button' className='btn btn-secondary btn-sm py-1 px-4'>Ir a pagar</button></span>
+              <span><button type='button' className='btn btn-secondary btn-sm py-1 px-4' onClick={() => goToPagar()}>Ir a pagar</button></span>
             </div>
           </div>
         </div>
