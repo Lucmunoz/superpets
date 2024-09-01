@@ -4,7 +4,7 @@ import { PetsContext } from '../context/PetsContext'
 import CorazonFav from '../components/CorazonFav'
 
 const Favoritos = () => {
-  const { agregarCarro, productosFavoritos, cambiarFavorito } = useContext(PetsContext)
+  const { agregarCarro, productosFavoritos, cambiarFavorito, setProductosFavoritos } = useContext(PetsContext)
   const navigate = useNavigate()
   const irDetalleProducto = (id) => {
     navigate(`/tienda/producto/${id}`)
@@ -17,7 +17,14 @@ const Favoritos = () => {
     /* *Reemplazar codigo cuando se realice backend***/
     if (!window.sessionStorage.getItem('usuario')) {
       navigate('/ingresar')
+    } else {
+      if (window.sessionStorage.getItem('favoritos')) {
+        const arregloTemporal = JSON.parse(window.sessionStorage.getItem('favoritos'))
+        console.log(arregloTemporal)
+        setProductosFavoritos(arregloTemporal)
+      }
     }
+
     /* *Reemplazar codigo cuando se realice backend***/
   }, [])
 
