@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import CorazonFav from '../components/CorazonFav'
 import { PetsContext } from '../context/PetsContext'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -31,7 +31,7 @@ const Producto = () => {
   // console.log(productosTienda, 'prod tienda')
 
   const producto = [...productosTienda].filter((p) => p.id === (id))
-  console.log(producto)
+ // console.log(producto)
 
   return (
     <main className='mainProducto'>
