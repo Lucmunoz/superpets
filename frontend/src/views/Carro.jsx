@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { PetsContext } from '../context/PetsContext'
 
 const Carro = () => {
-  const { productosCarro, totalCarro, setProductosCarro } = useContext(PetsContext)
+  const { productosCarro, totalCarro, setearProductosCarro } = useContext(PetsContext)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Carro = () => {
       if (window.sessionStorage.getItem('carro')) {
         const arregloTemporal = JSON.parse(window.sessionStorage.getItem('carro'))
         console.log(arregloTemporal)
-        setProductosCarro(arregloTemporal)
+        setearProductosCarro(arregloTemporal)
       }
     }
     /* *Reemplazar codigo cuando se realice backend***/
