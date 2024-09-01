@@ -39,26 +39,26 @@ const InformacionPersonal = () => {
     <main>
       <div className='divInfoPersonal'>
         <h1>Información Personal </h1>
-        <p>Nombre </p>
+        <h2 className='h2PerfilYPersonal'>Nombre </h2>
         <span>Juan López</span>
         <hr />
-        <p>Email</p>
+        <h2 className='h2PerfilYPersonal'>Email</h2>
         <span>juanitolopez@correo.com</span>
         <hr />
-        <p>RUT</p>
+        <h2 className='h2PerfilYPersonal'>RUT</h2>
         <span>20.000.000-k</span>
         <hr />
-        <p>Teléfono</p>
+        <h2 className='h2PerfilYPersonal'>Teléfono</h2>
         <span>+5912345679</span>
         <hr />
-        <p>Dirección</p>
+        <h2 className='h2PerfilYPersonal'>Dirección</h2>
         <span>Los Claveles 17, Concepción</span>
         <hr />
         <br />
         <br />
-        <div class='d-flex justify-content-center gap-4'>
-          <button type='button' className='btn btn-danger btn-sm' onClick={eliminarcuenta}>Eliminar Cuenta</button>
-          <button type='button' className='btn btn-sm btn-secondary '> <Link to='/perfil'>Regresar</Link> </button>
+        <div className='d-flex justify-content-center gap-4'>
+          <button type='button' className='botonEstilos' onClick={eliminarcuenta}>Eliminar Cuenta</button>
+          <button type='button' className='botonEstilos '> <Link to='/perfil' className='text-white text-decoration-none'>Regresar</Link> </button>
         </div>
       </div>
     </main>
