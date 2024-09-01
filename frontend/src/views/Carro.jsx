@@ -12,6 +12,20 @@ const Carro = () => {
     vaciarCarro()
   }
 
+  const gotoLogin = () => {
+    navigate('/ingresar')
+  }
+
+  const cargoData = () => {
+    return (
+      <>
+        <div className='container-fluid col-11 col-xl-10 col-xxl-9 bg-white bordesRed'>
+          {productosCarro.length !== 0 ? mostrarDataCarro() : carroVacio()}
+        </div>
+      </>
+    )
+  }
+
   useEffect(() => {
     /* //Código para verificar existencia de token. De lo contrario, redirigir a ingresar
      if (!window.sessionStorage.getItem('token')) {navigate('/ingresar')} */
@@ -72,9 +86,7 @@ const Carro = () => {
 
   return (
     <main className='d-flex align-items-center'>
-      <div className='container-fluid col-11 col-xl-10 col-xxl-9 bg-white bordesRed'>
-        {productosCarro.length !== 0 ? mostrarDataCarro() : carroVacio()}
-      </div>
+      {window.sessionStorage.getItem('usuario') ? cargoData() : gotoLogin()}
     </main>
   )
 }
