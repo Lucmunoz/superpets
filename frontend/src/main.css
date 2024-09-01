@@ -288,6 +288,11 @@ footer div a:hover {
   color: #fff;
 }
 
+.bordesRed {
+  border-radius: 10px;
+  padding: 30px 0;
+}
+
 /* acerca de nosotros */
 .divAcerca {
   width: 800px;
