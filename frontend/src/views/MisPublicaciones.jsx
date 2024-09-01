@@ -3,9 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import { PetsContext } from '../context/PetsContext'
 
 import PublicacionListada from '../components/PublicacionListada'
+let publicacionesUsuario = []
+let publicacionesUsuarioOrdenadas = []
+let publicacionesFiltradas = []
 
 const MisPublicaciones = () => {
-  const { arregloMisPublicaciones, setArregloMisPublicaciones, usuario } = useContext(PetsContext)
+  const { arregloMisPublicaciones, setearMisPublicaciones } = useContext(PetsContext)
   const navigate = useNavigate()
 
   const getData = async () => {
@@ -15,14 +18,39 @@ const MisPublicaciones = () => {
       const arregloPublicacionesTemp = data.filter((publicacion) => {
         return JSON.parse(window.sessionStorage.getItem('usuario')).id === publicacion.id_usuarios // <- sacarlo de use state
       })
-      setArregloMisPublicaciones(arregloPublicacionesTemp)
+      setearMisPublicaciones(arregloPublicacionesTemp)
+      publicacionesUsuario = [...arregloPublicacionesTemp]
     } catch (error) {
       console.log(error)
     }
   }
 
+  const filtrarPublicaciones = (event) => {
+    const subString = event.target.value
+    console.log(publicacionesUsuario)
+    publicacionesFiltradas = [...publicacionesUsuario].filter((publicacion) => publicacion.nombre.toLowerCase().includes(subString))
+    setearMisPublicaciones(publicacionesFiltradas)
+  }
+
   const cambiarSelect = (event) => {
-    // console.log(event.target.value)
+    const opcion = event.target.value
+    // orden de a->z
+    if (opcion === '1') {
+      publicacionesUsuarioOrdenadas = [...publicacionesUsuario].sort((a, b) => a.nombre.localeCompare(b.nombre))
+    }
+    // orden de z>a
+    if (opcion === '2') {
+      publicacionesUsuarioOrdenadas = [...publicacionesUsuario].sort((a, b) => b.nombre.localeCompare(a.nombre))
+    }
+    // orden presio asc
+    if (opcion === '3') {
+      publicacionesUsuarioOrdenadas = [...publicacionesUsuario].sort((a, b) => a.precio - (b.precio))
+    }
+    // orden precio desc
+    if (opcion === '4') {
+      publicacionesUsuarioOrdenadas = [...publicacionesUsuario].sort((a, b) => b.precio - (a.precio))
+    }
+    setArregloMisPublicaciones(publicacionesUsuarioOrdenadas)
   }
 
   useEffect(() => {
@@ -62,16 +90,16 @@ const MisPublicaciones = () => {
         <div className='d-flex flex-column flex-md-row container-fluid align-items-center justify-content-md-end bg-light  py-4 gap-2 gap-md-4'>
           <div className='d-flex flex-column flex-sm-row align-items-center gap-2 '>
             <h5 className='p-0 m-0'>Busqueda</h5>
-            <input type='text' id='busqueda-publicaciones' className='form-control fst-italic' placeholder='Título, nombre, precio, etc...' />
+            <input type='text' id='busqueda-publicaciones' className='form-control fst-italic' placeholder='Título, nombre, precio, etc...' onChange={() => filtrarPublicaciones(event)} />
           </div>
           <div className='d-flex flex-column flex-sm-row align-items-center gap-2 '>
             <h5 className='p-0 m-0'>Ordenar</h5>
-            <select className='form-select fst-italic' aria-label='Default select example' onChange={cambiarSelect()}>
+            <select className='form-select fst-italic' aria-label='Default select example' onChange={() => cambiarSelect(event)}>
               <option value='DEFAULT'>Seleccione...</option>
               <option value='1'>{'Nombre A -> Z'}</option>
               <option value='2'>{'Nombre Z -> A'}</option>
               <option value='3'>Precio Ascendente</option>
-              <option value='3'>Precio Descendente</option>
+              <option value='4'>Precio Descendente</option>
             </select>
           </div>
         </div>
