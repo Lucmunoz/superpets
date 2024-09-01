@@ -58,7 +58,7 @@ const Login = () => {
   return (
     <main className='d-flex align-items-center'>
       <div className='container col-10 col-lg-5 text-center bg-white bordesRed' style={{ width: '600px' }}>
-        <h1 className='titutoFom'>Inicio de sesión</h1>
+        <h1 className='tituloForm'>Inicio de sesión</h1>
         <form onSubmit={handleForm}>
           <div className='mb-3 px-4'>
             <label htmlFor='exampleInputEmail1' className='form-label labelEstilos'>Correo electrónico</label>
@@ -70,7 +70,7 @@ const Login = () => {
             <input style={{ width: '85%', margin: '0 auto' }} type='password' name='contrasena' className='form-control text-center' id='exampleInputPassword1' placeholder='*********' value={userTemp.contrasena} onChange={handleUser} />
           </div>
           <div>
-            <button type='submit' className='estilosBoton'>Iniciar Sesión</button>
+            <button type='submit' className='botonEstilos'>Iniciar Sesión</button>
           </div>
         </form>
       </div>

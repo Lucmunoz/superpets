@@ -60,7 +60,7 @@ const Registrarse = () => {
   return (
     <main>
       <div className='divRegistroNuevo'>
-        <h1 className='titutoFom'>Registrate aquí<i className='fa-regular fa-pen-to-square ps-2' /></h1>
+        <h1 className='tituloForm'>Registrate aquí<i className='fa-regular fa-pen-to-square ps-2' /></h1>
         <form onSubmit={enviarFormulario}>
           <div className='mb-3'>
             <label htmlFor='nombre' className='form-label labelEstilos'>Nombre</label>
