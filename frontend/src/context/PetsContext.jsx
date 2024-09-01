@@ -23,6 +23,7 @@ const PetsContextProvider = ({ children }) => {
     }
   }
 
+  const setearFavoritos = (valor) => { setProductosFavoritos(valor) }
   const setearComprasRealizadas = (valor) => { setComprasRealizadas(valor) }
   const setearProductosCarro = (valor) => { setProductosCarro(valor) }
   const setearMisPublicaciones = (valor) => { setArregloMisPublicaciones(valor) }
@@ -122,24 +123,30 @@ const PetsContextProvider = ({ children }) => {
 
   // favoritos
   const cambiarFavorito = (id) => {
-    const copiaParaFav = [...productos]
-    const index = copiaParaFav.findIndex((p) => p.id === id)
-    copiaParaFav[index].isFavorite = !copiaParaFav[index].isFavorite
-    const soloFavoritos = copiaParaFav.filter((p) => p.isFavorite === true)
-    setProductosFavoritos(soloFavoritos)
-
-    /*
-      traer el sesion storage
-      pasarlo a un arreglo de objetos
-      agregarle al final el nuevo producto favorito o carro
-      stringyfy
-      setearlo denuevo en el sesion storage
- */
-
-    if (!window.sessionStorage.getItem('favoritos')) {
-      window.sessionStorage.setItem('favoritos', JSON.stringify(productosFavoritos))
+    // Defino variable que utilizare para almacenar el arreglo de favoritos. A este arreglo, se añadirán o eliminarán favoritos.
+    let arregloTemporalFavoritos = []
+    // Antes de continuar, reviso si existe un sessionstorage de favoritos. Si existe, lo descargo y actualizo el estado que puede estar vacío luego de un refresh
+    if (window.sessionStorage.getItem('favoritos')) {
+      arregloTemporalFavoritos = JSON.parse(window.sessionStorage.getItem('favoritos'))
+      setProductosFavoritos(arregloTemporalFavoritos)
     }
-    window.sessionStorage.setItem('favoritos', JSON.stringify(productosFavoritos))
+    // Como recibo el ID de una punlicción que debo agregar al arreglo de favoritos, reviso si ese id existe en mi carro.
+    const objectIndex = arregloTemporalFavoritos.findIndex(obj => obj.id === id)
+    // Procedo según sea el caso. Si el favorito existe, lo elimino. Si no existe en el arreglo, lo agrego.
+    if (objectIndex !== -1) {
+      // Si existe, debo removerlo porque ya dejó de ser favrito
+      arregloTemporalFavoritos.splice(objectIndex, 1)
+    } else {
+      console.log('no existe')
+      // Si no existe, tengo que agregar el objeto del producto en mi arreglo de favoritos. Voy y lo busco en mi matriz de productos y lo copio.
+      const objectIndex = productos.findIndex(obj => obj.id === id)
+      const productoTemporal = productos[objectIndex]
+      arregloTemporalFavoritos.push(productoTemporal)
+    }
+    // finalmente, seteo mi estado de favoritos (Arreglo de objetos) para desplegarlo en las vistas que lo requieran
+    setProductosFavoritos(arregloTemporalFavoritos)
+    // Guardo los datos en el sessionstorage
+    window.sessionStorage.setItem('favoritos', JSON.stringify(arregloTemporalFavoritos))
   }
 
   const cerrarSesion = () => {
@@ -171,7 +178,7 @@ const PetsContextProvider = ({ children }) => {
     totalCarro,
     numeroTotalProductos,
     productosFavoritos,
-    setProductosFavoritos,
+    setearFavoritos,
     comprasRealizadas,
     setearComprasRealizadas
   }

@@ -1,22 +1,18 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import CorazonFav from '../components/CorazonFav'
 import { PetsContext } from '../context/PetsContext'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import { ENDPOINT } from '../config/constants.js'
+// import axios from 'axios'
+// import { ENDPOINT } from '../config/constants.js'
 
 const Tienda = () => {
-  const { productos, cambiarFavorito, select, cambiarSelect, usuario, agregarCarro, quitarCarro } = useContext(PetsContext)
+  const { productos, cambiarFavorito, setearFavoritos, select, cambiarSelect, usuario, agregarCarro } = useContext(PetsContext)
   const navigate = useNavigate()
   const irDetalleProducto = (id) => {
     navigate(`/tienda/producto/${id}`)
   }
 
   const cambiosFavorito = (id) => {
-    if (!window.sessionStorage.getItem('usuario')) {
-      window.alert('Para agregar favoritos debes iniciar sesión, te redirigiremos!')
-      return navigate('/ingresar')
-    }
     cambiarFavorito(id)
   }
 
@@ -28,22 +24,17 @@ const Tienda = () => {
     agregarCarro(id)
   }
 
-  // función que trae todos los productos comentar después
-  // const [productosDataTienda, setProductosDataTienda] = useState([])
-  // const getData = () => {
-  //   axios.get(ENDPOINT.tienda)
-  //     .then(({ data }) => {
-  //       setProductosDataTienda(data)
-  //     })
-  //     .catch(({ response: { data } }) => {
-  //       console.log(data.message)
-  //       window.alert(`${data.message}`)
-  //     })
-  // }
+  useEffect(() => {
+    if (!window.sessionStorage.getItem('usuario')) {
+      window.alert('Para agregar favoritos debes iniciar sesión, te redirigiremos!')
+      return navigate('/ingresar')
+    }
 
-  // useEffect(() => {
-  //   getData()
-  // }, [])
+    if (window.sessionStorage.getItem('favoritos')) {
+      const arregloTemporalFavoritos = JSON.parse(window.sessionStorage.getItem('favoritos'))
+      setearFavoritos(arregloTemporalFavoritos)
+    }
+  }, [])
 
   // función que muestra los productos distintos a los que el usuario creo
   let productosTienda = [...productos]
@@ -75,9 +66,7 @@ const Tienda = () => {
             <div className='card' key={p.id}>
               <div className='text-end pe-3'>
                 <button className='buttonCorazon' onClick={() => cambiosFavorito(p.id)}>
-                  <CorazonFav
-                    filled={!!p.isFavorite}
-                  />
+                  <CorazonFav id={p.id} />
                 </button>
               </div>
               <img src={p.imagen} className='card-img-top' alt='disfraz-salchicha' />
