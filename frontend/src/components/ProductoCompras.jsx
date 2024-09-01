@@ -34,13 +34,11 @@ const ProductoCompras = (compra) => {
                     </div>
                     <div class='d-none d-lg-flex btn-sm gap-2 p-0 ms-auto pe-lg-4'>
                       <div><button type='button' className='btn btn-secondary btn-sm p-1 px-2'>Ver producto</button></div>
-                      <div><button type='button' className='btn btn-danger btn-sm p-1 px-2'>Añadir al carro</button></div>
                     </div>
                   </div>
                 </div>
                 <div class='d-flex d-lg-none btn-sm gap-2 p-0 pt-2 pt-lg-0 align-items-center justify-content-center justify-content-lg-end col-12 col-lg-4 ms-auto'>
                   <div><button type='button' className='btn btn-secondary btn-sm p-1 px-1'>Ver producto</button></div>
-                  <div><button type='button' className='btn btn-danger btn-sm p-1 px-1'>Añadir al carro</button></div>
                 </div>
               </div>
             </div>
