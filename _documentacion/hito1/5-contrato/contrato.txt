@@ -1,5 +1,5 @@
 
-//GET /tienda
+//GET/
 response: [
  {
     id: String,
@@ -10,20 +10,16 @@ response: [
   }
 ]
 
-
-//GET /tienda/producto/:id
-request: {
-  id: String
-}
-
-response:  {
+//GET /tienda
+response: [
+ {
     id: String,
     imagen: String,
     nombre: String,
     descripcion: String,
     precio: Number
   }
-
+]
 
 //post /registrarse
 request:
@@ -36,7 +32,6 @@ request:
     telefono: Number,
     direccion: String
   }
-
 
 //GET  /ingresar
 request:
@@ -74,7 +69,6 @@ response: [{
   }
 }
 ]
-
 
 POST /tienda/producto
 request:
