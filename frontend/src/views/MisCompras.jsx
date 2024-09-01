@@ -19,21 +19,24 @@ const MisCompras = () => {
         imagen: 'https://media.milesdefiestas.com/galeria/articulos/disfraz-superman-para-perro_16872_1.jpg',
         nombre: 'Disfraz para Perro',
         descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!',
-        precio: 9990
+        precio: 9990,
+        cantidad: 2
       }, {
         id: '6',
         id_usuarios: '2',
         imagen: 'https://pethome.cl/media/catalog/product/cache/a207c3d3261251c19bb31d3774d0e54e/5/1/5162__28311.jpg',
         nombre: 'Túnel para Gatos',
         descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!',
-        precio: 15990
+        precio: 15990,
+        cantidad: 4
       }, {
         id: '3',
         id_usuarios: '1',
         imagen: 'https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dwecc9797d/images/Nath%20adulto%20Medium%20sabor%20pollo%20y%20arroz%20integral%20alimento%20para%20perros.jpg',
         nombre: 'Alimento para Perro | Nath',
         descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!',
-        precio: 20990
+        precio: 20990,
+        cantidad: 1
       }]
     }, {
       idCompra: 2,
@@ -46,14 +49,15 @@ const MisCompras = () => {
         nombre: 'Pelota para Gatos',
         descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!',
         precio: 1590,
-        isFavorite: false
+        cantidad: 1
       }, {
         id: '8',
         id_usuarios: '2',
         imagen: 'https://dojiw2m9tvv09.cloudfront.net/42482/product/tidy-gato4433.jpg',
         nombre: 'Shampoo en seco para Gatos',
         descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!',
-        precio: 5990
+        precio: 5990,
+        cantidad: 2
       }]
     },
     {
@@ -66,7 +70,8 @@ const MisCompras = () => {
         imagen: 'https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dwecc9797d/images/Nath%20adulto%20Medium%20sabor%20pollo%20y%20arroz%20integral%20alimento%20para%20perros.jpg',
         nombre: 'Alimento para Perro | Nath',
         descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!',
-        precio: 20990
+        precio: 20990,
+        cantidad: 6
       }]
     },
     {
@@ -79,7 +84,8 @@ const MisCompras = () => {
         imagen: 'https://bestforpets.cl/tienda/8990-large_default/pawise-cuerda-nudos.jpg',
         nombre: 'Cuerda para Perro',
         descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti rem facere architecto facilis ratione veniam nostrum, ut autem explicabo perspiciatis!',
-        precio: 1990
+        precio: 1990,
+        cantidad: 1
       }]
     }]
 

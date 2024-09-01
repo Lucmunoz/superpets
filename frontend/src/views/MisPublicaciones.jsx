@@ -9,7 +9,6 @@ const MisPublicaciones = () => {
   const navigate = useNavigate()
 
   const getData = async () => {
-    console.log(usuario)
     try {
       const response = await fetch('/productos.json')
       const data = await response.json()
