@@ -25,6 +25,7 @@ const PetsContextProvider = ({ children }) => {
 
   const setearComprasRealizadas = (valor) => { setComprasRealizadas(valor) }
   const setearProductosCarro = (valor) => { setProductosCarro(valor) }
+  const setearMisPublicaciones = (valor) => { setArregloMisPublicaciones(valor) }
 
   useEffect(() => {
     getData()
@@ -160,7 +161,7 @@ const PetsContextProvider = ({ children }) => {
     cambiarUsuario,
     cerrarSesion,
     arregloMisPublicaciones,
-    setArregloMisPublicaciones,
+    setearMisPublicaciones,
     agregarCarro,
     quitarCarro,
     productosCarro,
