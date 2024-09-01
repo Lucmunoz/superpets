@@ -1,10 +1,11 @@
-import { useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import ProductoCarro from '../components/ProductoCarro'
 import { useNavigate, Link } from 'react-router-dom'
 import { PetsContext } from '../context/PetsContext'
 
 const Carro = () => {
   const { productosCarro, totalCarro, setearProductosCarro, vaciarCarro } = useContext(PetsContext)
+  const [cargando, setCargando] = useState(true)
   const navigate = useNavigate()
 
   const goToPagar = () => {
@@ -16,7 +17,13 @@ const Carro = () => {
     navigate('/ingresar')
   }
 
-  const cargoData = () => {
+  const mostrarSpinner = () => {
+    <div class='spinner-border' role='status'>
+      <span class='visually-hidden'>Loading...</span>
+    </div>
+  }
+
+  const mostrarCarro = () => {
     return (
       <>
         <div className='container-fluid col-11 col-xl-10 col-xxl-9 bg-white bordesRed'>
@@ -26,19 +33,23 @@ const Carro = () => {
     )
   }
 
+  const getData = () => {
+    if (window.sessionStorage.getItem('carro')) {
+      const arregloTemporal = JSON.parse(window.sessionStorage.getItem('carro'))
+      console.log(arregloTemporal)
+      setearProductosCarro(arregloTemporal)
+    }
+    setCargando(false)
+  }
+
   useEffect(() => {
     /* //Código para verificar existencia de token. De lo contrario, redirigir a ingresar
      if (!window.sessionStorage.getItem('token')) {navigate('/ingresar')} */
-
     /* *Reemplazar codigo cuando se realice backend***/
     if (!window.sessionStorage.getItem('usuario')) {
       navigate('/ingresar')
     } else {
-      if (window.sessionStorage.getItem('carro')) {
-        const arregloTemporal = JSON.parse(window.sessionStorage.getItem('carro'))
-        console.log(arregloTemporal)
-        setearProductosCarro(arregloTemporal)
-      }
+      getData()
     }
     /* *Reemplazar codigo cuando se realice backend***/
   }, [])
@@ -86,7 +97,7 @@ const Carro = () => {
 
   return (
     <main className='d-flex align-items-center'>
-      {window.sessionStorage.getItem('usuario') ? cargoData() : gotoLogin()}
+      {cargando ? mostrarSpinner() : mostrarCarro()}
     </main>
   )
 }
