@@ -29,12 +29,12 @@ const Favoritos = () => {
 
   return (
     <main className='d-flex align-items-center'>
-      <div className='container-fluid col-11 col-xl-10 col-xxl-9 my-3 '>
-        {productosFavoritos.length === 0
-          ? <h1 className='text-center pb-3' style={{ color: 'white' }}>Aún no has agregado favoritos <i className='fa-solid fa-face-sad-tear fa-xl ps-3' /></h1>
-          : <h1 className='text-center pb-3' style={{ color: 'white' }}>Mis Productos Favoritos <i className='fa-solid fa-heart' /></h1>}
-        <div className={`container-fluid col-11 col-xl-10 col-xxl-9 p-4 rounded-3 ${productosFavoritos.length >= 1 ? 'bg-white' : ''}`}>
-          <div className='d-flex flex-column  p-3 rounded-3'>
+      <div className='container-fluid col-11 col-xl-10 col-xxl-9 my-3'>
+        {productosFavoritos.length === 0 &&
+          <h1 className='text-center pb-3' style={{ color: 'white' }}>Aún no has agregado favoritos <i className='fa-solid fa-face-sad-tear fa-xl ps-3' /></h1>}
+        <div className={`container-fluid col-11 col-xl-10 col-xxl-9 p-4 bordesRed ${productosFavoritos.length >= 1 ? 'bg-white' : ''}`}>
+          <div className='d-flex flex-column '>
+            {productosFavoritos.length >= 1 && <h1 className='tituloForm'>Mis Productos Favoritos <i className='fa-solid fa-heart' /></h1>}
             {productosFavoritos.map((producto) => {
               return (
                 <div className='container-fluid bg-light p-3' key={producto.id}>
@@ -51,7 +51,7 @@ const Favoritos = () => {
                       </div>
                     </div>
                     <div className='d-flex col-lg-4 gap-2 justify-content-center align-items-center p-0 py-2 ms-auto'>
-                      <button className='buttonCard' onClick={() => irDetalleProducto(producto.id)}>Ver detalle</button>
+                      <button className='botonEstilos' onClick={() => irDetalleProducto(producto.id)}>Ver detalle</button>
                       <button className='buttonAgregar' onClick={() => agregarCarro(producto.id)}> <i className='fa-solid fa-cart-shopping fa-lg' /></button>
                       <button className='buttonCorazon' onClick={() => cambiarFavorito(producto.id)}>
                         <CorazonFav id={producto.id} />
