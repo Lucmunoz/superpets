@@ -31,7 +31,7 @@ const Producto = () => {
   // console.log(productosTienda, 'prod tienda')
 
   const producto = [...productosTienda].filter((p) => p.id === (id))
- // console.log(producto)
+  // console.log(producto)
 
   return (
     <main className='mainProducto'>
