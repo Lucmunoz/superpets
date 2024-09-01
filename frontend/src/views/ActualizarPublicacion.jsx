@@ -44,11 +44,11 @@ const ActualizarPublicacion = () => {
       // Reemplazar por consulta para obtener datos de la publicación a editar
       const response = await fetch('/productos.json')
       const data = await response.json()
-      console.log(data)
+      //console.log(data)
       const index = data.findIndex((publicacion) => publicacion.id === idPublicacion)
       setPublicacionTemporal(data[index])
     } catch (error) {
-      console.log(error)
+      //console.log(error)
     }
   }
 
