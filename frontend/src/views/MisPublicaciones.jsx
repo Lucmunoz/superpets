@@ -106,7 +106,7 @@ const MisPublicaciones = () => {
         <div className='container-fluid p-0 pt-3 d-flex flex-column gap-2' />
         <PublicacionListada />
         <div className='pt-4 d-flex gap-4'>
-          <button type='button ' className='btn btn-sm btn-secondary me-auto ms-auto'>Crear Publicación</button>
+          <button type='button ' className='btn btn-sm btn-secondary me-auto ms-auto'><Link to='/crearpublicacion'>Crear Publicación</Link></button>
           <button type='button ' className='btn btn-sm btn-danger me-auto ms-auto '> <Link to='/perfil'>Regresar</Link> </button>
         </div>
       </div>
