@@ -8,7 +8,7 @@ const Carro = () => {
   const navigate = useNavigate()
 
   const goToPagar = () => {
-    alert('Pago Exitoso')
+    window.alert('Pago Exitoso')
     vaciarCarro()
   }
 
@@ -31,25 +31,26 @@ const Carro = () => {
 
   const carroVacio = () => {
     return (
-      <>
-        <div className='bg-white d-flex flex-column align-items-center justify-content-center'>
-          <div>
-            <img style={{ height: '200px' }} src='/emptyCart.png' alt='Imagen carro vacío' />
-          </div>
-          <div className='d-flex flex-column px-4 pb-4 text-center'>
-            <h3>Tu carro está vacío</h3>
-            <h5 className='pb-4'>No pierdas mas tiempo. revisa nuestra amplia oferta de productos para tu mascota!</h5>
-            <button type='button ' className='btn btn-sm btn-secondary me-auto ms-auto'> <Link to='/tienda'>Ir a tienda</Link> </button>
+      <div className='bg-white d-flex flex-column align-items-center justify-content-center'>
+        <h1 className='tituloForm'>Mi Carro <i className='fa-solid fa-cart-shopping' /></h1>
+        <div>
+          <img style={{ height: '180px' }} src='/emptyCart.png' alt='Imagen carro vacío' />
+        </div>
+        <div className='d-flex flex-column text-center'>
+          <h2 style={{ color: ' #ED5C01', margin: '0', fontSize: '28px' }}>Tu carro está vacío</h2>
+          <p>No pierdas mas tiempo, revisa nuestra amplia oferta de productos para tu mascota!</p>
+          <div className='pt-3'>
+            <button type='button' className='botonEstilos'> <Link to='/tienda' className='text-white text-decoration-none'>Ir a tienda</Link> </button>
           </div>
         </div>
-      </>
+      </div>
     )
   }
 
   const mostrarDataCarro = () => {
     return (
-      <div className='d-flex flex-column py-5'>
-        <h1 className='text-center '>Mi Carro <i className='fa-solid fa-cart-shopping' /></h1>
+      <div className='d-flex flex-column'>
+        <h1 className='tituloForm'>Mi Carro <i className='fa-solid fa-cart-shopping' /></h1>
         <div className='d-flex flex-column'>
           <ProductoCarro />
         </div>
@@ -60,7 +61,7 @@ const Carro = () => {
               <div><span className='p-0 m-0'>${(totalCarro / 1000).toFixed(3)}</span></div>
             </div>
             <div className='col-6 col-sm-4 d-flex align-items-center justify-content-end'>
-              <span><button type='button' className='btn btn-secondary btn-sm py-1 px-4' onClick={() => goToPagar()}>Ir a pagar</button></span>
+              <span><button type='button' className='botonEstilos' onClick={() => goToPagar()}>Ir a pagar</button></span>
             </div>
           </div>
         </div>
@@ -70,7 +71,7 @@ const Carro = () => {
 
   return (
     <main className='d-flex align-items-center'>
-      <div className='container-fluid col-11 col-xl-10 col-xxl-9 my-3 bg-white'>
+      <div className='container-fluid col-11 col-xl-10 col-xxl-9 bg-white bordesRed'>
         {productosCarro.length !== 0 ? mostrarDataCarro() : carroVacio()}
       </div>
     </main>
