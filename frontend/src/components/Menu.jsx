@@ -38,6 +38,8 @@ const Menu = () => {
               <li className='nav-item'>
                 <NavLink to='/tienda' className={cambiarMenu}>Tienda</NavLink>
               </li>
+              {window.sessionStorage.getItem('usuario') &&
+                <li className='nav-item'><NavLink to='/perfil' className={cambiarMenu}> <i className='fa-solid fa-user' /></NavLink></li>}
               {!window.sessionStorage.getItem('usuario') &&
                 <li className='nav-item'><NavLink to='/registrarse' className={cambiarMenu}>Registrarse</NavLink></li>}
               {!window.sessionStorage.getItem('usuario') &&
