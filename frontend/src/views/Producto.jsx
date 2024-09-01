@@ -46,7 +46,7 @@ const Producto = () => {
               <p className='pt-3'>{p.descripcion}</p>
               <span style={{ fontSize: '20px', color: '#ED5C01', fontWeight: '700', margin: '0' }}>${p.precio}</span>
             </div>
-            <button type='button' className='btn btn-danger' onClick={() => agregarCarro(p.id)}>Agregar al carro</button>
+            <button type='button' className='botonEstilos' onClick={() => agregarCarro(p.id)}>Agregar al carro</button>
             <button className='buttonCorazon' onClick={() => cambiarFavorito(p.id)}>
               <CorazonFav
                 filled={!!p.isFavorite}
