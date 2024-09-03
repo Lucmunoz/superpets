@@ -18,7 +18,7 @@ const Login = () => {
   const handleUser = (event) => setUserTemp({ ...userTemp, [event.target.name]: event.target.value })
 
   useEffect(() => {
-    if (window.sessionStorage.getItem('usuario')) { // <----- ELIMINAR
+    if (window.sessionStorage.getItem('usuario')) { // <----- ELIMINAR ??
       // usuario logeado
       navigate('/perfil')
     }
@@ -46,10 +46,9 @@ const Login = () => {
     axios.post(ENDPOINT.login, userTemp)
       .then(({ data }) => {
         window.sessionStorage.setItem('token', data.token)
-        console.log(data.id)
         cambiarUsuario({ id: data.id, nombre: data.nombre })
         window.sessionStorage.setItem('usuario', JSON.stringify({ id: data.id, nombre: data.nombre }))
-        window.alert('Usuario identificado con éxito 😀.')
+        window.alert(`${data.message} 😀.`)
         navigate('/perfil')
       })
       .catch(({ response: { data } }) => {
