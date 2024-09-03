@@ -23,6 +23,6 @@ CREATE TABLE productos (
    precio       INTEGER     NOT NULL,
    imagen       TEXT        NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(id_usuarios) REFERENCES usuarios(id)
+   FOREIGN KEY(id_usuarios) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 -- contrasena cambio a text
