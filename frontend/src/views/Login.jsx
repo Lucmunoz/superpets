@@ -2,7 +2,8 @@
 import { useNavigate } from 'react-router-dom'
 import { useState, useContext, useEffect } from 'react'
 import { PetsContext } from '../context/PetsContext'
-// import { ENDPOINT } from '../config/constans'
+import { ENDPOINT } from '../config/constants.js'
+import axios from 'axios'
 
 const credencialesUsuario = {
   correo: '',
@@ -13,7 +14,7 @@ const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 const Login = () => {
   const navigate = useNavigate()
   const [userTemp, setUserTemp] = useState(credencialesUsuario)
-  const { cambiarUsuario } = useContext(PetsContext)
+  const { usuario, cambiarUsuario } = useContext(PetsContext)
   const handleUser = (event) => setUserTemp({ ...userTemp, [event.target.name]: event.target.value })
 
   useEffect(() => {
@@ -42,25 +43,29 @@ const Login = () => {
     }
 
     /* Reemplazar codigo al iniciar sesión para obtener token */
-    /* axios.post(ENDPOINT.login, user)
+    axios.post(ENDPOINT.login, userTemp)
       .then(({ data }) => {
         window.sessionStorage.setItem('token', data.token)
+        console.log(data.id)
+        cambiarUsuario({ id: data.id, nombre: data.nombre })
+        window.sessionStorage.setItem('usuario', JSON.stringify({ id: data.id, nombre: data.nombre }))
         window.alert('Usuario identificado con éxito 😀.')
-        setUsuario({})
         navigate('/perfil')
       })
       .catch(({ response: { data } }) => {
         console.error(data)
         window.alert(`${data.message} 🙁.`)
-      }) */
+      })
 
-    const usuarioTemporal = {
-      id: '1',
-      nombre: 'lucas'
-    }
-    cambiarUsuario(usuarioTemporal)
+    // const usuarioTemporal = {
+    //   id: '1',
+    //   nombre: 'lucas'
+    // }
+    // cambiarUsuario(usuarioTemporal)
     navigate('/perfil')
   }
+
+  console.log(usuario)
 
   return (
     <main className='d-flex align-items-center'>
