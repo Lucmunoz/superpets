@@ -38,13 +38,15 @@ export const verificarCredenciales = async (correo, contrasena) => {
   }
 
   const { rows } = await db('SELECT id, nombre FROM usuarios WHERE correo = $1;', [correo])
-
-  return rows
+  const nombreYId = { id: rows[0].id, nombre: rows[0].nombre }
+  return nombreYId
 }
 
-export const getUser = async (email) => {
+export const getUser = async (correo) => {
+  console.log(correo, '--> soy el correo del modelo')
   try {
-    const { rows } = await db('SELECT email, rol, lenguage FROM usuarios WHERE email = $1;', [email])
+    const { rows } = await db('SELECT nombre, correo, rut, telefono, direccion FROM usuarios WHERE correo = $1;', [correo])
+    console.log(rows, '--> rows del usuario desde el modelo')
     return rows
   } catch (error) {
     const newError = { code: 500, message: error }
