@@ -154,9 +154,9 @@ const PetsContextProvider = ({ children }) => {
     // console.log('cierro sesion')
     setUsuario(null)
     setProductosFavoritos([])
+    window.sessionStorage.removeItem('token')
     window.sessionStorage.removeItem('usuario')
     window.sessionStorage.removeItem('favoritos')
-
     window.sessionStorage.removeItem('carro')
   }
 
