@@ -70,3 +70,13 @@ export const verificarUsuarioExiste = async (correo, rut) => {
     throw newError
   }
 }
+
+// OK. eliminar usuario
+export const eliminarUsuario = async (correo) => {
+  try {
+    await db('DELETE FROM usuarios WHERE correo = $1; ', [correo])
+  } catch (error) {
+    const newError = { message: 'En estos momentos no pudimos procesar tu solicitud', error }
+    throw newError
+  }
+}

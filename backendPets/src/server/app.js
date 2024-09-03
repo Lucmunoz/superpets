@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { traerProductos, registrarUsuario, verificarCredenciales, getUser, verificarUsuarioExiste } from './models/modelsUser.js'
+import { traerProductos, registrarUsuario, verificarCredenciales, getUser, verificarUsuarioExiste, eliminarUsuario } from './models/modelsUser.js'
 import { jwtDecode, jwtSign } from '../utils/auth/jwt.js'
 import { authToken } from '../server/midlewares/auth.midlewares.js'
 import morgan from 'morgan'
@@ -68,6 +68,19 @@ app.get('/usuario', authToken, async (req, res) => {
     res.status(200).json(usuario)
   } catch (error) {
     res.status(error.code).json({ error })
+  }
+})
+
+// para eliminar cuenta, elimina también todos los productos asociados al usuario
+app.delete('/usuario', authToken, async (req, res) => {
+  try {
+    const authorization = req.header('Authorization')
+    const [, token] = authorization.split(' ')
+    const { correo } = jwtDecode(token)
+    await eliminarUsuario(correo)
+    res.status(200).json({ message: 'Usuario eliminado con éxito, mensaje desde el backend' })
+  } catch (error) {
+    res.status(error.code).json({ message: error.message })
   }
 })
 

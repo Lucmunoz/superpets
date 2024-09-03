@@ -5,7 +5,7 @@ import { useContext, useEffect } from 'react'
 import { PetsContext } from '../context/PetsContext.jsx'
 
 const InformacionPersonal = () => {
-  const { usuario, cambiarUsuario } = useContext(PetsContext)
+  const { usuario, cambiarUsuario, cerrarSesion } = useContext(PetsContext)
   const navigate = useNavigate()
   // aqui enviar petición para traer información del usuario
   const traerDataUsuario = () => {
@@ -36,7 +36,22 @@ const InformacionPersonal = () => {
     traerDataUsuario()
   }, [])
 
-  const eliminarcuenta = () => { window.alert('cuenta eliminada') }
+  const eliminarcuenta = () => {
+    const token = window.sessionStorage.getItem('token')
+    axios.delete(ENDPOINT.users, { headers: { Authorization: `Bearer ${token}` } })
+      .then(({ data }) => {
+        window.alert(data.message)
+        cerrarSesion()
+        navigate('/')
+      })
+      .catch(({ response: { data } }) => {
+        console.error(data)
+        cerrarSesion()
+        window.alert(data.message)
+        cambiarUsuario(null)
+        navigate('/')
+      })
+  }
 
   return (
     <main>
