@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from 'react'
+import { ENDPOINT } from '../config/constants.js'
 
 export const PetsContext = createContext()
 
@@ -15,7 +16,7 @@ const PetsContextProvider = ({ children }) => {
 
   const getData = async () => {
     try {
-      const response = await fetch('/productos.json')
+      const response = await fetch(ENDPOINT.home)
       const data = await response.json()
       setProductos(data)
     } catch (error) {
@@ -158,6 +159,8 @@ const PetsContextProvider = ({ children }) => {
 
     window.sessionStorage.removeItem('carro')
   }
+
+  console.log(productos)
 
   const globalState = {
     productos,
