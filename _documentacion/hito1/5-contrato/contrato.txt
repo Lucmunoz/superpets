@@ -10,6 +10,27 @@ response: [
   }
 ]
 
+// GET/usuario
+
+request:{
+  header: {
+    token: String
+  }
+}
+
+response :[
+  {
+    nombre: String,
+    apellido: String,
+    rut: String,
+    correo: String,
+    telefono: Number,
+    direccion: String
+  }
+]
+
+
+
 //GET /tienda
 response: [
  {
