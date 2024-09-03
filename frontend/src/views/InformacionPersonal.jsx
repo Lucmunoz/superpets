@@ -8,7 +8,7 @@ const InformacionPersonal = () => {
   const { usuario, cambiarUsuario } = useContext(PetsContext)
   const navigate = useNavigate()
   // aqui enviar petición para traer información del usuario
-  const getDeveloperData = () => {
+  const traerDataUsuario = () => {
     const token = window.sessionStorage.getItem('token')
     axios.get(ENDPOINT.users, { headers: { Authorization: `Bearer ${token}` } })
       .then(({ data: [user] }) => cambiarUsuario({ ...user }))
@@ -20,9 +20,10 @@ const InformacionPersonal = () => {
       })
   }
 
+  // ¿Eliminar?
   useEffect(() => {
-    /* //Código para verificar existencia de token. De lo contrario, redirigir a ingresar
-     if (!window.sessionStorage.getItem('token')) {navigate('/ingresar')} */
+    // Código para verificar existencia de token. De lo contrario, redirigir a ingresar
+    if (!window.sessionStorage.getItem('token')) { navigate('/ingresar') }
 
     /* *Reemplazar codigo cuando se realice backend***/
     if (!window.sessionStorage.getItem('usuario')) {
@@ -31,7 +32,9 @@ const InformacionPersonal = () => {
     /* *Reemplazar codigo cuando se realice backend***/
   }, [])
 
-  useEffect(getDeveloperData, [])
+  useEffect(() => {
+    traerDataUsuario()
+  }, [])
 
   const eliminarcuenta = () => { window.alert('cuenta eliminada') }
 
@@ -40,19 +43,19 @@ const InformacionPersonal = () => {
       <div className='divInfoPersonal'>
         <h1>Información Personal </h1>
         <h2 className='h2PerfilYPersonal'>Nombre </h2>
-        <span>Juan López</span>
+        <span>{usuario?.nombre}</span>
         <hr />
         <h2 className='h2PerfilYPersonal'>Email</h2>
-        <span>juanitolopez@correo.com</span>
+        <span>{usuario?.correo}</span>
         <hr />
         <h2 className='h2PerfilYPersonal'>RUT</h2>
-        <span>20.000.000-k</span>
+        <span>{usuario?.rut}</span>
         <hr />
         <h2 className='h2PerfilYPersonal'>Teléfono</h2>
-        <span>+5912345679</span>
+        <span>{usuario?.telefono}</span>
         <hr />
         <h2 className='h2PerfilYPersonal'>Dirección</h2>
-        <span>Los Claveles 17, Concepción</span>
+        <span>{usuario?.direccion}</span>
         <hr />
         <br />
         <br />
