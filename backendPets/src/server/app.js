@@ -49,21 +49,22 @@ app.get('/tienda', async (req, res) => {
 app.post('/login', async (req, res) => {
   try {
     const { correo, contrasena } = req.body
-    const usuario = await verificarCredenciales(correo, contrasena)
+    const { id, nombre } = await verificarCredenciales(correo, contrasena)
     const token = jwtSign({ correo })
-    res.status(200).json({ token, id: usuario[0].id, nombre: usuario[0].nombre })
+    res.status(200).json({ token, id, nombre, message: 'Haz ingresado con éxito' })
   } catch (error) {
     console.log(error)
     res.status(error.code).json({ message: error.message })
   }
 })
 
-app.get('/usuarios', authToken, async (req, res) => {
+// para traer data de usuario
+app.get('/usuario', authToken, async (req, res) => {
   try {
     const authorization = req.header('Authorization')
     const [, token] = authorization.split(' ')
-    const { email } = jwtDecode(token)
-    const usuario = await getUser(email)
+    const { correo } = jwtDecode(token)
+    const usuario = await getUser(correo)
     res.status(200).json(usuario)
   } catch (error) {
     res.status(error.code).json({ error })
