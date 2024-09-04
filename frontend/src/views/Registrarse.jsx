@@ -23,12 +23,12 @@ const Registrarse = () => {
     e.preventDefault()
 
     if (nuevoUsuario.nombre.trim() === '' ||
-    nuevoUsuario.apellido.trim() === '' ||
-    nuevoUsuario.correo.trim() === '' ||
-    nuevoUsuario.contrasena.trim() === '' ||
-    nuevoUsuario.rut.trim() === '' ||
-    nuevoUsuario.telefono.trim() === '' ||
-    nuevoUsuario.direccion.trim() === '') {
+      nuevoUsuario.apellido.trim() === '' ||
+      nuevoUsuario.correo.trim() === '' ||
+      nuevoUsuario.contrasena.trim() === '' ||
+      nuevoUsuario.rut.trim() === '' ||
+      nuevoUsuario.telefono.trim() === '' ||
+      nuevoUsuario.direccion.trim() === '') {
       return window.alert('Campos vacíos')
     }
 
@@ -43,7 +43,8 @@ const Registrarse = () => {
     axios.post(ENDPOINT.registrarse, nuevoUsuario)
       .then(({ data }) => {
         window.alert(`${data.message} 😀.`)
-        // navigate('/perfil')
+        setNuevoUsuario(usuarioInicial)
+        navigate('/perfil')
       })
       .catch(({ response: { data } }) => {
         console.error(data)
@@ -61,87 +62,115 @@ const Registrarse = () => {
     <main>
       <div className='divRegistroNuevo'>
         <h1 className='tituloForm'>Registrate aquí<i className='fa-regular fa-pen-to-square ps-2' /></h1>
-        <form onSubmit={enviarFormulario}>
-          <div className='mb-3'>
-            <label htmlFor='nombre' className='form-label labelEstilos'>Nombre</label>
-            <input
-              type='text'
-              className='form-control'
-              id='nombre'
-              name='nombre'
-              value={nuevoUsuario.nombre}
-              onChange={cambioInput}
-            />
-          </div>
-          <div className='mb-3'>
-            <label htmlFor='apellido' className='form-label labelEstilos'>Apellido</label>
-            <input
-              type='text'
-              className='form-control'
-              id='apellido'
-              name='apellido'
-              value={nuevoUsuario.apellido}
-              onChange={cambioInput}
-            />
-          </div>
-          <div className='mb-3'>
-            <label htmlFor='email' className='form-label labelEstilos'>Email</label>
-            <input
-              type='email'
-              className='form-control'
-              id='email'
-              aria-describedby='emailHelp'
-              name='correo'
-              value={nuevoUsuario.correo}
-              onChange={cambioInput}
-            />
-          </div>
-          <div className='mb-3'>
-            <label htmlFor='password' className='form-label labelEstilos'>Contraseña (8 caracteres)</label>
-            <input
-              type='password'
-              className='form-control'
-              id='password'
-              name='contrasena'
-              value={nuevoUsuario.contrasena}
-              onChange={cambioInput}
-            />
-          </div>
-          <div className='mb-3'>
-            <label htmlFor='rut' className='form-label labelEstilos'>RUT</label>
-            <input
-              type='text'
-              className='form-control'
-              id='rut'
-              name='rut'
-              value={nuevoUsuario.rut}
-              onChange={cambioInput}
-            />
-          </div>
-          <div className='mb-3'>
+        <div className='container-fluid'>
+          <form onSubmit={enviarFormulario} className='needs-validation'>
+            <div className='mb-3'>
+              <label htmlFor='nombre' className='form-label labelEstilos'>Nombre</label>
+              <input
+                type='text'
+                className='form-control'
+                id='nombre'
+                placeholder='Ingresa tu Nombre'
+                name='nombre'
+                value={nuevoUsuario.nombre}
+                onChange={cambioInput}
+                required
+              />
+            </div>
+            <div className='mb-3'>
+              <label htmlFor='apellido' className='form-label labelEstilos'>Apellido</label>
+              <input
+                type='text'
+                className='form-control'
+                id='apellido'
+                placeholder='Ingresa tu Apellido'
+                name='apellido'
+                value={nuevoUsuario.apellido}
+                onChange={cambioInput}
+                required
+              />
+            </div>
+            <div className='mb-3'>
+              <label htmlFor='email' className='form-label labelEstilos'>Email</label>
+              <input
+                type='email'
+                className='form-control'
+                id='email'
+                placeholder='Ingresa tu Email'
+                aria-describedby='emailHelp'
+                name='correo'
+                value={nuevoUsuario.correo}
+                onChange={cambioInput}
+                required
+              />
+            </div>
+            <div className='mb-3'>
+              <label htmlFor='password' className='form-label labelEstilos'>Contraseña</label>
+              <input
+                type='password'
+                className='form-control'
+                id='password'
+                name='contrasena'
+                placeholder='Ingresa 8 caracteres entre letras y numeros'
+                value={nuevoUsuario.contrasena}
+                onChange={cambioInput}
+                required
+              />
+              <div className='invalid-feedback'>
+                Please provide a valid city.
+              </div>
+            </div>
+            <div className='mb-3'>
+              <label htmlFor='rut' className='form-label labelEstilos'>RUT</label>
+              <input
+                type='text'
+                className='form-control'
+                placeholder='Sin puntos, con guión y digito verificador'
+                id='rut'
+                name='rut'
+                value={nuevoUsuario.rut}
+                onChange={cambioInput}
+                required
+              />
+            </div>
             <label htmlFor='telefono' className='form-label labelEstilos'>Teléfono</label>
-            <input
-              type='text'
-              className='form-control'
-              id='telefono'
-              name='telefono'
-              value={nuevoUsuario.telefono}
-              onChange={cambioInput}
-            />
-          </div>
-          <div className='mb-3'>
-            <label htmlFor='direccion' className='form-label labelEstilos'>Dirección</label>
-            <input
-              type='text'
-              className='form-control'
-              id='direccion'
-              name='direccion'
-              value={nuevoUsuario.direccion}
-              onChange={cambioInput}
-            />
-          </div>
-          <button type='submit' className='botonEstilos'>Crear cuenta</button>
-        </form>
+            <div className='mb-3 d-flex flex-row container-fluid gap-0 justify-content-center w-75'>
+              <div className='input-group-prepend '>
+                <span className='input-group-text' id='basic-addon1'>+56</span>
+              </div>
+              <div className='container-fluid p-0'>
+                <input
+                  type='text'
+                  className='form-control m-0 w-100'
+                  id='telefono'
+                  placeholder='Ingresa tu Teléfono (sólo numeros)'
+                  name='telefono'
+                  value={nuevoUsuario.telefono}
+                  onChange={cambioInput}
+                  required
+                />
+              </div>
+            </div>
+            <div className='mb-3'>
+              <label htmlFor='direccion' className='form-label labelEstilos'>Dirección</label>
+              <input
+                type='text'
+                className='form-control'
+                id='direccion'
+                placeholder='Ingresa tu Dirección'
+                name='direccion'
+                value={nuevoUsuario.direccion}
+                onChange={cambioInput}
+                required
+              />
+            </div>
+            <div className='d-flex flex-column align-items-center fw-lighter text-muted'>
+              <span className='fst-italic fs-6 pb-2'>Todos los campos son obligatorios!</span>
+              <button type='submit' className='botonEstilos'>Crear cuenta</button>
+            </div>
+
+          </form>
+        </div>
       </div>
     </main>
   )
