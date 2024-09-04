@@ -314,6 +314,21 @@ footer div a:hover {
     padding-top: 20px
   }
 
+  .link {
+    background-color: #062D3D;
+    color: #fff;
+    width: 150px;
+    padding: 5px;
+    border-radius: 20px;
+    border: none;
+    text-decoration: none;
+    margin: 0 auto;
+  }
+
+  .link:hover {
+    color: #fff;
+  }
+
 /* acerca de nosotros */
 .divAcerca {
   width: 800px;
