@@ -32,11 +32,13 @@ const Card = () => {
   // función que muestra los productos distintos a los que el usuario creo
   let productosTienda = [...productos]
   if (usuario !== null) productosTienda = [...productos].filter((p) => p.id_usuarios !== usuario.id_usuarios)
-  console.log(productosTienda, 'soy prod.tienda')
+  // console.log(productosTienda, 'soy prod.tienda')
 
-  return (
-    <>
-      {productosTienda.slice(0, 3).map((p) =>
+  const sinPublicaciones = () => { return (<h1 className='text-center pb-3' style={{ color: 'white' }}>Aún no existe ninguna publicacion <i className='fa-solid fa-face-sad-tear fa-xl ps-3' /></h1>) }
+
+  const mostrarPublicaciones = () => {
+    return (
+      productosTienda.slice(0, 3).map((p) =>
         <div className='card' key={p.id}>
           <img src={p.imagen} className='card-img-top' alt='disfraz-salchicha' />
           <div className='card-body'>
@@ -47,7 +49,13 @@ const Card = () => {
             <button className='botonEstilos' onClick={() => irDetalleProducto(p.id)}>Ver detalle</button>
           </div>
         </div>
-      )}
+      )
+    )
+  }
+
+  return (
+    <>
+      {productosTienda.length !== 0 ? mostrarPublicaciones() : sinPublicaciones()}
     </>
   )
 }
