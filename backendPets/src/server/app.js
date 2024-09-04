@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { traerProductos, registrarUsuario, verificarCredenciales, getUser, verificarUsuarioExiste, eliminarUsuario } from './models/modelsUser.js'
+import { traerProductos, registrarUsuario, verificarCredenciales, getUser, verificarUsuarioExiste, eliminarUsuario, crearPublicacion } from './models/modelsUser.js'
 import { jwtDecode, jwtSign } from '../utils/auth/jwt.js'
 import { authToken } from '../server/midlewares/auth.midlewares.js'
 import morgan from 'morgan'
@@ -79,6 +79,20 @@ app.delete('/usuario', authToken, async (req, res) => {
     const { correo } = jwtDecode(token)
     await eliminarUsuario(correo)
     res.status(200).json({ message: 'Usuario eliminado con éxito, mensaje desde el backend' })
+  } catch (error) {
+    res.status(error.code).json({ message: error.message })
+  }
+})
+
+// para crear publicación-OK
+app.post('/tienda/producto', authToken, async (req, res) => {
+  const { nombre, descripcion, precio, imagen } = req.body
+  try {
+    const authorization = req.header('Authorization')
+    const [, token] = authorization.split(' ')
+    const { correo } = jwtDecode(token)
+    const productoAgregado = await crearPublicacion({ correo, nombre, descripcion, precio, imagen })
+    res.status(201).json({ message: 'Publicación agregada con éxito --> enviado desde el backend.', producto: productoAgregado })
   } catch (error) {
     res.status(error.code).json({ message: error.message })
   }

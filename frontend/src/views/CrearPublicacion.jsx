@@ -1,5 +1,7 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { ENDPOINT } from '../config/constants'
 
 const datosPublicacion = {
   nombre: '',
@@ -28,9 +30,15 @@ const CrearPublicacion = () => {
       return window.alert('Debe ingresar una URL para la imágen.')
     }
     // Reemplazar codigo por peticion del tipo post al backend
-    alert('Publicacion creada exitosament')
-    setPublicacion(datosPublicacion)
-    navigate('/mispublicaciones')
+
+    const token = window.sessionStorage.getItem('token')
+    axios.post(ENDPOINT.producto, publicacion, { headers: { Authorization: `Bearer ${token}` } })
+      .then(({ data }) => {
+        (window.alert(data.message))
+        setPublicacion(datosPublicacion)
+        navigate('/mispublicaciones')
+      })
+      .catch(({ response: { data } }) => window.alert(data.message))
   }
 
   useEffect(() => {
