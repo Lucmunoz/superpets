@@ -3,6 +3,9 @@ import { useNavigate, Link } from 'react-router-dom'
 import { PetsContext } from '../context/PetsContext'
 
 import PublicacionListada from '../components/PublicacionListada'
+import axios from 'axios'
+import { ENDPOINT } from '../config/constants'
+
 let publicacionesUsuario = []
 let publicacionesUsuarioOrdenadas = []
 let publicacionesFiltradas = []
@@ -11,18 +14,17 @@ const MisPublicaciones = () => {
   const { arregloMisPublicaciones, setearMisPublicaciones } = useContext(PetsContext)
   const navigate = useNavigate()
 
-  const getData = async () => {
-    try {
-      const response = await fetch('/productos.json')
-      const data = await response.json()
-      const arregloPublicacionesTemp = data.filter((publicacion) => {
-        return JSON.parse(window.sessionStorage.getItem('usuario')).id === publicacion.id_usuarios // <- sacarlo de use state
+  const getData = () => {
+    const token = window.sessionStorage.getItem('token')
+    axios.get(ENDPOINT.mispublicaciones, { headers: { Authorization: `Bearer ${token}` } })
+      .then(({ data }) => {
+        const arregloPublicacionesTemp = data.filter((publicacion) => {
+          return JSON.parse(window.sessionStorage.getItem('usuario')).id === publicacion.id_usuarios // <- sacarlo de use state
+        })
+        setearMisPublicaciones(arregloPublicacionesTemp)
+        publicacionesUsuario = [...arregloPublicacionesTemp]
       })
-      setearMisPublicaciones(arregloPublicacionesTemp)
-      publicacionesUsuario = [...arregloPublicacionesTemp]
-    } catch (error) {
-      console.log(error)
-    }
+      .catch(({ response: { data } }) => window.alert(data.message))
   }
 
   const filtrarPublicaciones = (event) => {
