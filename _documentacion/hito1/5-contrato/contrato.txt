@@ -105,3 +105,20 @@ request:
     imagen: String
   }
   }
+
+
+//GET /mispublicaciones
+
+request:
+  header: {
+  token: String
+  }
+
+response: [
+ {
+    imagen: String,
+    nombre: String,
+    descripcion: String,
+    precio: Number
+  }
+]
