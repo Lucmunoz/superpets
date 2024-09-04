@@ -160,7 +160,7 @@ const PetsContextProvider = ({ children }) => {
     window.sessionStorage.removeItem('carro')
   }
 
-  console.log(productos)
+  // console.log(productos)
 
   const globalState = {
     productos,
