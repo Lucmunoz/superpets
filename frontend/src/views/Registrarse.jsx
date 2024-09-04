@@ -47,8 +47,9 @@ const Registrarse = () => {
         navigate('/perfil')
       })
       .catch(({ response: { data } }) => {
-        console.error(data)
+        // console.error(data)
         window.alert(`${data.message} 🙁.`)
+        setNuevoUsuario(usuarioInicial)
       })
   }
 
