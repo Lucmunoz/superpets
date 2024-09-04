@@ -71,6 +71,23 @@ export const verificarUsuarioExiste = async (correo, rut) => {
   }
 }
 
+// crear publicación
+export const crearPublicacion = async ({ correo, nombre, descripcion, precio, imagen }) => {
+  try {
+    // trae primero el id del usuario
+    const { rows } = await db('SELECT id FROM usuarios WHERE correo = $1', [correo])
+    const usuarioId = rows[0].id
+    // inserta el producto
+    const consulta = 'INSERT INTO productos (id, id_usuarios, nombre, descripcion, precio, imagen) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;'
+    const values = [uuidv4(), usuarioId, nombre, descripcion, precio, imagen]
+    const respuesta = await db(consulta, values)
+    return respuesta.rows
+  } catch (error) {
+    const newError = { message: 'No hemos podido agregar el producto, por favor intenta más tarde', error }
+    throw newError
+  }
+}
+
 // OK. eliminar usuario
 export const eliminarUsuario = async (correo) => {
   try {
