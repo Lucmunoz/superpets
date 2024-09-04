@@ -81,11 +81,20 @@ export const crearPublicacion = async ({ correo, nombre, descripcion, precio, im
     const consulta = 'INSERT INTO productos (id, id_usuarios, nombre, descripcion, precio, imagen) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;'
     const values = [uuidv4(), usuarioId, nombre, descripcion, precio, imagen]
     const respuesta = await db(consulta, values)
+    console.log(respuesta.rows)
     return respuesta.rows
   } catch (error) {
     const newError = { message: 'No hemos podido agregar el producto, por favor intenta más tarde', error }
     throw newError
   }
+}
+
+// traerMisPublicaciones
+export const traerMisPublicaciones = async (correo) => {
+  const { rows } = await db('SELECT id FROM usuarios WHERE correo = $1', [correo])
+  const usuarioId = rows[0].id
+  const respuesta = await db('SELECT * FROM productos WHERE id_usuarios = $1', [usuarioId])
+  return respuesta.rows
 }
 
 // OK. eliminar usuario

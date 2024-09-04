@@ -1,6 +1,6 @@
-import express from 'express'
+import express, { response } from 'express'
 import cors from 'cors'
-import { traerProductos, registrarUsuario, verificarCredenciales, getUser, verificarUsuarioExiste, eliminarUsuario, crearPublicacion } from './models/modelsUser.js'
+import { traerProductos, registrarUsuario, verificarCredenciales, getUser, verificarUsuarioExiste, eliminarUsuario, crearPublicacion, traerMisPublicaciones } from './models/modelsUser.js'
 import { jwtDecode, jwtSign } from '../utils/auth/jwt.js'
 import { authToken } from '../server/midlewares/auth.midlewares.js'
 import morgan from 'morgan'
@@ -93,6 +93,19 @@ app.post('/tienda/producto', authToken, async (req, res) => {
     const { correo } = jwtDecode(token)
     const productoAgregado = await crearPublicacion({ correo, nombre, descripcion, precio, imagen })
     res.status(201).json({ message: 'Publicación agregada con éxito --> enviado desde el backend.', producto: productoAgregado })
+  } catch (error) {
+    res.status(error.code).json({ message: error.message })
+  }
+})
+
+// para traer mis productos publicados
+app.get('/mispublicaciones', authToken, async (req, res) => {
+  try {
+    const authorization = req.header('Authorization')
+    const [, token] = authorization.split(' ')
+    const { correo } = jwtDecode(token)
+    const mispublicaciones = await traerMisPublicaciones(correo)
+    res.status(200).json(mispublicaciones)
   } catch (error) {
     res.status(error.code).json({ message: error.message })
   }
