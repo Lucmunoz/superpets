@@ -5,6 +5,6 @@ export const ENDPOINT = {
   users: `${URLBASE}/usuario`,
   registrarse: `${URLBASE}/registrarse`,
   tienda: `${URLBASE}/tienda`,
-  home: `${URLBASE}/`
-
+  home: `${URLBASE}/`,
+  producto: `${URLBASE}/tienda/producto`
 }
