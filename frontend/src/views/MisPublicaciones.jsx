@@ -74,7 +74,7 @@ const MisPublicaciones = () => {
         <div className='d-flex flex-column px-4 pb-4 text-center'>
           <h1 className='titutoForm'>No tienes ninguna publicación</h1>
           <h5 className='pb-4'>Puedes crear una y empezar a vender cuando quieras</h5>
-          <button type='button ' className='btn btn-sm btn-secondary me-auto ms-auto'>Crear Publicación</button>
+          <Link className='link' to='/crearpublicacion'> Crear publicación</Link>
         </div>
       </div>
 
