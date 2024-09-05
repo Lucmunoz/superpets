@@ -6,31 +6,31 @@ import { ENDPOINT } from '../config/constants.js'
 import { useNavigate } from 'react-router-dom'
 
 const BuscadorVista = () => {
-  const { productos, cambiarFavorito, busqueda, usuario, agregarCarro } = useContext(PetsContext)
+  const { productos, cambiarFavorito, busqueda, usuario, agregarCarro, cambiarProductos } = useContext(PetsContext)
   const navigate = useNavigate()
   const irDetalleProducto = (id) => {
     navigate(`/tienda/producto/${id}`)
   }
 
   // función que trae todos los productos comentar después
-  // const [productosData, setProductosData] = useState([])
-  // const getData = () => {
-  //   axios.get(ENDPOINT.home)
-  //     .then(({ data }) => {
-  //       setProductosData(data)
-  //     })
-  //     .catch(({ response: { data } }) => {
-  //       console.log(data.message)
-  //       window.alert(`${data.message}`)
-  //     })
-  // }
+  const usuarioLogeado = JSON.parse(window.sessionStorage.getItem('usuario'))
+  const getData = () => {
+    axios.get(ENDPOINT.home)
+      .then(({ data }) => {
+        cambiarProductos(data)
+      })
+      .catch(({ response: { data } }) => {
+        console.log(data.message)
+        window.alert(`${data.message}`)
+      })
+  }
 
-  // useEffect(() => {
-  //   getData()
-  // }, [])
+  useEffect(() => {
+    getData()
+  }, [])
 
   let productosdeOtros = [...productos]
-  if (usuario !== null) productosdeOtros = [...productos].filter((p) => p.id_usuarios !== usuario.id_usuarios)
+  if (usuario !== null) productosdeOtros = [...productos].filter((p) => p.id_usuarios !== usuarioLogeado.id)
   const productosFiltrados = [...productosdeOtros].filter((p) => p.nombre.trim().toLowerCase().includes(busqueda.toLowerCase()))
   console.log(productosFiltrados, 'prod filtrados')
   return (
