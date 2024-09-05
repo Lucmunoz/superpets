@@ -15,6 +15,10 @@ const CrearPublicacion = () => {
   const [publicacion, setPublicacion] = useState(datosPublicacion)
   const handlePublicacion = (event) => setPublicacion({ ...publicacion, [event.target.name]: event.target.value })
 
+  const goBack = () => {
+    navigate('/mispublicaciones')
+  }
+
   const handleForm = (event) => {
     event.preventDefault()
 
@@ -54,32 +58,35 @@ const CrearPublicacion = () => {
 
   return (
     <main className='d-flex align-items-center'>
-      <div className='container-fluid col-11 my-3 col-sm-auto bg-white'>
+      <div className='container-fluid col-11 my-3 col-sm-auto bg-white bordesRed'>
         <div className='p-4 py-4'>
           <div className='d-flex justify-content-center pb-3'>
-            <h2 className='text-center'>Crear Publicación <i className='fa-regular fa-square-plus' /></h2>
+            <h1 className='tituloForm'>Crear Publicación <i className='fa-regular fa-square-plus' /></h1>
           </div>
           <form onSubmit={handleForm}>
             <div className='form-group pb-3'>
-              <label htmlFor='exampleFormControlInput1'>Nombre del producto </label>
+              <label className='labelEstilos' htmlFor='exampleFormControlInput1'>Nombre del producto </label>
               <input type='text' name='nombre' className='d-sm-none form-control fst-italic' placeholder='Ingresa el Nombre de tu producto...' value={publicacion.nombre} onChange={handlePublicacion} />
               <input type='text' name='nombre' className='d-none d-sm-flex form-control fst-italic' style={{ width: '467px' }} placeholder='Ingresa el Nombre de tu producto...' value={publicacion.nombre} onChange={handlePublicacion} />
             </div>
             <div className='form-group pb-3'>
-              <label htmlFor='exampleFormControlTextarea1'>Descripción del producto</label>
+              <label className='labelEstilos' htmlFor='exampleFormControlTextarea1'>Descripción del producto</label>
               <textarea className='form-control fst-italic' name='descripcion' id='descripcion' rows='3' placeholder='Ingresa el mayor detalle posible de tu producto para que los usuarios no tengan ninguna duda!' value={publicacion.descripcion} onChange={handlePublicacion} />
             </div>
             <div className='form-group pb-3'>
-              <label htmlFor='exampleFormControlTextarea1'>Valor del producto</label>
+              <label className='labelEstilos' htmlFor='exampleFormControlTextarea1'>Valor del producto</label>
               <input type='number' className='form-control fst-italic' name='precio' placeholder='Ingresa el valor de venta...' value={publicacion.precio} onChange={handlePublicacion} />
             </div>
             <div className='form-group pb-3'>
-              <label htmlFor='exampleFormControlInput1'>Ingresa la URL de tu imagen</label>
+              <label className='labelEstilos' htmlFor='exampleFormControlInput1'>Ingresa la URL de tu imagen</label>
               <input type='text' name='imagen' className='form-control fst-italic' placeholder='Ingresa la URL de la imágen' value={publicacion.imagen} onChange={handlePublicacion} />
             </div>
-            <div className='d-flex gap-4 justify-content-center'>
-              <button type='submit' className='btn btn-success btn-sm'>Crear Publicación</button>
-              <button type='button ' className='btn btn-sm btn-danger '> <Link to='/mispublicaciones'>Regresar</Link> </button>
+            <div className='d-flex justify-content-center p-3'>
+              {publicacion.imagen !== '' && <img style={{ height: '70px' }} src={publicacion.imagen} alt='MDN' />}
+            </div>
+            <div className='d-flex gap-2 justify-content-center'>
+              <button type='submit' className='botonEstilos'>Guardar Cambios</button>
+              <button type='button' className='botonEstilos' onClick={() => goBack()}>Regresar</button>
             </div>
           </form>
         </div>

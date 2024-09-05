@@ -322,6 +322,7 @@ footer div a:hover {
     border-radius: 20px;
     border: none;
     text-decoration: none;
+    text-align: center;
     margin: 0 auto;
   }
 
