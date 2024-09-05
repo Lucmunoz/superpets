@@ -122,3 +122,16 @@ response: [
     precio: Number
   }
 ]
+
+//DELETE /mispublicaciones
+request:
+  header: {
+  token: String
+  }
+  data: {
+  productoId: String
+   }
+
+response:{
+    message: 'String
+  }
