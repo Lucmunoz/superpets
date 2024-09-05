@@ -58,7 +58,7 @@ const BuscadorVista = () => {
                   <p className='precioCardHome'>${p.precio}</p>
                 </div>
                 <div>
-                  <button className='buttonCard' onClick={() => irDetalleProducto(p.id)}>Ver detalle</button>
+                  <button className='botonEstilos' onClick={() => irDetalleProducto(p.id)}>Ver detalle</button>
                   <br />
                   <button className='buttonAgregar' onClick={() => agregarCarro(p.id)}> <i className='fa-solid fa-cart-shopping fa-lg' /></button>
                 </div>
