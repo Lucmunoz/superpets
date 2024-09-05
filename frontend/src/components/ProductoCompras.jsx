@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PetsContext } from '../context/PetsContext'
+import moment from 'moment'
 
 const ProductoCompras = (compra) => {
   const { comprasRealizadas } = useContext(PetsContext)
@@ -18,16 +19,13 @@ const ProductoCompras = (compra) => {
             <div className='container border-bottom border-2 pb-2 p-0'>
               <div className='d-flex flex-column flex-sm-row text-center'>
                 <div className='d-flex gap-4 justify-content-center'>
-                  <div className='d-lg-flex flex-column flex-lg-row text-center align-items-center gap-1'><h6 className='p-0 m-0'>Fecha de Compra:</h6><span className='fw-light fst-italic ms-auto'>{compra.fecha}</span></div>
-                  <div className='d-lg-flex flex-column flex-lg-row text-center align-items-center gap-1'><h6 className='p-0 m-0'>Total de la compra:</h6> <span className='fw-light fst-italic'>${(compra.total / 1000).toFixed(3)}</span></div>
-                </div>
-                <div className='ms-sm-auto pt-2 pt-sm-0'>
-                  <button type='button' className='botonEstilos'>Ver detalle</button>
+                  <div className='d-lg-flex flex-column flex-lg-row text-center align-items-center gap-1'><h6 className='p-0 m-0'>Fecha de Compra:</h6><span className='fw-light fst-italic ms-auto'>{moment(compra.fecha).format('MM/DD/YYYY')}</span></div>
+                  <div className='d-lg-flex flex-column flex-lg-row text-center align-items-center gap-1'><h6 className='p-0 m-0'>Total de la compra:</h6> <span className='fw-light fst-italic'>${(compra.total_boleta / 1000).toFixed(3)}</span></div>
                 </div>
               </div>
             </div>
             <div className='pt-3'>
-              {compra.productos.map((producto) => {
+              {compra.detalle.map((producto) => {
                 return (
                   <div className='container-fluid p-0 pb-md-3' key={compra.idCompra + '-' + producto.id}>
                     <div className='row p-0 m-0'>
@@ -46,12 +44,12 @@ const ProductoCompras = (compra) => {
                             <span className='m-0 p-0'>{producto.cantidad}</span>
                           </div>
                           <div className='d-none d-lg-flex btn-sm gap-2 p-0 ms-auto pe-lg-4'>
-                            <div><button type='button' className='btn btn-secondary btn-sm p-1 px-2' onClick={() => goToPublicacion(producto.id)}> Ver Producto</button></div>
+                            <div><button type='button' className='btn btn-secondary btn-sm p-1 px-2' onClick={() => goToPublicacion(producto.id_productos)}> Ver Producto</button></div>
                           </div>
                         </div>
                       </div>
                       <div className='d-flex d-lg-none btn-sm gap-2 p-0 pt-2 pt-lg-0 align-items-center justify-content-center justify-content-lg-end col-12 col-lg-4 ms-auto'>
-                        <div><button type='button' className='btn btn-secondary btn-sm p-1 px-1' onClick={() => goToPublicacion(producto.id)}>Ver producto</button></div>
+                        <div><button type='button' className='btn btn-secondary btn-sm p-1 px-1' onClick={() => goToPublicacion(producto.id_productos)}>Ver producto</button></div>
                       </div>
                     </div>
                     <hr />

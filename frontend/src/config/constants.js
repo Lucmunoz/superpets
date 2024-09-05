@@ -7,5 +7,7 @@ export const ENDPOINT = {
   tienda: `${URLBASE}/tienda`,
   home: `${URLBASE}/`,
   producto: `${URLBASE}/tienda/producto`,
-  mispublicaciones: `${URLBASE}/mispublicaciones`
+  mispublicaciones: `${URLBASE}/mispublicaciones`,
+  carrito: `${URLBASE}/carrito`,
+  miscompras: `${URLBASE}/miscompras`
 }

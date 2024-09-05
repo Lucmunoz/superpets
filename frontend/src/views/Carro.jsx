@@ -1,7 +1,10 @@
+import axios from 'axios'
+import moment from 'moment'
 import { useState, useEffect, useContext } from 'react'
 import ProductoCarro from '../components/ProductoCarro'
 import { useNavigate, Link } from 'react-router-dom'
 import { PetsContext } from '../context/PetsContext'
+import { ENDPOINT } from '../config/constants'
 
 const Carro = () => {
   const { productosCarro, totalCarro, setearProductosCarro, vaciarCarro } = useContext(PetsContext)
@@ -9,13 +12,29 @@ const Carro = () => {
   const navigate = useNavigate()
 
   const goToPagar = () => {
-    window.alert('Pago Exitoso')
-    vaciarCarro()
+    const token = window.sessionStorage.getItem('token')
+    const fechaHoy = moment().format('YYYY-MM-DD')
+
+    const publicacion = {
+      productos: productosCarro,
+      totalBoleta: totalCarro,
+      fecha: fechaHoy
+    }
+
+    axios.post(ENDPOINT.carrito, publicacion, { headers: { Authorization: `Bearer ${token}` } })
+      .then((data) => {
+        if (data.status === 201) {
+          vaciarCarro()
+          window.alert(`${data.data.message} 😀.`)
+          navigate('/tienda')
+        }
+      })
+      .catch(({ response: { data } }) => window.alert(data.message))
   }
 
   const mostrarSpinner = () => {
-    <div class='spinner-border' role='status'>
-      <span class='visually-hidden'>Loading...</span>
+    <div className='spinner-border' role='status'>
+      <span className='visually-hidden'>Loading...</span>
     </div>
   }
 
@@ -32,7 +51,6 @@ const Carro = () => {
   const getData = () => {
     if (window.sessionStorage.getItem('carro')) {
       const arregloTemporal = JSON.parse(window.sessionStorage.getItem('carro'))
-      console.log(arregloTemporal)
       setearProductosCarro(arregloTemporal)
     }
     setCargando(false)
@@ -88,6 +106,7 @@ const Carro = () => {
           </div>
         </div>
       </div>
+
     )
   }
 
