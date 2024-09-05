@@ -1,6 +1,9 @@
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PetsContext } from '../context/PetsContext'
+import Swal from 'sweetalert2'
+import axios from 'axios'
+import { ENDPOINT } from '../config/constants.js'
 
 const PublicacionListada = () => {
   const navigate = useNavigate()
@@ -11,9 +14,34 @@ const PublicacionListada = () => {
     navigate(`/actualizarpublicacion/${id}`)
   }
 
-  const eliminarPublicacion = (id) => {
+  const funcionEliminar = (id) => {
+    const token = window.sessionStorage.getItem('token')
+    axios.delete(ENDPOINT.mispublicaciones, { headers: { Authorization: `Bearer ${token}` }, data: { productoId: id } })
+    // .then(({ data }) => window.alert(data.message))
+    // .catch(({ response: { data } }) => window.alert(data.message))
+  }
+
+  const preguntarEliminar = (id) => {
     /* Se debe ingresar petición al backend que permita eliminar la publicación */
     alert(`publicacion ${id} eliminada exitosamente`)
+    Swal.fire({
+      title: '¿Está seguro que desea eliminar la publicación?',
+      text: '¡No podrás revertir esto!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: '¡Eliminada!',
+          text: 'Su publicación ha sido eliminada.',
+          icon: 'success'
+        })
+        funcionEliminar(id)
+      }
+    })
   }
 
   return (
@@ -35,7 +63,7 @@ const PublicacionListada = () => {
               </div>
               <div className='d-flex col-md-3 gap-1 justify-content-center align-items-center'>
                 <button type='button' className='botonEstilos' onClick={() => goToActualizarPublicacion(publicacion.id)}>Editar</button>
-                <button type='button' className='botonEstilosEliminar' onClick={() => eliminarPublicacion(publicacion.id)}>Eliminar</button>
+                <button type='button' className='botonEstilosEliminar' onClick={() => preguntarEliminar(publicacion.id)}>Eliminar</button>
               </div>
             </div>
             <hr id='hrListada' />
