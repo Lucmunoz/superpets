@@ -25,4 +25,25 @@ CREATE TABLE productos (
    PRIMARY KEY(id),
    FOREIGN KEY(id_usuarios) REFERENCES usuarios(id) ON DELETE CASCADE
 );
--- contrasena cambio a text
+
+CREATE TABLE compras (
+   id           TEXT,
+   id_usuarios  TEXT,
+   total_boleta INTEGER     NOT NULL,
+   fecha        DATE        NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_usuarios) REFERENCES usuarios(id) ON DELETE CASCADE
+);
+
+CREATE TABLE detalle_compras (
+   id             TEXT,
+   id_compras     TEXT,
+   id_usuarios    TEXT,
+   id_productos   TEXT,
+   cantidad_elemento    INTEGER  NOT NULL,
+   precio_unitario      INTEGER  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_compras) REFERENCES compras(id),
+   FOREIGN KEY(id_usuarios) REFERENCES usuarios(id) ON DELETE CASCADE,
+   FOREIGN KEY(id_productos) REFERENCES productos(id)
+);

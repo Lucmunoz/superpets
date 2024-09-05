@@ -26,7 +26,7 @@ const Card = () => {
   // console.log(productosData, 'soy productos data')
 
   // useEffect(() => {
-  //   getData()
+  //  getData()
   // }, [])
 
   // función que muestra los productos distintos a los que el usuario creo

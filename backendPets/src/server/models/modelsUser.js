@@ -119,3 +119,72 @@ export const eliminarUsuario = async (correo) => {
     throw newError
   }
 }
+
+/** ******CREACIÓN DE REGISTRO DE COMPRA*****OK*****/
+export const crearRegistroCompra = async ({ correo, productos, totalBoleta, fecha }) => {
+  try {
+    const { rows } = await db('SELECT id FROM usuarios WHERE correo = $1', [correo])
+    const usuarioId = rows[0].id
+    /* Habiendo obtenido el ID del usuario, debo realizar dos insersiones en bases de datos:
+      La primera insersión es en la tabla "compras" la cual guarda los siguientes valores:
+      - id (N° boleta)
+      - ID del usuario
+      - Total de la compra
+      - Fecha de la compra
+
+      La segunda insersión es en la tabla "detalle de compras" en donde debo insertar:
+      - id
+      - id (N° boleta) <- recuperado luego de hacer la insersión en tabla compras
+      - ID del usuario
+      - ID de productos
+      - Cantida del producto
+      - Precio del producto
+
+      La insersión se realizará tantas veces como productos tenga el usuario en su carro.
+    */
+    // Insrsión en tabla compras
+    const consultaCompras = 'INSERT INTO compras (id, id_usuarios, total_boleta, fecha) VALUES ($1, $2, $3, $4) RETURNING *;'
+    const valuesCompras = [uuidv4(), usuarioId, totalBoleta, fecha]
+    const respuestaCompras = await db(consultaCompras, valuesCompras)
+    const IDcompra = respuestaCompras.rows[0].id
+    // Insersión en tabla detalle de compras
+    const consultaDetalleCompras = 'INSERT INTO detalle_compras (id, id_compras, id_usuarios, id_productos, cantidad_elemento, precio_unitario) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;'
+    const promesas = productos.map(async (producto) => {
+      const valuesDetalleCompras = [uuidv4(), IDcompra, usuarioId, producto.id, producto.cantidad, producto.precio]
+      await db(consultaDetalleCompras, valuesDetalleCompras)
+    })
+    const result = await Promise.all(promesas)
+    return result.json
+  } catch (error) {
+    const newError = { message: 'No se ha podido procesar tu compra, Fallo-1', error }
+    throw newError
+  }
+}
+
+/** ******CONSULTA REGISTROS DE COMPRA**********/
+export const traerMisCompras = async (correo) => {
+  let arregloCompras = []
+
+  try {
+    const { rows } = await db('SELECT id FROM usuarios WHERE correo = $1', [correo])
+    const usuarioId = rows[0].id
+    const respuesta = await db('SELECT * FROM compras WHERE id_usuarios = $1', [usuarioId])
+    arregloCompras = [...respuesta.rows]
+
+    // console.log(arregloCompras)
+
+    const ConsultaDetalleCompras = 'SELECT id_compras, id_productos, cantidad_elemento as cantidad, precio_unitario, detalle_productos.nombre, detalle_productos.descripcion, detalle_productos.imagen  FROM detalle_compras AS compra INNER JOIN(SELECT id, nombre, descripcion, imagen from productos) AS detalle_productos ON compra.id_productos = detalle_productos.id WHERE compra.id_compras = $1'
+    const promesas2 = arregloCompras.map(async (compra) => {
+      return await db(ConsultaDetalleCompras, [compra.id])
+    })
+    const resultado = await Promise.all(promesas2.map((response) => response))
+    // const resultado = arregloCompras.map((compra)=> )
+    const arregloDetalleCompras = [...resultado.map((objeto) => { return (objeto.rows) })]
+
+    const arregloComprasFinal = arregloCompras.map((compra) => ({ detalle: (arregloDetalleCompras.flat().filter((detalle) => detalle.id_compras === compra.id)), ...compra }))
+    return (arregloComprasFinal)
+  } catch (error) {
+    const newError = { message: 'No se ha podido procesar tu compra, Fallo-1', error }
+    throw newError
+  }
+}
