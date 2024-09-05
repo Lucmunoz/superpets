@@ -1,6 +1,6 @@
 import express, { response } from 'express'
 import cors from 'cors'
-import { traerProductos, registrarUsuario, verificarCredenciales, getUser, verificarUsuarioExiste, eliminarUsuario, crearPublicacion, traerMisPublicaciones, crearRegistroCompra, traerMisCompras, actualizarProducto } from './models/modelsUser.js'
+import { traerProductos, registrarUsuario, verificarCredenciales, getUser, verificarUsuarioExiste, eliminarUsuario, crearPublicacion, traerMisPublicaciones, crearRegistroCompra, traerMisCompras, actualizarProducto, eliminarPublicacion } from './models/modelsUser.js'
 import { jwtDecode, jwtSign } from '../utils/auth/jwt.js'
 import { authToken } from '../server/midlewares/auth.midlewares.js'
 import morgan from 'morgan'
@@ -148,4 +148,13 @@ app.put('/mispublicaciones', authToken, async (req, res) => {
   }
 })
 
+app.delete('/mispublicaciones', authToken, async (req, res) => {
+  try {
+    const publicacionIdEliminar = req.body.IdEliminar
+    await eliminarPublicacion(publicacionIdEliminar)
+    res.status(200).json({ message: 'Publicación eliminada --> backend' })
+  } catch (error) {
+    res.status(error.code || 500).json({ message: error.message })
+  }
+})
 export default app
