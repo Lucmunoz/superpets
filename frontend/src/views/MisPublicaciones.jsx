@@ -18,9 +18,11 @@ const MisPublicaciones = () => {
     const token = window.sessionStorage.getItem('token')
     axios.get(ENDPOINT.mispublicaciones, { headers: { Authorization: `Bearer ${token}` } })
       .then(({ data }) => {
-        const arregloPublicacionesTemp = data.filter((publicacion) => {
-          return JSON.parse(window.sessionStorage.getItem('usuario')).id === publicacion.id_usuarios // <- sacarlo de use state
-        })
+        // const arregloPublicacionesTemp = data.filter((publicacion) => {
+        //   return JSON.parse(window.sessionStorage.getItem('usuario')).id === publicacion.id_usuarios // <- sacarlo de use state
+        // })
+
+        const arregloPublicacionesTemp = data
         setearMisPublicaciones(arregloPublicacionesTemp)
         publicacionesUsuario = [...arregloPublicacionesTemp]
       })
@@ -56,14 +58,8 @@ const MisPublicaciones = () => {
   }
 
   useEffect(() => {
-    /* //Código para verificar existencia de token. De lo contrario, redirigir a ingresar
-     if (!window.sessionStorage.getItem('token')) {navigate('/ingresar')} */
-
-    /* *Reemplazar codigo cuando se realice backend***/
-    if (!window.sessionStorage.getItem('usuario')) {
-      navigate('/ingresar')
-    }
-    /* *Reemplazar codigo cuando se realice backend***/
+    // Código para verificar existencia de token. De lo contrario, redirigir a ingresar
+    if (!window.sessionStorage.getItem('token')) { navigate('/ingresar') }
     getData()
   }, [])
 
