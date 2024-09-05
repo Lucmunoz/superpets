@@ -49,8 +49,8 @@ const PublicacionListada = () => {
     <>
       {arregloMisPublicaciones.map((publicacion) => {
         return (
-          <div className='container-fluid bg-light p-0 publicacionListada' key={publicacion.id}>
-            <div className='row container-fluid p-1'>
+          <div className='container-fluid bg-light p-0 publicacionListada border-bottom' key={publicacion.id}>
+            <div className='row container-fluid p-1 '>
               <div className='col-3 col-sm-2 p-0 '>
                 <div className='text-center'>
                   <img className='' style={{ height: '70px' }} src={publicacion.imagen} alt='MDN' />
@@ -67,7 +67,6 @@ const PublicacionListada = () => {
                 <button type='button' className='botonEstilosEliminar' onClick={() => preguntarEliminar(publicacion.id)}>Eliminar</button>
               </div>
             </div>
-            <hr id='hrListada' />
           </div>
         )
       })}
