@@ -16,9 +16,10 @@ const PublicacionListada = () => {
 
   const funcionEliminar = (id) => {
     const token = window.sessionStorage.getItem('token')
-    axios.delete(ENDPOINT.mispublicaciones, { headers: { Authorization: `Bearer ${token}` }, data: { productoId: id } })
-    // .then(({ data }) => window.alert(data.message))
-    // .catch(({ response: { data } }) => window.alert(data.message))
+    axios.delete(ENDPOINT.mispublicaciones, { headers: { Authorization: `Bearer ${token}` }, data: { IdEliminar: id } })
+      .then(({ data }) => console.log(data.message))
+      .catch(({ response: { data } }) => console.log(data.message))
+    navigate('/mispublicaciones')
   }
 
   const preguntarEliminar = (id) => {
