@@ -36,8 +36,9 @@ const Tienda = () => {
   }, [])
 
   // función que muestra los productos distintos a los que el usuario creo
+  const usuarioLogeado = JSON.parse(window.sessionStorage.getItem('usuario'))
   let productosTienda = [...productos]
-  if (usuario !== null) productosTienda = [...productos].filter((p) => p.id_usuarios !== usuario.id_usuarios)
+  if (usuario !== null) productosTienda = [...productos].filter((p) => p.id_usuarios !== usuarioLogeado.id)
   // console.log(productosTienda, 'prod tienda')
 
   let productosOrdenados = [...productosTienda]

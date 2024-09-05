@@ -12,27 +12,27 @@ const Card = () => {
   }
 
   // función que trae todos los productos del backend
-  // const [productosData, setProductosData] = useState([])
-  // const getData = () => {
-  //   axios.get(ENDPOINT.home)
-  //     .then(({ data }) => {
-  //       setProductosData(data)
-  //     })
-  //     .catch(({ response: { data } }) => {
-  //       console.log(data.message)
-  //       window.alert(`${data.message}`)
-  //     })
-  // }
-  // console.log(productosData, 'soy productos data')
+  const [productosData, setProductosData] = useState([])
+  const getData = () => {
+    axios.get(ENDPOINT.home)
+      .then(({ data }) => {
+        setProductosData(data)
+      })
+      .catch(({ response: { data } }) => {
+        console.log(data.message)
+        window.alert(`${data.message}`)
+      })
+  }
 
-  // useEffect(() => {
-  //  getData()
-  // }, [])
+  useEffect(() => {
+    getData()
+  }, [productos])
 
   // función que muestra los productos distintos a los que el usuario creo
+  const usuarioLogeado = JSON.parse(window.sessionStorage.getItem('usuario'))
+
   let productosTienda = [...productos]
-  if (usuario !== null) productosTienda = [...productos].filter((p) => p.id_usuarios !== usuario.id_usuarios)
-  // console.log(productosTienda, 'soy prod.tienda')
+  if (usuario !== null) productosTienda = [...productos].filter((p) => p.id_usuarios !== usuarioLogeado.id)
 
   const sinPublicaciones = () => { return (<h1 className='text-center pb-3' style={{ color: 'white' }}>Aún no existe ninguna publicacion <i className='fa-solid fa-face-sad-tear fa-xl ps-3' /></h1>) }
 
