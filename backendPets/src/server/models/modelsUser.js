@@ -25,7 +25,7 @@ export const verificarCredenciales = async (correo, contrasena) => {
   const consulta = 'SELECT * FROM usuarios WHERE correo = $1;'
   const { rows: [usuario] } = await db(consulta, [correo])
   if (usuario === undefined) {
-    const newError = { code: 401, message: 'usuario undefined 02/09' }
+    const newError = { code: 401, message: 'Correo o Contraseña incorrecta' }
     throw newError
   }
 
@@ -33,7 +33,7 @@ export const verificarCredenciales = async (correo, contrasena) => {
   const passwordCorrecta = bcryptjs.compareSync(contrasena, passwordEncriptada)
 
   if (passwordCorrecta === false) {
-    const newError = { code: 401, message: 'password incorrecta 02/09' }
+    const newError = { code: 401, message: 'Correo o Contraseña incorrecta' }
     throw newError
   }
 
