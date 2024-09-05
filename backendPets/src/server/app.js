@@ -1,6 +1,6 @@
 import express, { response } from 'express'
 import cors from 'cors'
-import { traerProductos, registrarUsuario, verificarCredenciales, getUser, verificarUsuarioExiste, eliminarUsuario, crearPublicacion, traerMisPublicaciones, crearRegistroCompra, traerMisCompras } from './models/modelsUser.js'
+import { traerProductos, registrarUsuario, verificarCredenciales, getUser, verificarUsuarioExiste, eliminarUsuario, crearPublicacion, traerMisPublicaciones, crearRegistroCompra, traerMisCompras, actualizarProducto } from './models/modelsUser.js'
 import { jwtDecode, jwtSign } from '../utils/auth/jwt.js'
 import { authToken } from '../server/midlewares/auth.midlewares.js'
 import morgan from 'morgan'
@@ -135,6 +135,16 @@ app.get('/miscompras', authToken, async (req, res) => {
     res.status(200).json(miscompras)
   } catch (error) {
     res.status(error.code).json({ message: error.message })
+  }
+})
+
+app.put('/mispublicaciones', authToken, async (req, res) => {
+  try {
+    const { idProducto, nombre, descripcion, precio, imagen } = req.body
+    await actualizarProducto({ idProducto, nombre, descripcion, precio, imagen })
+    res.status(201).json({ message: 'El producto ha sido actualizado con éxito' })
+  } catch (error) {
+    res.status(error.code).json({ message: error })
   }
 })
 

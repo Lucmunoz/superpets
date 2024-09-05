@@ -71,7 +71,7 @@ export const verificarUsuarioExiste = async (correo, rut) => {
   }
 }
 
-// crear publicación
+// ok- crear publicación
 export const crearPublicacion = async ({ correo, nombre, descripcion, precio, imagen }) => {
   try {
     // trae primero el id del usuario
@@ -89,12 +89,25 @@ export const crearPublicacion = async ({ correo, nombre, descripcion, precio, im
   }
 }
 
-// traerMisPublicaciones
+// OK-traerMisPublicaciones
 export const traerMisPublicaciones = async (correo) => {
   const { rows } = await db('SELECT id FROM usuarios WHERE correo = $1', [correo])
   const usuarioId = rows[0].id
   const respuesta = await db('SELECT * FROM productos WHERE id_usuarios = $1', [usuarioId])
   return respuesta.rows
+}
+
+// OK- actualizaProducto
+export const actualizarProducto = async ({ idProducto, nombre, descripcion, precio, imagen }) => {
+  try {
+    const consulta = 'UPDATE productos SET nombre =$1, descripcion = $2, precio = $3, imagen = $4 WHERE id = $5 RETURNING *;'
+    const values = [nombre, descripcion, precio, imagen, idProducto]
+    const { rows } = await db(consulta, values)
+    return rows
+  } catch (error) {
+    const newError = { message: 'Ha ocurrido un error, favor intenta mas tarde', error }
+    throw newError
+  }
 }
 
 // OK. eliminar usuario
