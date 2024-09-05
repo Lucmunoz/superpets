@@ -23,7 +23,7 @@ const PetsContextProvider = ({ children }) => {
       console.log(error)
     }
   }
-
+  const cambiarProductos = (valor) => setProductos(valor)
   const setearFavoritos = (valor) => { setProductosFavoritos(valor) }
   const setearComprasRealizadas = (valor) => { setComprasRealizadas(valor) }
   const setearProductosCarro = (valor) => { setProductosCarro(valor) }
@@ -184,7 +184,8 @@ const PetsContextProvider = ({ children }) => {
     productosFavoritos,
     setearFavoritos,
     comprasRealizadas,
-    setearComprasRealizadas
+    setearComprasRealizadas,
+    cambiarProductos
   }
 
   return (

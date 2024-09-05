@@ -5,18 +5,17 @@ import axios from 'axios'
 import { ENDPOINT } from '../config/constants.js'
 
 const Card = () => {
-  const { productos, usuario } = useContext(PetsContext)
+  const { productos, usuario, cambiarProductos } = useContext(PetsContext)
   const navigate = useNavigate()
   const irDetalleProducto = (id) => {
     navigate(`/tienda/producto/${id}`)
   }
 
   // función que trae todos los productos del backend
-  const [productosData, setProductosData] = useState([])
   const getData = () => {
     axios.get(ENDPOINT.home)
       .then(({ data }) => {
-        setProductosData(data)
+        cambiarProductos(data)
       })
       .catch(({ response: { data } }) => {
         console.log(data.message)
@@ -26,7 +25,7 @@ const Card = () => {
 
   useEffect(() => {
     getData()
-  }, [productos])
+  }, [])
 
   // función que muestra los productos distintos a los que el usuario creo
   const usuarioLogeado = JSON.parse(window.sessionStorage.getItem('usuario'))

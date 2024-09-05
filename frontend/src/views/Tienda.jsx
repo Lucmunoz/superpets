@@ -2,11 +2,11 @@ import { useContext, useEffect } from 'react'
 import CorazonFav from '../components/CorazonFav'
 import { PetsContext } from '../context/PetsContext'
 import { useNavigate } from 'react-router-dom'
-// import axios from 'axios'
-// import { ENDPOINT } from '../config/constants.js'
+import axios from 'axios'
+import { ENDPOINT } from '../config/constants.js'
 
 const Tienda = () => {
-  const { productos, cambiarFavorito, setearFavoritos, select, cambiarSelect, usuario, agregarCarro } = useContext(PetsContext)
+  const { productos, cambiarFavorito, setearFavoritos, select, cambiarSelect, usuario, agregarCarro, cambiarProductos } = useContext(PetsContext)
   const navigate = useNavigate()
   const irDetalleProducto = (id) => {
     navigate(`/tienda/producto/${id}`)
@@ -37,6 +37,21 @@ const Tienda = () => {
 
   // función que muestra los productos distintos a los que el usuario creo
   const usuarioLogeado = JSON.parse(window.sessionStorage.getItem('usuario'))
+  const getData = () => {
+    axios.get(ENDPOINT.home)
+      .then(({ data }) => {
+        cambiarProductos(data)
+      })
+      .catch(({ response: { data } }) => {
+        console.log(data.message)
+        window.alert(`${data.message}`)
+      })
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
+
   let productosTienda = [...productos]
   if (usuario !== null) productosTienda = [...productos].filter((p) => p.id_usuarios !== usuarioLogeado.id)
   // console.log(productosTienda, 'prod tienda')
