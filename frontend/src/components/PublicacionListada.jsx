@@ -19,7 +19,7 @@ const PublicacionListada = () => {
     axios.delete(ENDPOINT.mispublicaciones, { headers: { Authorization: `Bearer ${token}` }, data: { IdEliminar: id } })
       .then(({ data }) => console.log(data.message))
       .catch(({ response: { data } }) => console.log(data.message))
-    navigate('/mispublicaciones')
+    window.location.reload(false)
   }
 
   const preguntarEliminar = (id) => {
@@ -35,11 +35,6 @@ const PublicacionListada = () => {
       confirmButtonText: 'Sí, eliminar'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          title: '¡Eliminada!',
-          text: 'Su publicación ha sido eliminada.',
-          icon: 'success'
-        })
         funcionEliminar(id)
       }
     })
