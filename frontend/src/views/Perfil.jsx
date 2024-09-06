@@ -13,7 +13,7 @@ const Perfil = () => {
      if (!window.sessionStorage.getItem('token')) {navigate('/ingresar')} */
 
     /* *Reemplazar codigo cuando se realice backend***/
-    if (!window.sessionStorage.getItem('usuario')) {
+    if (!window.sessionStorage.getItem('token')) {
       navigate('/ingresar')
     } else {
       setNombre(JSON.parse(window.sessionStorage.getItem('usuario')).nombre)
