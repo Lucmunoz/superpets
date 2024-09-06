@@ -20,11 +20,9 @@ const MisCompras = () => {
   }
 
   useEffect(() => {
-    /* //Código para verificar existencia de token. De lo contrario, redirigir a ingresar
-     if (!window.sessionStorage.getItem('token')) {navigate('/ingresar')} */
+    // Código para verificar existencia de token. De lo contrario, redirigir a ingresar
 
-    /* *Reemplazar codigo cuando se realice backend***/
-    if (!window.sessionStorage.getItem('usuario')) {
+    if (!window.sessionStorage.getItem('token')) {
       navigate('/ingresar')
     }
     getData()
