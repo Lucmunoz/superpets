@@ -98,10 +98,11 @@ export const traerMisPublicaciones = async (correo) => {
 }
 
 // OK- actualizaProducto
-export const actualizarProducto = async ({ idProducto, nombre, descripcion, precio, imagen }) => {
+export const actualizarProducto = async ({ id, nombre, descripcion, precio, imagen }) => {
   try {
+    console.log(id, nombre, descripcion, precio, imagen)
     const consulta = 'UPDATE productos SET nombre =$1, descripcion = $2, precio = $3, imagen = $4 WHERE id = $5 RETURNING *;'
-    const values = [nombre, descripcion, precio, imagen, idProducto]
+    const values = [nombre, descripcion, precio, imagen, id]
     const { rows } = await db(consulta, values)
     return rows
   } catch (error) {
@@ -196,6 +197,16 @@ export const eliminarPublicacion = async (publicacionIdEliminar) => {
   } catch (error) {
     const newError = { message: 'Ha ocurrido un error, por favor intenta más tarde' }
     console.log(error)
+    throw newError
+  }
+}
+
+export const traerPublicacionPorID = async (id) => {
+  try {
+    const respuesta = await db('SELECT * FROM productos WHERE id = $1;', [id])
+    return respuesta.rows
+  } catch (error) {
+    const newError = { message: 'Ha ocurrido un error, por favor intenta más tarde' }
     throw newError
   }
 }
