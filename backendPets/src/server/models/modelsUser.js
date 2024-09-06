@@ -173,7 +173,7 @@ export const traerMisCompras = async (correo) => {
 
     // console.log(arregloCompras)
 
-    const ConsultaDetalleCompras = 'SELECT id_compras, id_productos, cantidad_elemento as cantidad, precio_unitario, detalle_productos.nombre, detalle_productos.descripcion, detalle_productos.imagen  FROM detalle_compras AS compra INNER JOIN(SELECT id, nombre, descripcion, imagen from productos) AS detalle_productos ON compra.id_productos = detalle_productos.id WHERE compra.id_compras = $1'
+    const ConsultaDetalleCompras = 'SELECT id_compras, id_productos, cantidad_elemento as cantidad, precio_unitario, nombre, descripcion, imagen FROM detalle_compras AS dc INNER JOIN productos AS p ON dc.id_productos = p.id WHERE dc.id_compras = $1'
     const promesas2 = arregloCompras.map(async (compra) => {
       return await db(ConsultaDetalleCompras, [compra.id])
     })

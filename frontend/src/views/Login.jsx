@@ -14,7 +14,7 @@ const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 const Login = () => {
   const navigate = useNavigate()
   const [userTemp, setUserTemp] = useState(credencialesUsuario)
-  const {cambiarUsuario } = useContext(PetsContext)
+  const { cambiarUsuario } = useContext(PetsContext)
   const handleUser = (event) => setUserTemp({ ...userTemp, [event.target.name]: event.target.value })
 
   useEffect(() => {
