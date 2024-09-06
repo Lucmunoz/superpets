@@ -40,16 +40,18 @@ const Producto = () => {
           <div>
             <img src={p.imagen} alt='producto-detalle' />
           </div>
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ width: '100%' }}>
             <div className='divTextProducto'>
               <h1 className='m-0'>{p.nombre}</h1>
               <p className='pt-3'>{p.descripcion}</p>
-              <span style={{ fontSize: '20px', color: '#ED5C01', fontWeight: '700', margin: '0' }}>${p.precio}</span>
+              <span style={{ fontSize: '20px', color: '#ED5C01', fontWeight: '700' }}>${p.precio}</span>
             </div>
-            <button type='button' className='botonEstilos' onClick={() => agregarCarro(p.id)}>Agregar al carro</button>
-            <button className='buttonCorazon' onClick={() => cambiosFavorito(p.id)}>
-              <CorazonFav id={p.id} />
-            </button>
+            <div style={{ textAlign: 'center' }}>
+              <button type='button' className='botonEstilos' onClick={() => agregarCarro(p.id)}>Agregar al carro</button>
+              <button className='buttonCorazon' onClick={() => cambiosFavorito(p.id)}>
+                <CorazonFav id={p.id} />
+              </button>
+            </div>
           </div>
         </div>)}
     </main>

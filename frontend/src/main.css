@@ -169,7 +169,7 @@ main {
 /* /tienda/producto/id */
 .divDetalleProducto {
   min-height: 400px;
-  width: 800px;
+  width: 750px;
   background-color: #fff;
   display: flex;
   align-items: center;
