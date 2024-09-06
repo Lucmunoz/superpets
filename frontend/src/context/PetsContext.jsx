@@ -77,7 +77,7 @@ const PetsContextProvider = ({ children }) => {
       setProductosCarro(carroTemporal)
     }
     window.sessionStorage.setItem('carro', JSON.stringify(carroTemporal))
-    alert('Producto agregado al carro')
+    if (window.location.hash.split('/').pop() !== 'carrito') { alert('Producto agregado al carro') }
   }
 
   // función que quita 1 del carro
