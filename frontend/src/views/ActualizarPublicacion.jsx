@@ -5,7 +5,6 @@ import { ENDPOINT } from '../config/constants.js'
 
 const ActualizarPublicacion = () => {
   const { id } = useParams()
-  const navigate = useNavigate()
   const publicacionInicial = {
     idProducto: id,
     nombre: '',
@@ -13,9 +12,12 @@ const ActualizarPublicacion = () => {
     precio: '',
     imagen: ''
   }
-
+  const navigate = useNavigate()
   const [publicacionTemporal, setPublicacionTemporal] = useState(publicacionInicial)
-  const cambiarInput = (event) => setPublicacionTemporal({ ...publicacionTemporal, [event.target.name]: event.target.value })
+  const cambiarInput = (event) => {
+    setPublicacionTemporal({ ...publicacionTemporal, [event.target.name]: event.target.value })
+  }
+
   const handleForm = (event) => {
     event.preventDefault()
     if (publicacionTemporal.nombre.trim() === '') {
@@ -23,14 +25,6 @@ const ActualizarPublicacion = () => {
     }
     if (publicacionTemporal.descripcion.trim() === '') {
       return window.alert('Ingrese una descripcion válida')
-    }
-
-    if (publicacionTemporal.precio.trim() === '') {
-      return window.alert('Ingrese una descripcion válida')
-    }
-
-    if (publicacionTemporal.imagen.trim() === '') {
-      return window.alert('Debe ingresar una URL para la imágen.')
     }
 
     const token = window.sessionStorage.getItem('token')
@@ -44,11 +38,20 @@ const ActualizarPublicacion = () => {
     navigate('/mispublicaciones')
   }
 
+  const getData = async () => {
+    axios.get(ENDPOINT.producto + `/${id}`)
+      .then(({ data }) => {
+        setPublicacionTemporal(data)
+      })
+      .catch(({ response: { data } }) => window.alert(data.message))
+  }
+  //
   useEffect(() => {
     // Código para verificar existencia de token. De lo contrario, redirigir a ingresar
     if (!window.sessionStorage.getItem('token')) {
       navigate('/ingresar')
     }
+    getData()
   }, [])
 
   return (

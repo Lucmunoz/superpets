@@ -22,6 +22,7 @@ const MisPublicaciones = () => {
         const arregloPublicacionesTemp = data
         setearMisPublicaciones(arregloPublicacionesTemp)
         publicacionesUsuario = [...arregloPublicacionesTemp]
+        console.log(publicacionesUsuario)
         setLoading(false)
       })
       .catch(({ response: { data } }) => window.alert(data.message))
