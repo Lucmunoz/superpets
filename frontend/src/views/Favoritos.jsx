@@ -74,10 +74,8 @@ const Favoritos = () => {
   const sinFavoritos = () => { return (<h1 className='text-center pb-3' style={{ color: 'white' }}>Aún no has agregado favoritos <i className='fa-solid fa-face-sad-tear fa-xl ps-3' /></h1>) }
 
   useEffect(() => {
-    /* //Código para verificar existencia de token. De lo contrario, redirigir a ingresar
-     if (!window.sessionStorage.getItem('token')) {navigate('/ingresar')} */
-    /* *Reemplazar codigo cuando se realice backend***/
-    if (!window.sessionStorage.getItem('usuario')) {
+    // Código para verificar existencia de token. De lo contrario, redirigir a ingresar
+    if (!window.sessionStorage.getItem('token')) {
       navigate('/ingresar')
     } else {
       getData()
