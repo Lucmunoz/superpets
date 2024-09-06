@@ -7,7 +7,7 @@ import { ENDPOINT } from '../config/constants.js'
 
 const PublicacionListada = () => {
   const navigate = useNavigate()
-  const { arregloMisPublicaciones } = useContext(PetsContext)
+  const { arregloMisPublicaciones, setearMisPublicaciones } = useContext(PetsContext)
 
   const goToActualizarPublicacion = (id) => {
     /* Se debe ingresar petición al backend que permita actualizar la publicación */
@@ -17,9 +17,14 @@ const PublicacionListada = () => {
   const funcionEliminar = (id) => {
     const token = window.sessionStorage.getItem('token')
     axios.delete(ENDPOINT.mispublicaciones, { headers: { Authorization: `Bearer ${token}` }, data: { IdEliminar: id } })
-      .then(({ data }) => console.log(data.message))
+      .then(({ data }) => {
+        console.log(data.message)
+      })
       .catch(({ response: { data } }) => console.log(data.message))
-    window.location.reload(false)
+      // Nueva petición para actualizar la data
+    axios.get(ENDPOINT.mispublicaciones, { headers: { Authorization: `Bearer ${token}` } })
+      .then(({ data }) => setearMisPublicaciones(data))
+      .catch(({ response: { data } }) => window.alert(data.message))
   }
 
   const preguntarEliminar = (id) => {
