@@ -1,4 +1,4 @@
-import { NavLink, useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useEffect, useState, useContext } from 'react'
 import { PetsContext } from '../context/PetsContext'
 
