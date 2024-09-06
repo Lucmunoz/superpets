@@ -1,6 +1,6 @@
 import express, { response } from 'express'
 import cors from 'cors'
-import { traerProductos, registrarUsuario, verificarCredenciales, getUser, verificarUsuarioExiste, eliminarUsuario, crearPublicacion, traerMisPublicaciones, crearRegistroCompra, traerMisCompras, actualizarProducto, eliminarPublicacion } from './models/modelsUser.js'
+import { traerProductos, registrarUsuario, verificarCredenciales, getUser, verificarUsuarioExiste, eliminarUsuario, crearPublicacion, traerMisPublicaciones, crearRegistroCompra, traerMisCompras, actualizarProducto, eliminarPublicacion, traerPublicacionPorID } from './models/modelsUser.js'
 import { jwtDecode, jwtSign } from '../utils/auth/jwt.js'
 import { authToken } from '../server/midlewares/auth.midlewares.js'
 import morgan from 'morgan'
@@ -140,8 +140,8 @@ app.get('/miscompras', authToken, async (req, res) => {
 
 app.put('/mispublicaciones', authToken, async (req, res) => {
   try {
-    const { idProducto, nombre, descripcion, precio, imagen } = req.body
-    await actualizarProducto({ idProducto, nombre, descripcion, precio, imagen })
+    const { id, nombre, descripcion, precio, imagen } = req.body
+    await actualizarProducto({ id, nombre, descripcion, precio, imagen })
     res.status(201).json({ message: 'El producto ha sido actualizado con éxito' })
   } catch (error) {
     res.status(error.code).json({ message: error })
@@ -157,4 +157,16 @@ app.delete('/mispublicaciones', authToken, async (req, res) => {
     res.status(error.code || 500).json({ message: error.message })
   }
 })
+
+// para traer data de una publicacion
+app.get('/tienda/producto/:id', async (req, res) => {
+  try {
+    const [result] = await traerPublicacionPorID(req.params.id)
+    // console.log(result)
+    res.status(200).json(result)
+  } catch (error) {
+    res.status(error.code).json({ error })
+  }
+})
+
 export default app
