@@ -46,7 +46,6 @@ const PetsContextProvider = ({ children }) => {
   // función que cambia el estado del usuario, valores permitidos null y  {}
   const cambiarUsuario = (valor) => {
     setUsuario(valor)
-    window.sessionStorage.setItem('usuario', JSON.stringify(valor))
   }
 
   // función que agrega 1 al carro
