@@ -4,11 +4,11 @@ import { useContext, useEffect } from 'react'
 import { PetsContext } from '../context/PetsContext'
 
 const Menu = () => {
-  const { numeroTotalProductos, usuario, cerrarSesion, cambiarUsuario } = useContext(PetsContext)
+  const { numeroTotalProductos, usuario, cerrarSesion, cambiarUsuario, alertaSweet } = useContext(PetsContext)
   const cambiarMenu = ({ isActive }) => isActive ? 'navbar active' : 'navbar'
   const irACerrar = () => {
     cerrarSesion()
-    window.alert('Has cerrado la sesión, te llevaremos a la Home')
+    alertaSweet('info', 'Has cerrado la sesión', '#25D6FE')
   }
 
   useEffect(() => {
