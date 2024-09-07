@@ -4,7 +4,6 @@ import { useState, useContext, useEffect } from 'react'
 import { PetsContext } from '../context/PetsContext'
 import { ENDPOINT } from '../config/constants.js'
 import axios from 'axios'
-import Swal from 'sweetalert2'
 
 const credencialesUsuario = {
   correo: '',
@@ -37,14 +36,14 @@ const Login = () => {
     event.preventDefault()
 
     if (!userTemp.correo.trim() || !userTemp.contrasena.trim()) {
-      return window.alert('Email y password obligatorias.')
+      return alertaSweet('warning', 'Email y password obligatorias', '#FF0000')
     }
 
     if (!emailRegex.test(userTemp.correo)) {
-      return window.alert('El formato del email no es correcto!')
+      return alertaSweet('warning', 'El formato del email no es correcto!', '#FF0000')
     }
 
-    /* Reemplazar codigo al iniciar sesión para obtener token */
+    /* Al iniciar sesión para obtener token */
     axios.post(ENDPOINT.login, userTemp)
       .then(({ data }) => {
         window.sessionStorage.setItem('token', data.token)
@@ -60,15 +59,8 @@ const Login = () => {
         alertaSweet('error', data.message, '#FF0000')
       })
 
-    // const usuarioTemporal = {
-    //   id: '1',
-    //   nombre: 'lucas'
-    // }
-    // cambiarUsuario(usuarioTemporal)
     navigate('/perfil')
   }
-
-  // console.log(usuario)
 
   return (
     <main className='d-flex align-items-center'>
