@@ -16,9 +16,12 @@
     "start": "node index.js"
   },
   "devDependencies": {
+    "@vitest/coverage-v8": "^2.0.5",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.4",
-    "standard": "^17.1.0"
+    "standard": "^17.1.0",
+    "supertest": "^7.0.0",
+    "vitest": "^2.0.5"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
