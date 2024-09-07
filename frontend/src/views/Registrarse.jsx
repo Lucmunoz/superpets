@@ -68,7 +68,7 @@ const Registrarse = () => {
             <div className='mb-3'>
               <label htmlFor='nombre' className='form-label labelEstilos'>Nombre</label>
               <input
-                maxlength='20'
+                maxLenght='20'
                 type='text'
                 className='form-control'
                 id='nombre'
@@ -82,7 +82,7 @@ const Registrarse = () => {
             <div className='mb-3'>
               <label htmlFor='apellido' className='form-label labelEstilos'>Apellido</label>
               <input
-                maxlength='20'
+                maxLenght='20'
                 type='text'
                 className='form-control'
                 id='apellido'
@@ -96,7 +96,7 @@ const Registrarse = () => {
             <div className='mb-3'>
               <label htmlFor='email' className='form-label labelEstilos'>Email</label>
               <input
-                maxlength='50'
+                maxLenght='50'
                 type='email'
                 className='form-control'
                 id='email'
@@ -111,7 +111,7 @@ const Registrarse = () => {
             <div className='mb-3'>
               <label htmlFor='password' className='form-label labelEstilos'>Contraseña</label>
               <input
-                maxlength='8'
+                maxLenght='8'
                 type='password'
                 className='form-control'
                 id='password'
@@ -128,7 +128,7 @@ const Registrarse = () => {
             <div className='mb-3'>
               <label htmlFor='rut' className='form-label labelEstilos'>RUT</label>
               <input
-                maxlength='12'
+                maxLenght='12'
                 type='text'
                 className='form-control'
                 placeholder='Sin puntos, con guión y digito verificador'
@@ -146,7 +146,7 @@ const Registrarse = () => {
               </div>
               <div className='container-fluid p-0'>
                 <input
-                  maxlength='9'
+                  maxLenght='9'
                   type='text'
                   className='form-control m-0 w-100'
                   id='telefono'
