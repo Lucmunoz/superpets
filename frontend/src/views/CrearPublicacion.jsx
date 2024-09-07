@@ -85,7 +85,7 @@ const CrearPublicacion = () => {
               {publicacion.imagen !== '' && <img style={{ height: '70px' }} src={publicacion.imagen} alt='MDN' />}
             </div>
             <div className='d-flex gap-2 justify-content-center'>
-              <button type='submit' className='botonEstilos'>Guardar Cambios</button>
+              <button type='submit' className='botonEstilos'>Crear publicación</button>
               <button type='button' className='botonEstilos' onClick={() => goBack()}>Regresar</button>
             </div>
           </form>
