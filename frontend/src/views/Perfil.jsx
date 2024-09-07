@@ -5,20 +5,15 @@ import { PetsContext } from '../context/PetsContext'
 const Perfil = () => {
   const navigate = useNavigate()
   const [isloading, setIsloading] = useState(true)
-  const { cerrarSesion } = useContext(PetsContext)
+  const { cerrarSesion, alertaSweet } = useContext(PetsContext)
   const [nombre, setNombre] = useState('')
 
   useEffect(() => {
-    /* //Código para verificar existencia de token. De lo contrario, redirigir a ingresar
-     if (!window.sessionStorage.getItem('token')) {navigate('/ingresar')} */
-
-    /* *Reemplazar codigo cuando se realice backend***/
     if (!window.sessionStorage.getItem('token')) {
       navigate('/ingresar')
     } else {
       setNombre(JSON.parse(window.sessionStorage.getItem('usuario')).nombre)
     }
-    /* *Reemplazar codigo cuando se realice backend***/
   }, [])
 
   useEffect(() => {
@@ -29,9 +24,9 @@ const Perfil = () => {
     }
   }, [nombre])
 
-  const cerrarSesión = () => {
+  const irACerrar = () => {
     cerrarSesion()
-    navigate('/ingresar')
+    alertaSweet('info', 'Has cerrado la sesión', '#25D6FE')
   }
 
   const mostrarData = () => {
@@ -57,9 +52,8 @@ const Perfil = () => {
               <span className='mb-0 fst-italic text-dark'>Revisa y/o actualiza tus publicaciones.</span>
             </Link>
 
-            <div className='pt-4'>
-              <button type='button' className='botonEstilos' onClick={() => cerrarSesión()}>Cerrar Sesión</button>
-            </div>
+            <Link to='/' className='link mt-4' onClick={irACerrar}> Cerrar Sesión</Link>
+
           </div>
         </div>
       </div>

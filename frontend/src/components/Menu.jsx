@@ -6,6 +6,7 @@ import { PetsContext } from '../context/PetsContext'
 const Menu = () => {
   const { numeroTotalProductos, usuario, cerrarSesion, cambiarUsuario, alertaSweet } = useContext(PetsContext)
   const cambiarMenu = ({ isActive }) => isActive ? 'navbar active' : 'navbar'
+
   const irACerrar = () => {
     cerrarSesion()
     alertaSweet('info', 'Has cerrado la sesión', '#25D6FE')
