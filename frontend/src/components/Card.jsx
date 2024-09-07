@@ -37,7 +37,7 @@ const Card = () => {
 
   const mostrarPublicaciones = () => {
     return (
-      productosTienda.slice(0, 3).map((p) =>
+      productosTienda.slice(0, 4).map((p) =>
         <div className='card' key={p.id}>
           <img src={p.imagen} className='card-img-top' alt='disfraz-salchicha' />
           <div className='card-body'>
