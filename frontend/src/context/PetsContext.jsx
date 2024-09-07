@@ -58,7 +58,6 @@ const PetsContextProvider = ({ children }) => {
 
   useEffect(() => {
     setTotalCarro(calcularTotal(productosCarro))
-    // console.log(totalCarro)
   }, [productosCarro])
 
   const cambiarSelect = (e) => setSelect(e.target.value)
@@ -143,8 +142,6 @@ const PetsContextProvider = ({ children }) => {
     }
   }
 
-  // const numeroTotalProductos =
-
   // favoritos
   const cambiarFavorito = (id) => {
     // Defino variable que utilizare para almacenar el arreglo de favoritos. A este arreglo, se añadirán o eliminarán favoritos.
@@ -173,7 +170,6 @@ const PetsContextProvider = ({ children }) => {
   }
 
   const cerrarSesion = () => {
-    // console.log('cierro sesion')
     setUsuario(null)
     setProductosFavoritos([])
     window.sessionStorage.removeItem('token')
@@ -181,8 +177,6 @@ const PetsContextProvider = ({ children }) => {
     window.sessionStorage.removeItem('favoritos')
     window.sessionStorage.removeItem('carro')
   }
-
-  // console.log(productos)
 
   const globalState = {
     productos,
