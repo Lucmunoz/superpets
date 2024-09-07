@@ -48,6 +48,7 @@ const Producto = () => {
             </div>
             <div style={{ textAlign: 'center' }}>
               <button type='button' className='botonEstilos' onClick={() => agregarCarro(p.id)}>Agregar al carro</button>
+              <button type='button' className='botonEstilos' onClick={() => navigate(-1)}>Regresar </button>
               <button className='buttonCorazon' onClick={() => cambiosFavorito(p.id)}>
                 <CorazonFav id={p.id} />
               </button>

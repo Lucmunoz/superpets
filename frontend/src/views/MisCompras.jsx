@@ -42,14 +42,18 @@ const MisCompras = () => {
 
   const sinCompras = () => {
     return (
-      <div className='p-4 bg-white d-flex flex-row justify-content-center align-items-center'>
-        <div><img className='img-fluid' src='/carrovacio.jpg' alt='Imagen carro vacío' /></div>
-        <div className='d-flex flex-column p-4 text-center'>
-          <h1>¡Hey!</h1>
-          <h2 style={{ fontSize: '22px' }}>¿Aún no has visto nuestras ofertas?</h2>
-          <p>No pierdas mas tiempo, hay increibles productos esperando. <strong>  ¡Ellos, lo merecen!</strong></p>
-          <br />
-          <Link to='/tienda' className='link'> Ir a la Tienda</Link>
+      <div className='bg-white d-flex flex-row justify-content-center align-items-center'>
+        <div className='d-flex flex-column flex-sm-row align-items-center'>
+          <div className='d-flex align-items-center'>
+            <img className='img-fluid' src='/carrovacio.jpg' alt='Imagen carro vacío' />
+          </div>
+          <div className='d-flex flex-column text-center'>
+            <h1>¡Hey!</h1>
+            <h2 style={{ fontSize: '22px' }}>¿Aún no has visto nuestras ofertas?</h2>
+            <p>No pierdas mas tiempo, hay increibles productos esperando. <strong>  ¡Ellos, lo merecen!</strong></p>
+            <br />
+            <Link to='/tienda' className='link'> Ir a la Tienda</Link>
+          </div>
         </div>
       </div>
     )
@@ -65,3 +69,4 @@ const MisCompras = () => {
 }
 
 export default MisCompras
+// }
