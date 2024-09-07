@@ -132,6 +132,7 @@ app.get('/miscompras', authToken, async (req, res) => {
     const [, token] = authorization.split(' ')
     const { correo } = jwtDecode(token)
     const miscompras = await traerMisCompras(correo)
+    console.log(miscompras)
     res.status(200).json(miscompras)
   } catch (error) {
     res.status(error.code).json({ message: error.message })
@@ -162,8 +163,11 @@ app.delete('/mispublicaciones', authToken, async (req, res) => {
 app.get('/tienda/producto/:id', async (req, res) => {
   try {
     const [result] = await traerPublicacionPorID(req.params.id)
-    // console.log(result)
-    res.status(200).json(result)
+    if (result) { res.status(200).json(result) } else {
+      const error = new Error(response?.error || 'No se encuentra la publicación. Es probable que ya no exista.') // error message
+      error.code = response?.code || 404 // you can custom insert your error code
+      throw error
+    }
   } catch (error) {
     res.status(error.code).json({ error })
   }

@@ -47,3 +47,18 @@ CREATE TABLE detalle_compras (
    FOREIGN KEY(id_usuarios) REFERENCES usuarios(id) ON DELETE CASCADE,
    FOREIGN KEY(id_productos) REFERENCES productos(id) ON DELETE CASCADE
 );
+
+CREATE TABLE detalle_compras (
+   id             TEXT,
+   id_compras     TEXT,
+   id_usuarios    TEXT,
+   id_productos_copy   TEXT,
+   nombre_copy       VARCHAR(50) NOT NULL,
+   descripcion_copy  TEXT        NOT NULL,
+   imagen_copy       TEXT        NOT NULL,
+   precio_copy      INTEGER  NOT NULL,
+   cantidad_elemento    INTEGER  NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_compras) REFERENCES compras(id),
+   FOREIGN KEY(id_usuarios) REFERENCES usuarios(id) ON DELETE CASCADE
+);

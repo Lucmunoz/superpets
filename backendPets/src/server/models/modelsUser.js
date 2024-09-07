@@ -148,10 +148,14 @@ export const crearRegistroCompra = async ({ correo, productos, totalBoleta, fech
     const valuesCompras = [uuidv4(), usuarioId, totalBoleta, fecha]
     const respuestaCompras = await db(consultaCompras, valuesCompras)
     const IDcompra = respuestaCompras.rows[0].id
-    // Insersión en tabla detalle de compras
-    const consultaDetalleCompras = 'INSERT INTO detalle_compras (id, id_compras, id_usuarios, id_productos, cantidad_elemento, precio_unitario) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;'
+    /* // Insersión en tabla detalle de compras
+    Antes de escribir el detalle de la compra, debo traerme los datos de la publicación original a efectos de tomar "una foto" de manera
+    que si el usuario creador de la publicación la elimine, el comprador mantenga una copia (no funcional) de la publicación (un registro de lo que compro) */
+
+    const consultaDetalleCompras = 'INSERT INTO detalle_compras (id,id_compras, id_usuarios, id_productos_copy, nombre_copy, descripcion_copy, imagen_copy, precio_copy, cantidad_elemento) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *;'
     const promesas = productos.map(async (producto) => {
-      const valuesDetalleCompras = [uuidv4(), IDcompra, usuarioId, producto.id, producto.cantidad, producto.precio]
+      const { rows: [datosProductoComprado] } = await db('SELECT * FROM productos WHERE id = $1;', [producto.id])
+      const valuesDetalleCompras = [uuidv4(), IDcompra, usuarioId, producto.id, datosProductoComprado.nombre, datosProductoComprado.descripcion, datosProductoComprado.imagen, producto.precio, producto.cantidad]
       await db(consultaDetalleCompras, valuesDetalleCompras)
     })
     const result = await Promise.all(promesas)
@@ -172,16 +176,16 @@ export const traerMisCompras = async (correo) => {
     const respuesta = await db('SELECT * FROM compras WHERE id_usuarios = $1', [usuarioId])
     arregloCompras = [...respuesta.rows]
 
-    // console.log(arregloCompras)
+    // console.log("arreglo Compras", arregloCompras)
 
-    const ConsultaDetalleCompras = 'SELECT id_compras, id_productos, cantidad_elemento as cantidad, precio_unitario, nombre, descripcion, imagen FROM detalle_compras AS dc INNER JOIN productos AS p ON dc.id_productos = p.id WHERE dc.id_compras = $1'
+    const ConsultaDetalleCompras = 'SELECT id_compras, id_productos_copy, nombre_copy, descripcion_copy, imagen_copy, precio_copy, cantidad_elemento FROM detalle_compras WHERE id_compras = $1'
     const promesas2 = arregloCompras.map(async (compra) => {
       return await db(ConsultaDetalleCompras, [compra.id])
     })
     const resultado = await Promise.all(promesas2.map((response) => response))
     // const resultado = arregloCompras.map((compra)=> )
     const arregloDetalleCompras = [...resultado.map((objeto) => { return (objeto.rows) })]
-
+    console.log('arreglo Detalle Compras', arregloDetalleCompras)
     const arregloComprasFinal = arregloCompras.map((compra) => ({ detalle: (arregloDetalleCompras.flat().filter((detalle) => detalle.id_compras === compra.id)), ...compra }))
     return (arregloComprasFinal)
   } catch (error) {
