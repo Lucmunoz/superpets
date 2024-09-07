@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react'
 import { ENDPOINT } from '../config/constants.js'
+import Swal from 'sweetalert2'
 
 export const PetsContext = createContext()
 
@@ -13,6 +14,28 @@ const PetsContextProvider = ({ children }) => {
   const [totalCarro, setTotalCarro] = useState(0)
   const [productosFavoritos, setProductosFavoritos] = useState([])
   const [comprasRealizadas, setComprasRealizadas] = useState('')
+
+  // alerta
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    iconColor: 'white',
+    customClass: {
+      popup: 'colored-toast'
+    },
+    showConfirmButton: false,
+    timer: 2500,
+    timerProgressBar: true
+  })
+
+  const alertaSweet = async (icono, mensaje, fondo) => {
+    await Toast.fire({
+      icon: `${icono}`,
+      title: `${mensaje}`,
+      background: `${fondo}`,
+      color: '#fff'
+    })
+  }
 
   const getData = async () => {
     try {
@@ -184,7 +207,8 @@ const PetsContextProvider = ({ children }) => {
     setearFavoritos,
     comprasRealizadas,
     setearComprasRealizadas,
-    cambiarProductos
+    cambiarProductos,
+    alertaSweet
   }
 
   return (
