@@ -15,28 +15,7 @@ const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 const Login = () => {
   const navigate = useNavigate()
   const [userTemp, setUserTemp] = useState(credencialesUsuario)
-  const { cambiarUsuario } = useContext(PetsContext)
-
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    iconColor: 'white',
-    customClass: {
-      popup: 'colored-toast'
-    },
-    showConfirmButton: false,
-    timer: 2500,
-    timerProgressBar: true
-  })
-
-  const alertaLogin = async (icono, mensaje, fondo) => {
-    await Toast.fire({
-      icon: `${icono}`,
-      title: `${mensaje}`,
-      background: `${fondo}`,
-      color: '#fff'
-    })
-  }
+  const { cambiarUsuario, alertaSweet } = useContext(PetsContext)
 
   const handleUser = (event) => setUserTemp({ ...userTemp, [event.target.name]: event.target.value })
 
@@ -72,13 +51,13 @@ const Login = () => {
         cambiarUsuario({ id: data.id, nombre: data.nombre })
         window.sessionStorage.setItem('usuario', JSON.stringify({ id: data.id, nombre: data.nombre }))
         // window.alert(`${data.message} 😀.`)
-        alertaLogin('success', data.message, '#8EC63D')
+        alertaSweet('success', data.message, '#8EC63D')
         navigate('/perfil')
       })
       .catch(({ response: { data } }) => {
         console.error(data)
         // window.alert(`${data.message} 🙁.`)
-        alertaLogin('error', data.message, '#FF0000')
+        alertaSweet('error', data.message, '#FF0000')
       })
 
     // const usuarioTemporal = {
