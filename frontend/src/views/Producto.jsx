@@ -60,6 +60,11 @@ const Producto = () => {
     <main className='mainProducto'>
       {producto?.map((p) =>
         <div className='divDetalleProducto' key={p.id}>
+          <div className='container-fluid d-flex justify-content-end d-sm-none'>
+            <button className='buttonCorazon' onClick={() => cambiosFavorito(p.id)}>
+              <CorazonFav id={p.id} />
+            </button>
+          </div>
           <div>
             <img src={p.imagen} alt='producto-detalle' />
           </div>
@@ -69,12 +74,14 @@ const Producto = () => {
               <p className='pt-3'>{p.descripcion}</p>
               <span style={{ fontSize: '20px', color: '#ED5C01', fontWeight: '700' }}>${p.precio}</span>
             </div>
-            <div style={{ textAlign: 'center' }}>
+            <div className='d-flex flex-column align-items-center justify-content-sm-center flex-sm-row gap-1' style={{ textAlign: 'center' }}>
               <button type='button' className='botonEstilos' onClick={() => botonAgregar(p.id)}>Agregar al carro</button>
               <button type='button' className='botonEstilos' onClick={() => navigate(-1)}>Regresar </button>
-              <button className='buttonCorazon' onClick={() => cambiosFavorito(p.id)}>
-                <CorazonFav id={p.id} />
-              </button>
+              <div>
+                <button className='buttonCorazon d-none d-sm-flex' onClick={() => cambiosFavorito(p.id)}>
+                  <CorazonFav id={p.id} />
+                </button>
+              </div>
             </div>
           </div>
         </div>)}

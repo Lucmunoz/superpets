@@ -74,7 +74,7 @@ const Login = () => {
           </div>
           <div className='mb-3 px-4'>
             <label htmlFor='exampleInputPassword1' className='form-label labelEstilos'>Contraseña</label>
-            <input style={{ width: '85%', margin: '0 auto' }} type='password' name='contrasena' className='form-control text-center' id='exampleInputPassword1' placeholder='*********' value={userTemp.contrasena} onChange={handleUser} />
+            <input maxlength='9' style={{ width: '85%', margin: '0 auto' }} type='password' name='contrasena' className='form-control text-center' id='exampleInputPassword1' placeholder='*********' value={userTemp.contrasena} onChange={handleUser} />
           </div>
           <div>
             <button type='submit' className='botonEstilos'>Iniciar Sesión</button>
