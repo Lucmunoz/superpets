@@ -398,6 +398,16 @@ footer div a:hover {
   text-decoration: none;
 }
 
+.alertaSweetEstilos {
+  min-width: 52%;
+  min-height: 210px;
+  font-size: 15px;
+}
+
+.alertaSweetEstilos button {
+  border-radius: 20px;
+}
+
 /* media-queries first-mobile*/
 @media (max-width: 576px) {
   .imgCarrusel {
@@ -496,6 +506,10 @@ footer div a:hover {
   width: 80%;
   flex-direction: column;
   align-items: center;
+}
+
+.alertaSweetEstilos {
+  width: 85%;
 }
 
 }

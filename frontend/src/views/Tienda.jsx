@@ -4,28 +4,44 @@ import { PetsContext } from '../context/PetsContext'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { ENDPOINT } from '../config/constants.js'
+import Swal from 'sweetalert2'
 
 const Tienda = () => {
   const { productos, cambiarFavorito, setearFavoritos, select, cambiarSelect, usuario, agregarCarro, cambiarProductos } = useContext(PetsContext)
   const navigate = useNavigate()
+  const sweetAlert2 = (nombre) => {
+    Swal.fire({
+      title: `Debes iniciar sesión para agregar ${nombre}`,
+      text: '¿Te llevamos?',
+      showDenyButton: true,
+      confirmButtonText: 'Sí, llevame a iniciar sesión',
+      denyButtonText: 'Quiero quedarme aquí',
+      confirmButtonColor: '#062D3D',
+      denyButtonColor: '#ED5C01',
+      customClass: 'alertaSweetEstilos'
+    }).then((result) => {
+      result.isConfirmed && navigate('/ingresar')
+    })
+  }
+
   const irDetalleProducto = (id) => {
     navigate(`/tienda/producto/${id}`)
   }
 
   const cambiosFavorito = (id) => {
     if (!window.sessionStorage.getItem('usuario')) {
-      window.alert('Para agregar favoritos debes iniciar sesión, te redirigiremos!')
-      return navigate('/ingresar')
+      sweetAlert2('favoritos')
+    } else {
+      cambiarFavorito(id)
     }
-    cambiarFavorito(id)
   }
 
   const botonAgregar = (id) => {
     if (!window.sessionStorage.getItem('usuario')) {
-      window.alert('Para agregar productos debes iniciar sesión, te redirigiremos!')
-      return navigate('/ingresar')
+      sweetAlert2('productos')
+    } else {
+      agregarCarro(id)
     }
-    agregarCarro(id)
   }
 
   useEffect(() => {
