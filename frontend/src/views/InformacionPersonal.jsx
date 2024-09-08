@@ -32,7 +32,7 @@ const InformacionPersonal = () => {
 
   const preguntarEliminar = (id) => {
     Swal.fire({
-      title: '¿Está seguro que desea eliminar su cuenta?',
+      title: '¿Está seguro que desea eliminar su usuario?',
       text: '¡No podrás revertir esto!',
       icon: 'warning',
       showDenyButton: true,
