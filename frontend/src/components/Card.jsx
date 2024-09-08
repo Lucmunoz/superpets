@@ -5,7 +5,7 @@ import axios from 'axios'
 import { ENDPOINT } from '../config/constants.js'
 
 const Card = () => {
-  const { productos, usuario, cambiarProductos } = useContext(PetsContext)
+  const { productos, usuario, cambiarProductos, alertaSweet } = useContext(PetsContext)
   const navigate = useNavigate()
   const irDetalleProducto = (id) => {
     navigate(`/tienda/producto/${id}`)
@@ -19,7 +19,7 @@ const Card = () => {
       })
       .catch(({ response: { data } }) => {
         console.log(data.message)
-        window.alert(`${data.message}`)
+        alertaSweet('error', `${data.message}`, '#FF0000')
       })
   }
 
