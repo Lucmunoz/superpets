@@ -58,14 +58,12 @@ export const getUser = async (correo) => {
 export const verificarUsuarioExiste = async (correo, rut) => {
   const { rows: correoIngresado } = await db('SELECT * FROM usuarios WHERE correo = $1;', [correo])
   if (correoIngresado.length >= 1) {
-    console.log('No se puede registrar correo ya existe en bd')
     const newError = { code: 500, message: 'El correo ingresado ya existe en nuestros registros' }
     throw newError
   }
 
   const { rows: rutIngresado } = await db('SELECT * FROM usuarios WHERE rut = $1;', [rut])
   if (rutIngresado.length >= 1) {
-    console.log('No se puede registrar rut ya existe en bd')
     const newError = { code: 500, message: 'El rut ingresado ya existe en nuestros registros' }
     throw newError
   }
@@ -81,7 +79,6 @@ export const crearPublicacion = async ({ correo, nombre, descripcion, precio, im
     const consulta = 'INSERT INTO productos (id, id_usuarios, nombre, descripcion, precio, imagen) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;'
     const values = [uuidv4(), usuarioId, nombre, descripcion, precio, imagen]
     const respuesta = await db(consulta, values)
-    console.log(respuesta.rows)
     return respuesta.rows
   } catch (error) {
     const newError = { message: 'No hemos podido agregar el producto, por favor intenta más tarde', error }
@@ -100,7 +97,6 @@ export const traerMisPublicaciones = async (correo) => {
 // OK- actualizaProducto
 export const actualizarProducto = async ({ id, nombre, descripcion, precio, imagen }) => {
   try {
-    console.log(id, nombre, descripcion, precio, imagen)
     const consulta = 'UPDATE productos SET nombre =$1, descripcion = $2, precio = $3, imagen = $4 WHERE id = $5 RETURNING *;'
     const values = [nombre, descripcion, precio, imagen, id]
     const { rows } = await db(consulta, values)
@@ -197,10 +193,8 @@ export const traerMisCompras = async (correo) => {
 export const eliminarPublicacion = async (publicacionIdEliminar) => {
   try {
     const { rows } = await db('DELETE FROM productos WHERE id = $1 RETURNING *;', [publicacionIdEliminar])
-    console.log(rows, '--> publicación eliminada')
   } catch (error) {
     const newError = { message: 'Ha ocurrido un error, por favor intenta más tarde' }
-    console.log(error)
     throw newError
   }
 }
