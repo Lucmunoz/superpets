@@ -78,7 +78,7 @@ app.delete('/usuario', authToken, async (req, res) => {
     const [, token] = authorization.split(' ')
     const { correo } = jwtDecode(token)
     await eliminarUsuario(correo)
-    res.status(200).json({ message: 'Usuario eliminado con éxito, mensaje desde el backend' })
+    res.status(200).json({ message: 'Usuario eliminado con éxito' })
   } catch (error) {
     res.status(error.code).json({ message: error.message })
   }
