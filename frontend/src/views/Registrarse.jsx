@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { ENDPOINT } from '../config/constants.js'
+import { PetsContext } from '../context/PetsContext.jsx'
 
 const Registrarse = () => {
   const usuarioInicial = {
@@ -15,6 +16,7 @@ const Registrarse = () => {
   }
 
   const [nuevoUsuario, setNuevoUsuario] = useState(usuarioInicial)
+  const { alertaSweet } = useContext(PetsContext)
   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
   const navigate = useNavigate()
   const cambioInput = (e) => { setNuevoUsuario({ ...nuevoUsuario, [e.target.name]: e.target.value }) }
@@ -29,26 +31,25 @@ const Registrarse = () => {
       nuevoUsuario.rut.trim() === '' ||
       nuevoUsuario.telefono.trim() === '' ||
       nuevoUsuario.direccion.trim() === '') {
-      return window.alert('Campos vacíos')
+      return alertaSweet('warning', 'Campos vacíos', '#1b8bbf')
     }
 
     if (!emailRegex.test(nuevoUsuario.correo)) {
-      return window.alert('El formato del email ingresado no es correcto!')
+      return alertaSweet('warning', 'El formato del email ingresado no es correcto!', '#1b8bbf')
     }
 
     if (nuevoUsuario.contrasena.length !== 8) {
-      return window.alert('La contraseña debe ser de 8 caracteres')
+      return alertaSweet('warning', 'La contraseña debe ser de 8 caracteres', '#1b8bbf')
     }
 
     axios.post(ENDPOINT.registrarse, nuevoUsuario)
       .then(({ data }) => {
-        window.alert(`${data.message} 😀.`)
+        alertaSweet('success', ` ${data.message}`, '#8EC63D')
         setNuevoUsuario(usuarioInicial)
         navigate('/perfil')
       })
       .catch(({ response: { data } }) => {
-        // console.error(data)
-        window.alert(`${data.message} 🙁.`)
+        alertaSweet('error', `${data.message}`, '#FF0000')
         setNuevoUsuario(usuarioInicial)
       })
   }
