@@ -31,15 +31,15 @@ const Registrarse = () => {
       nuevoUsuario.rut.trim() === '' ||
       nuevoUsuario.telefono.trim() === '' ||
       nuevoUsuario.direccion.trim() === '') {
-      return alertaSweet('warning', 'Campos vacíos', '#1b8bbf')
+      return alertaSweet('warning', 'Campos vacíos', '#25D6FE')
     }
 
     if (!emailRegex.test(nuevoUsuario.correo)) {
-      return alertaSweet('warning', 'El formato del email ingresado no es correcto!', '#1b8bbf')
+      return alertaSweet('warning', 'El formato del email ingresado no es correcto!', '#25D6FE')
     }
 
     if (nuevoUsuario.contrasena.length !== 8) {
-      return alertaSweet('warning', 'La contraseña debe ser de 8 caracteres', '#1b8bbf')
+      return alertaSweet('warning', 'La contraseña debe ser de 8 caracteres', '#25D6FE')
     }
 
     axios.post(ENDPOINT.registrarse, nuevoUsuario)
