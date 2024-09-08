@@ -101,12 +101,4 @@ describe('SERVER APP', () => {
     expect(response.status).toBe(200)
     expect(response.body).toBeInstanceOf(Array)
   })
-
-  // test('[GET /tienda/producto/:id | Debe retornar un Cód.404 al enviar el id que ya no existe en la tienda y devolver un  mensaje', async () => {
-  //   const id = '21'
-  //   const response = await request(app).get(`/tienda/producto/${id}`)
-  //   console.log(response.statusCode, '--> codigo enviado desde app.js') // da error en el código desde app
-  //   // expect(response.status).toBe(200)
-  //   // expect(response.body).toBeInstanceOf(Array)
-  // })
 })
