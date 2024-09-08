@@ -6,7 +6,7 @@ import ProductoCompras from '../components/ProductoCompras'
 import { ENDPOINT } from '../config/constants'
 
 const MisCompras = () => {
-  const { setearComprasRealizadas, comprasRealizadas } = useContext(PetsContext)
+  const { setearComprasRealizadas, comprasRealizadas, alertaSweet } = useContext(PetsContext)
   const navigate = useNavigate()
 
   const getData = () => {
@@ -16,7 +16,7 @@ const MisCompras = () => {
         // console.log(data)
         setearComprasRealizadas(data)
       })
-      .catch(({ response: { data } }) => window.alert(data.message))
+      .catch(({ response: { data } }) => alertaSweet('error', `${data.message}`, '#FF0000'))
   }
 
   useEffect(() => {
@@ -25,7 +25,6 @@ const MisCompras = () => {
       navigate('/ingresar')
     }
     getData()
-    /* *Reemplazar codigo cuando se realice backend***/
   }, [])
 
   const mostrarDataCompras = () => {
