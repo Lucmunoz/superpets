@@ -23,10 +23,16 @@ const ActualizarPublicacion = () => {
   const handleForm = (event) => {
     event.preventDefault()
     if (publicacionTemporal.nombre.trim() === '') {
-      return window.alert('Ingrese un nombre válido')
+      return alertaSweet('warning', 'Debe ingresar un nombre', '#FF0000')
     }
     if (publicacionTemporal.descripcion.trim() === '') {
-      return window.alert('Ingrese una descripcion válida')
+      return alertaSweet('warning', 'Debe ingresar una descripción', '#FF0000')
+    }
+    if (publicacionTemporal.precio.trim() === '') {
+      return alertaSweet('warning', 'Debe ingresar un precio', '#FF0000')
+    }
+    if (publicacionTemporal.imagen.trim() === '') {
+      return alertaSweet('warning', 'Debe ingresar una URL para la imagen', '#FF0000')
     }
 
     const token = window.sessionStorage.getItem('token')
@@ -45,7 +51,7 @@ const ActualizarPublicacion = () => {
       .then(({ data }) => {
         setPublicacionTemporal(data)
       })
-      .catch(({ response: { data } }) => window.alert(data.message))
+      .catch(({ response: { data } }) => alertaSweet('error', `${data.message}`, '#FF0000'))
   }
   //
   useEffect(() => {
