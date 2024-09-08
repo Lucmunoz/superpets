@@ -7,7 +7,7 @@ import { PetsContext } from '../context/PetsContext'
 import { ENDPOINT } from '../config/constants'
 
 const Carro = () => {
-  const { productosCarro, totalCarro, setearProductosCarro, vaciarCarro } = useContext(PetsContext)
+  const { productosCarro, totalCarro, setearProductosCarro, vaciarCarro, alertaSweet } = useContext(PetsContext)
   const [cargando, setCargando] = useState(true)
   const navigate = useNavigate()
 
@@ -25,7 +25,7 @@ const Carro = () => {
       .then((data) => {
         if (data.status === 201) {
           vaciarCarro()
-          window.alert(`${data.data.message} 😀.`)
+          alertaSweet('success', `${data.data.message}`, '#8EC63D')
           navigate('/tienda')
         }
       })
