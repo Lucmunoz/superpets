@@ -11,7 +11,7 @@ let publicacionesUsuarioOrdenadas = []
 let publicacionesFiltradas = []
 
 const MisPublicaciones = () => {
-  const { arregloMisPublicaciones, setearMisPublicaciones } = useContext(PetsContext)
+  const { arregloMisPublicaciones, setearMisPublicaciones, alertaSweet } = useContext(PetsContext)
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
@@ -22,10 +22,9 @@ const MisPublicaciones = () => {
         const arregloPublicacionesTemp = data
         setearMisPublicaciones(arregloPublicacionesTemp)
         publicacionesUsuario = [...arregloPublicacionesTemp]
-        console.log(publicacionesUsuario)
         setLoading(false)
       })
-      .catch(({ response: { data } }) => window.alert(data.message))
+      .catch(({ response: { data } }) => alertaSweet('error', `${data.message}`, '#FF0000'))
   }
 
   const filtrarPublicaciones = (event) => {
