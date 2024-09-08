@@ -29,7 +29,7 @@ const Carro = () => {
           navigate('/tienda')
         }
       })
-      .catch(({ response: { data } }) => window.alert(data.message))
+      .catch(({ response: { data } }) => alertaSweet('error', `${data.message}`, '#FF0000'))
   }
 
   const mostrarSpinner = () => {
@@ -63,7 +63,6 @@ const Carro = () => {
     } else {
       getData()
     }
-    /* *Reemplazar codigo cuando se realice backend***/
   }, [])
 
   const carroVacio = () => {
