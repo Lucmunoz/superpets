@@ -29,15 +29,15 @@ const PublicacionListada = () => {
 
   const preguntarEliminar = (id) => {
     /* Se debe ingresar petición al backend que permita eliminar la publicación */
-    alert(`publicacion ${id} eliminada exitosamente`)
     Swal.fire({
       title: '¿Está seguro que desea eliminar la publicación?',
       text: '¡No podrás revertir esto!',
       icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sí, eliminar'
+      showDenyButton: true,
+      confirmButtonColor: '#062D3D',
+      denyButtonText: 'Cancelar',
+      confirmButtonText: 'Sí, eliminar',
+      customClass: 'alertaSweetEstilos'
     }).then((result) => {
       if (result.isConfirmed) {
         funcionEliminar(id)
