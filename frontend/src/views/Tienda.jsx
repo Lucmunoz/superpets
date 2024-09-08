@@ -7,7 +7,7 @@ import { ENDPOINT } from '../config/constants.js'
 import Swal from 'sweetalert2'
 
 const Tienda = () => {
-  const { productos, cambiarFavorito, setearFavoritos, select, cambiarSelect, usuario, agregarCarro, cambiarProductos } = useContext(PetsContext)
+  const { productos, cambiarFavorito, setearFavoritos, select, cambiarSelect, usuario, agregarCarro, cambiarProductos, alertaSweet } = useContext(PetsContext)
   const navigate = useNavigate()
   const sweetAlert2 = (nombre) => {
     Swal.fire({
@@ -60,7 +60,7 @@ const Tienda = () => {
       })
       .catch(({ response: { data } }) => {
         console.log(data.message)
-        window.alert(`${data.message}`)
+        alertaSweet('error', `${data.message}`, '#FF0000')
       })
   }
 
@@ -70,14 +70,12 @@ const Tienda = () => {
 
   let productosTienda = [...productos]
   if (usuario !== null) productosTienda = [...productos].filter((p) => p.id_usuarios !== usuarioLogeado.id)
-  // console.log(productosTienda, 'prod tienda')
 
   let productosOrdenados = [...productosTienda]
   if (select === 'az') productosOrdenados = [...productosTienda].sort((a, b) => a.nombre.localeCompare(b.nombre))
   if (select === 'za') productosOrdenados = [...productosTienda].sort((a, b) => b.nombre.localeCompare(a.nombre))
   if (select === 'menor') productosOrdenados = [...productosTienda].sort((a, b) => a.precio - b.precio)
   if (select === 'mayor') productosOrdenados = [...productosTienda].sort((a, b) => b.precio - a.precio)
-  // console.log(productosOrdenados, 'prod.ordenados')
 
   return (
     <main>
