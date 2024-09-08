@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { ENDPOINT } from '../config/constants.js'
+import { PetsContext } from '../context/PetsContext.jsx'
 
 const ActualizarPublicacion = () => {
   const { id } = useParams()
+  const { alertaSweet } = useContext(PetsContext)
   const publicacionInicial = {
     idProducto: id,
     nombre: '',
@@ -29,8 +31,8 @@ const ActualizarPublicacion = () => {
 
     const token = window.sessionStorage.getItem('token')
     axios.put(ENDPOINT.mispublicaciones, publicacionTemporal, { headers: { Authorization: `Bearer ${token}` } })
-      .then(({ data }) => window.alert(data.message))
-      .catch(({ response: { data } }) => window.alert(data.message))
+      .then(({ data }) => alertaSweet('success', `${data.message}`, '#8EC63D'))
+      .catch(({ response: { data } }) => alertaSweet('error', `${data.message}`, '#FF0000'))
     navigate('/mispublicaciones')
   }
 
