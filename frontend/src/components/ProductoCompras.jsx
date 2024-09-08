@@ -6,7 +6,7 @@ import moment from 'moment'
 import { ENDPOINT } from '../config/constants'
 
 const ProductoCompras = (compra) => {
-  const { comprasRealizadas } = useContext(PetsContext)
+  const { comprasRealizadas, alertaSweet } = useContext(PetsContext)
   const navigate = useNavigate()
 
   const goToPublicacion = async (id) => {
@@ -15,7 +15,7 @@ const ProductoCompras = (compra) => {
         navigate(`/tienda/producto/${id}`)
         return true
       })
-      .catch(({ response }) => { if (response.status === 404) { window.alert('No hemos encontrado la publicación. Es probable que haya sido eliminada :(') } })
+      .catch(({ response }) => { if (response.status === 404) { alertaSweet('error', 'No hemos encontrado la publicación. Es probable que haya sido eliminada :(', '#FF0000') } })
   }
 
   return (
@@ -33,7 +33,6 @@ const ProductoCompras = (compra) => {
             </div>
             <div className='pt-3'>
               {compra.detalle.map((producto) => {
-                console.log(producto)
                 return (
                   <div key={compra.id + '-' + producto.id_productos_copy} className='container-fluid p-0 pb-md-3'>
                     <div className='row p-0 m-0'>
