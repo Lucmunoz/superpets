@@ -58,13 +58,13 @@ export const getUser = async (correo) => {
 export const verificarUsuarioExiste = async (correo, rut) => {
   const { rows: correoIngresado } = await db('SELECT * FROM usuarios WHERE correo = $1;', [correo])
   if (correoIngresado.length >= 1) {
-    const newError = { code: 500, message: 'El correo ingresado ya existe en nuestros registros' }
+    const newError = { code: 400, message: 'El correo ingresado ya existe en nuestros registros' }
     throw newError
   }
 
   const { rows: rutIngresado } = await db('SELECT * FROM usuarios WHERE rut = $1;', [rut])
   if (rutIngresado.length >= 1) {
-    const newError = { code: 500, message: 'El rut ingresado ya existe en nuestros registros' }
+    const newError = { code: 400, message: 'El rut ingresado ya existe en nuestros registros' }
     throw newError
   }
 }
