@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 const BuscadorVista = () => {
-  const { productos, cambiarFavorito, busqueda, usuario, agregarCarro, cambiarProductos } = useContext(PetsContext)
+  const { productos, cambiarFavorito, busqueda, usuario, agregarCarro, cambiarProductos, alertaSweet } = useContext(PetsContext)
   const navigate = useNavigate()
   const sweetAlert2 = (nombre) => {
     Swal.fire({
@@ -52,7 +52,7 @@ const BuscadorVista = () => {
       })
       .catch(({ response: { data } }) => {
         console.log(data.message)
-        window.alert(`${data.message}`)
+        alertaSweet('error', `${data.message}`, '#FF0000')
       })
   }
 
