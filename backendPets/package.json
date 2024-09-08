@@ -17,7 +17,9 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "test": "vitest --run"
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest --coverage --run"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^2.0.5",
