@@ -1,7 +1,8 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ENDPOINT } from '../config/constants'
+import { PetsContext } from '../context/PetsContext'
 
 const datosPublicacion = {
   nombre: '',
@@ -11,6 +12,7 @@ const datosPublicacion = {
 }
 
 const CrearPublicacion = () => {
+  const { alertaSweet } = useContext(PetsContext)
   const navigate = useNavigate()
   const [publicacion, setPublicacion] = useState(datosPublicacion)
   const handlePublicacion = (event) => setPublicacion({ ...publicacion, [event.target.name]: event.target.value })
@@ -24,36 +26,35 @@ const CrearPublicacion = () => {
 
     if (
       !publicacion.nombre.trim()) {
-      return window.alert('Ingrese un nombre válido')
+      return alertaSweet('warning', 'Debe Ingresar un nombre', '#FF0000')
     }
     if (
       !publicacion.descripcion.trim()) {
-      return window.alert('Ingrese una descripcion válida')
+      return alertaSweet('warning', 'Debe Ingresar una descripcion', '#FF0000')
     }
+
+    if (!publicacion.precio.trim()) {
+      return alertaSweet('warning', 'Debe ingresar un precio', '#FF0000')
+    }
+
     if (!publicacion.imagen.trim()) {
-      return window.alert('Debe ingresar una URL para la imágen.')
+      return alertaSweet('warning', 'Debe ingresar una URL para la imagen', '#FF0000')
     }
-    // Reemplazar codigo por peticion del tipo post al backend
 
     const token = window.sessionStorage.getItem('token')
     axios.post(ENDPOINT.producto, publicacion, { headers: { Authorization: `Bearer ${token}` } })
       .then(({ data }) => {
-        (window.alert(data.message))
+        (alertaSweet('success', `${data.message}`, '#8EC63D'))
         setPublicacion(datosPublicacion)
         navigate('/mispublicaciones')
       })
-      .catch(({ response: { data } }) => window.alert(data.message))
+      .catch(({ response: { data } }) => alertaSweet('error', `${data.message}`, 'FF0000'))
   }
 
   useEffect(() => {
-    /* //Código para verificar existencia de token. De lo contrario, redirigir a ingresar
-     if (!window.sessionStorage.getItem('token')) {navigate('/ingresar')} */
-
-    /* *Reemplazar codigo cuando se realice backend***/
     if (!window.sessionStorage.getItem('token')) {
       navigate('/ingresar')
     }
-    /* *Reemplazar codigo cuando se realice backend***/
   }, [])
 
   return (

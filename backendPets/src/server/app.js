@@ -92,7 +92,7 @@ app.post('/tienda/producto', authToken, async (req, res) => {
     const [, token] = authorization.split(' ')
     const { correo } = jwtDecode(token)
     const productoAgregado = await crearPublicacion({ correo, nombre, descripcion, precio, imagen })
-    res.status(201).json({ message: 'Publicación agregada con éxito --> enviado desde el backend.', producto: productoAgregado })
+    res.status(201).json({ message: 'Publicación agregada con éxito', producto: productoAgregado })
   } catch (error) {
     res.status(error.code).json({ message: error.message })
   }
