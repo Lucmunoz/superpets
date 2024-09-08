@@ -3,9 +3,10 @@ import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
 import { PetsContext } from '../context/PetsContext.jsx'
+import Swal from 'sweetalert2'
 
 const InformacionPersonal = () => {
-  const { usuario, cambiarUsuario, cerrarSesion } = useContext(PetsContext)
+  const { usuario, cambiarUsuario, cerrarSesion, alertaSweet } = useContext(PetsContext)
   const navigate = useNavigate()
   // aqui enviar petición para traer información del usuario
   const traerDataUsuario = () => {
@@ -29,18 +30,35 @@ const InformacionPersonal = () => {
     traerDataUsuario()
   }, [])
 
-  const eliminarcuenta = () => {
+  const preguntarEliminar = (id) => {
+    Swal.fire({
+      title: '¿Está seguro que desea eliminar su cuenta?',
+      text: '¡No podrás revertir esto!',
+      icon: 'warning',
+      showDenyButton: true,
+      confirmButtonColor: '#062D3D',
+      denyButtonText: 'Cancelar',
+      confirmButtonText: 'Sí, eliminar',
+      customClass: 'alertaSweetEstilos'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        eliminarCuenta()
+      }
+    })
+  }
+
+  const eliminarCuenta = () => {
     const token = window.sessionStorage.getItem('token')
     axios.delete(ENDPOINT.users, { headers: { Authorization: `Bearer ${token}` } })
       .then(({ data }) => {
-        window.alert(data.message)
         cerrarSesion()
+        alertaSweet('success', `${data.message}`, '#8EC63D')
         navigate('/')
       })
       .catch(({ response: { data } }) => {
         console.error(data)
         cerrarSesion()
-        window.alert(data.message)
+        alertaSweet('error', data.message, '#FF0000')
         cambiarUsuario(null)
         navigate('/')
       })
@@ -69,7 +87,7 @@ const InformacionPersonal = () => {
         <br />
         <div className='d-flex justify-content-center gap-4'>
           <button type='button' className='botonEstilos '> <Link to='/perfil' className='text-white text-decoration-none'>Regresar</Link> </button>
-          <button type='button' className='botonEstilosEliminar' onClick={eliminarcuenta}>Eliminar Cuenta</button>
+          <button type='button' className='botonEstilosEliminar' onClick={preguntarEliminar}>Eliminar Cuenta</button>
         </div>
       </div>
     </main>
