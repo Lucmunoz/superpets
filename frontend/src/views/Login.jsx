@@ -49,13 +49,11 @@ const Login = () => {
         window.sessionStorage.setItem('token', data.token)
         cambiarUsuario({ id: data.id, nombre: data.nombre })
         window.sessionStorage.setItem('usuario', JSON.stringify({ id: data.id, nombre: data.nombre }))
-        // window.alert(`${data.message} 😀.`)
         alertaSweet('success', data.message, '#8EC63D')
         navigate('/perfil')
       })
       .catch(({ response: { data } }) => {
         console.error(data)
-        // window.alert(`${data.message} 🙁.`)
         alertaSweet('error', data.message, '#FF0000')
       })
 
