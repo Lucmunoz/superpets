@@ -193,8 +193,10 @@ export const traerMisCompras = async (correo) => {
 export const eliminarPublicacion = async (publicacionIdEliminar) => {
   try {
     const { rows } = await db('DELETE FROM productos WHERE id = $1 RETURNING *;', [publicacionIdEliminar])
+    return rows
   } catch (error) {
     const newError = { message: 'Ha ocurrido un error, por favor intenta más tarde' }
+    console.log(error)
     throw newError
   }
 }
