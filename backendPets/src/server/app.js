@@ -143,7 +143,7 @@ app.put('/mispublicaciones', authToken, async (req, res) => {
   try {
     const { id, nombre, descripcion, precio, imagen } = req.body
     await actualizarProducto({ id, nombre, descripcion, precio, imagen })
-    res.status(201).json({ message: 'El producto ha sido actualizado con éxito' })
+    res.status(201).json({ message: 'La publicación ha sido actualizada con éxito' })
   } catch (error) {
     res.status(error.code).json({ message: error })
   }
