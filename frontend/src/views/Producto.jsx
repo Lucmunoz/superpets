@@ -59,28 +59,27 @@ const Producto = () => {
   return (
     <main className='mainProducto'>
       {producto?.map((p) =>
-        <div className='divDetalleProducto' key={p.id}>
-          <div className='container-fluid d-flex justify-content-end d-sm-none'>
-            <button className='buttonCorazon' onClick={() => cambiosFavorito(p.id)}>
-              <CorazonFav id={p.id} />
-            </button>
-          </div>
-          <div>
-            <img src={p.imagen} alt='producto-detalle' />
-          </div>
-          <div style={{ width: '100%' }}>
-            <div className='divTextProducto'>
-              <h1 className='m-0'>{p.nombre}</h1>
-              <p className='pt-3'>{p.descripcion}</p>
-              <span style={{ fontSize: '20px', color: '#ED5C01', fontWeight: '700' }}>${p.precio}</span>
+        <div key={p.id}>
+          <div className='divContainerProducto'>
+            <div style={{ display: 'flex', justifyContent: 'end', padding: '10px 10px 0 0' }}>
+              <button className='buttonCorazon' onClick={() => cambiosFavorito(p.id)}>
+                <CorazonFav id={p.id} />
+              </button>
             </div>
-            <div className='d-flex flex-column align-items-center justify-content-sm-center flex-sm-row gap-1' style={{ textAlign: 'center' }}>
-              <button type='button' className='botonEstilos' onClick={() => botonAgregar(p.id)}>Agregar al carro</button>
-              <button type='button' className='botonEstilos' onClick={() => navigate(-1)}>Regresar </button>
+            <div className='divDetalleProducto'>
               <div>
-                <button className='buttonCorazon d-none d-sm-flex' onClick={() => cambiosFavorito(p.id)}>
-                  <CorazonFav id={p.id} />
-                </button>
+                <img src={p.imagen} alt='producto-detalle' />
+              </div>
+              <div style={{ width: '100%' }}>
+                <div className='divTextProducto'>
+                  <h1 className='m-0'>{p.nombre}</h1>
+                  <p className='pt-3'>{p.descripcion}</p>
+                  <span style={{ fontSize: '20px', color: '#ED5C01', fontWeight: '700' }}>${p.precio}</span>
+                </div>
+                <div className='d-flex flex-column align-items-center justify-content-sm-center flex-sm-row gap-2' style={{ textAlign: 'center' }}>
+                  <button type='button' className='botonEstilos' onClick={() => botonAgregar(p.id)}>Agregar al carro</button>
+                  <button type='button' className='botonEstilos' onClick={() => navigate(-1)}>Regresar </button>
+                </div>
               </div>
             </div>
           </div>
