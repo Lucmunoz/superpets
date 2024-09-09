@@ -24,23 +24,6 @@ const CrearPublicacion = () => {
   const handleForm = (event) => {
     event.preventDefault()
 
-    if (
-      !publicacion.nombre.trim()) {
-      return alertaSweet('warning', 'Debe Ingresar un nombre', '#FF0000')
-    }
-    if (
-      !publicacion.descripcion.trim()) {
-      return alertaSweet('warning', 'Debe Ingresar una descripcion', '#FF0000')
-    }
-
-    if (!publicacion.precio.trim()) {
-      return alertaSweet('warning', 'Debe ingresar un precio', '#FF0000')
-    }
-
-    if (!publicacion.imagen.trim()) {
-      return alertaSweet('warning', 'Debe ingresar una URL para la imagen', '#FF0000')
-    }
-
     const token = window.sessionStorage.getItem('token')
     axios.post(ENDPOINT.producto, publicacion, { headers: { Authorization: `Bearer ${token}` } })
       .then(({ data }) => {
@@ -67,20 +50,20 @@ const CrearPublicacion = () => {
           <form onSubmit={handleForm}>
             <div className='form-group pb-3'>
               <label className='labelEstilos' htmlFor='exampleFormControlInput1'>Nombre del producto </label>
-              <input type='text' name='nombre' className='d-sm-none form-control fst-italic' placeholder='Ingresa el Nombre de tu producto...' value={publicacion.nombre} onChange={handlePublicacion} />
-              <input type='text' name='nombre' className='d-none d-sm-flex form-control fst-italic' style={{ width: '467px' }} placeholder='Ingresa el Nombre de tu producto...' value={publicacion.nombre} onChange={handlePublicacion} />
+              <input type='text' name='nombre' className='d-sm-none form-control fst-italic' placeholder='Ingresa el Nombre de tu producto...' value={publicacion.nombre} onChange={handlePublicacion} required />
+              <input type='text' name='nombre' className='d-none d-sm-flex form-control fst-italic' style={{ width: '467px' }} placeholder='Ingresa el Nombre de tu producto...' value={publicacion.nombre} onChange={handlePublicacion} required />
             </div>
             <div className='form-group pb-3'>
               <label className='labelEstilos' htmlFor='exampleFormControlTextarea1'>Descripción del producto</label>
-              <textarea className='form-control fst-italic' name='descripcion' id='descripcion' rows='3' placeholder='Ingresa el mayor detalle posible de tu producto para que los usuarios no tengan ninguna duda!' value={publicacion.descripcion} onChange={handlePublicacion} />
+              <textarea className='form-control fst-italic' name='descripcion' id='descripcion' rows='3' placeholder='Ingresa el mayor detalle posible de tu producto para que los usuarios no tengan ninguna duda!' value={publicacion.descripcion} onChange={handlePublicacion} required />
             </div>
             <div className='form-group pb-3'>
               <label className='labelEstilos' htmlFor='exampleFormControlTextarea1'>Valor del producto</label>
-              <input type='number' className='form-control fst-italic' name='precio' placeholder='Ingresa el valor de venta...' value={publicacion.precio} onChange={handlePublicacion} />
+              <input type='number' className='form-control fst-italic' name='precio' placeholder='Ingresa el valor de venta...' value={publicacion.precio} onChange={handlePublicacion} required />
             </div>
             <div className='form-group pb-3'>
               <label className='labelEstilos' htmlFor='exampleFormControlInput1'>Ingresa la URL de tu imagen</label>
-              <input type='text' name='imagen' className='form-control fst-italic' placeholder='Ingresa la URL de la imágen' value={publicacion.imagen} onChange={handlePublicacion} />
+              <input type='text' name='imagen' className='form-control fst-italic' placeholder='Ingresa la URL de la imágen' value={publicacion.imagen} onChange={handlePublicacion} required />
             </div>
             <div className='d-flex justify-content-center p-3'>
               {publicacion.imagen !== '' && <img style={{ height: '70px' }} src={publicacion.imagen} alt='MDN' />}

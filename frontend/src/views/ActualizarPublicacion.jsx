@@ -22,17 +22,6 @@ const ActualizarPublicacion = () => {
 
   const handleForm = (event) => {
     event.preventDefault()
-    if (publicacionTemporal.nombre.trim() === '') {
-      return alertaSweet('warning', 'Debe ingresar un nombre', '#FF0000')
-    }
-    if (publicacionTemporal.descripcion.trim() === '') {
-      return alertaSweet('warning', 'Debe ingresar una descripción', '#FF0000')
-    }
-
-    if (publicacionTemporal.imagen.trim() === '') {
-      return alertaSweet('warning', 'Debe ingresar una URL para la imagen', '#FF0000')
-    }
-
     const token = window.sessionStorage.getItem('token')
     axios.put(ENDPOINT.mispublicaciones, publicacionTemporal, { headers: { Authorization: `Bearer ${token}` } })
       .then(({ data }) => alertaSweet('success', `${data.message}`, '#8EC63D'))
@@ -70,21 +59,21 @@ const ActualizarPublicacion = () => {
           <form onSubmit={handleForm}>
             <div className='form-group pb-3'>
               <label htmlFor='exampleFormControlInput1' className='labelEstilos'>Nombre producto </label>
-              <input type='text' name='nombre' className='d-none d-sm-flex form-control fst-italic' style={{ width: '467px' }} id='nombre' placeholder='...' value={publicacionTemporal.nombre} onChange={cambiarInput} />
+              <input type='text' name='nombre' className='d-none d-sm-flex form-control fst-italic' style={{ width: '467px' }} id='nombre' placeholder='...' value={publicacionTemporal.nombre} onChange={cambiarInput} required />
             </div>
             <div className='form-group pb-3'>
               <label htmlFor='exampleFormControlTextarea1' className='labelEstilos'>Descripción del producto</label>
-              <textarea className='form-control fst-italic' name='descripcion' rows='3' placeholder='...' value={publicacionTemporal.descripcion} onChange={cambiarInput} />
+              <textarea className='form-control fst-italic' name='descripcion' rows='3' placeholder='...' value={publicacionTemporal.descripcion} onChange={cambiarInput} required />
             </div>
             <div className='form-group pb-3'>
               <label htmlFor='exampleFormControlTextarea1' className='labelEstilos'>Precio del producto</label>
-              <input type='number' className='form-control fst-italic' name='precio' placeholder='...' value={publicacionTemporal.precio} onChange={cambiarInput} />
+              <input type='number' className='form-control fst-italic' name='precio' placeholder='...' value={publicacionTemporal.precio} onChange={cambiarInput} required />
             </div>
             <div className='form-group pb-3'>
               <label htmlFor='exampleFormControlInput1' className='labelEstilos'>Ingresa la URL de tu imagen</label>
-              <input type='text' className='form-control fst-italic' name='imagen' placeholder='...' value={publicacionTemporal.imagen} onChange={cambiarInput} />
+              <input type='text' className='form-control fst-italic' name='imagen' placeholder='...' value={publicacionTemporal.imagen} onChange={cambiarInput} required />
               <div className='d-flex justify-content-center p-3'>
-                {publicacionTemporal.imagen !== '' && <img style={{ height: '70px' }} src={publicacionTemporal.imagen} alt='MDN' />}
+                {publicacionTemporal.imagen !== '' && <img style={{ height: '70px' }} src={publicacionTemporal.imagen} alt='MDN' required />}
               </div>
             </div>
             <div className='d-flex gap-2 justify-content-center'>
