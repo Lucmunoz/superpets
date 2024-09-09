@@ -28,9 +28,7 @@ const ActualizarPublicacion = () => {
     if (publicacionTemporal.descripcion.trim() === '') {
       return alertaSweet('warning', 'Debe ingresar una descripción', '#FF0000')
     }
-    if (publicacionTemporal.precio.trim() === '') {
-      return alertaSweet('warning', 'Debe ingresar un precio', '#FF0000')
-    }
+
     if (publicacionTemporal.imagen.trim() === '') {
       return alertaSweet('warning', 'Debe ingresar una URL para la imagen', '#FF0000')
     }
