@@ -163,29 +163,47 @@ export const crearRegistroCompra = async ({ correo, productos, totalBoleta, fech
 }
 
 /** ******CONSULTA REGISTROS DE COMPRA**********/
-export const traerMisCompras = async (correo) => {
-  let arregloCompras = []
-
+export const traerMisCompras = async (id, correo) => {
   try {
-    const { rows } = await db('SELECT id FROM usuarios WHERE correo = $1', [correo])
-    const usuarioId = rows[0].id
-    const respuesta = await db('SELECT * FROM compras WHERE id_usuarios = $1', [usuarioId])
-    arregloCompras = [...respuesta.rows]
-
-    // console.log("arreglo Compras", arregloCompras)
-
-    const ConsultaDetalleCompras = 'SELECT id_compras, id_productos_copy, nombre_copy, descripcion_copy, imagen_copy, precio_copy, cantidad_elemento FROM detalle_compras WHERE id_compras = $1'
-    const promesas2 = arregloCompras.map(async (compra) => {
-      return await db(ConsultaDetalleCompras, [compra.id])
-    })
-    const resultado = await Promise.all(promesas2.map((response) => response))
-    // const resultado = arregloCompras.map((compra)=> )
-    const arregloDetalleCompras = [...resultado.map((objeto) => { return (objeto.rows) })]
-    console.log('arreglo Detalle Compras', arregloDetalleCompras)
+    /* Defino un arreglo con dos consultas. La perimera a la tabla compras y la segunda a la tabla detalle_compras. Mas adelante se utilizarán para
+traer todos los registros asociados a un ID de un usuario */
+    const consultas = ['SELECT * FROM compras WHERE id_usuarios = $1', 'SELECT * FROM detalle_compras WHERE id_usuarios = $1']
+    /* Recorro el arreglo consultas y realizo los llamados a la BD. Cada llamado devolverá una promesa. En este caso serán 2 promesas las cuales se
+guardan en el arreglo "arregloPromesas" */
+    const arregloPromesas = consultas.map(async (consulta) => { return await db(consulta, [id]) })
+    /*  Haciendo uso del promisse.all, tomo el arreglo de promesas y devuelvo los resultados una vez estas se cumplan  Como son 2 promesas el arreglo
+"arregloPromesasResueltas tendrá dos arreglos de resultados */
+    const arregloPromesasResueltas = await Promise.all(arregloPromesas)
+    /*  Recorro los resultados y extraigo la propiedad Rows. */
+    const resultados = arregloPromesasResueltas.map((result) => { return (result.rows) })
+    /* De los resultados, extraigo dos arreglos: "arregloCompras" tiene todos los registros de la tabla compras que coinciden con el ID del usuario. */
+    const arregloCompras = resultados[0]
+    /* De los resultados, extraigo dos arreglos: "arregloDetalleCompras" tiene todos los registros de la tabla detalle_compras que coinciden con el ID del usuario. */
+    const arregloDetalleCompras = resultados[1]
+    /* A partir de ambos arreglos, genero el arreglo final el cual será devuelvo al front. Para cada compra (elemento del arreglo "arregloCompras") se
+      extrae desde el arreglo "ArrgloDetalle de compras" todos los elementos que corresponden a dicha compra. Esto, comparando el id de la compra con el id
+      de la compra contenido en cada registro de la tabla detalle_compras  */
     const arregloComprasFinal = arregloCompras.map((compra) => ({ detalle: (arregloDetalleCompras.flat().filter((detalle) => detalle.id_compras === compra.id)), ...compra }))
-    return (arregloComprasFinal)
+    /* Con lo anterior, se obtiene un arreglo de objetos del tipo:
+      {
+        id_compra_1,
+        id_usuario,
+        total_compra_1,
+        fecha compra_1,
+        detalle_compra_1: [{producto_1},...,{producto_n}]
+      },
+      {
+        id_compra_2,
+        id_usuario,
+        total_compra_2,
+        fecha compra_2,
+        detalle_compra_2: [{producto_1},...,{producto_n}]
+      },
+      ...
+ */
+    return arregloComprasFinal
   } catch (error) {
-    const newError = { message: 'No se ha podido procesar tu compra, Fallo-1', error }
+    const newError = { message: 'Hubo un eror, no ha sido posible reunir la información de tus compras. Intentalo mas tarde.', error }
     throw newError
   }
 }
