@@ -50,7 +50,7 @@ app.post('/login', async (req, res) => {
   try {
     const { correo, contrasena } = req.body
     const { id, nombre } = await verificarCredenciales(correo, contrasena)
-    const token = jwtSign({ correo })
+    const token = jwtSign({ id, correo })
     res.status(200).json({ token, id, nombre, message: 'Haz ingresado con éxito' })
   } catch (error) {
     console.log(error)
@@ -130,9 +130,9 @@ app.get('/miscompras', authToken, async (req, res) => {
   try {
     const authorization = req.header('Authorization')
     const [, token] = authorization.split(' ')
-    const { correo } = jwtDecode(token)
-    const miscompras = await traerMisCompras(correo)
-    console.log(miscompras)
+    const { id, correo } = jwtDecode(token)
+    const miscompras = await traerMisCompras(id, correo)
+    // console.log(miscompras)
     res.status(200).json(miscompras)
   } catch (error) {
     res.status(error.code).json({ message: error.message })
