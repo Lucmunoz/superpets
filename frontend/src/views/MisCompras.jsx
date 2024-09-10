@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { PetsContext } from '../context/PetsContext'
 import { useNavigate, Link } from 'react-router-dom'
 import ProductoCompras from '../components/ProductoCompras'
@@ -7,14 +7,15 @@ import { ENDPOINT } from '../config/constants'
 
 const MisCompras = () => {
   const { setearComprasRealizadas, comprasRealizadas, alertaSweet } = useContext(PetsContext)
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
   const getData = () => {
     const token = window.sessionStorage.getItem('token')
     axios.get(ENDPOINT.miscompras, { headers: { Authorization: `Bearer ${token}` } })
       .then(({ data }) => {
-        // console.log(data)
         setearComprasRealizadas(data)
+        setLoading(false)
       })
       .catch(({ response: { data } }) => alertaSweet('error', `${data.message}`, '#FF0000'))
   }
@@ -26,6 +27,16 @@ const MisCompras = () => {
     }
     getData()
   }, [])
+
+  const mostrarSpinner = () => {
+    return (
+      <div className='p-5 container-fluid text-center'>
+        <div className='spinner-border' role='status'>
+          <span className='visually-hidden'>Loading...</span>
+        </div>
+      </div>
+    )
+  }
 
   const mostrarDataCompras = () => {
     return (
@@ -58,10 +69,16 @@ const MisCompras = () => {
     )
   }
 
+  const mostrarCompras = () => {
+    return (
+      comprasRealizadas.length !== 0 ? mostrarDataCompras() : sinCompras()
+    )
+  }
+
   return (
     <main className='d-flex align-items-center'>
       <div className='container-fluid col-10 bg-white bordesRed'>
-        {comprasRealizadas.length !== 0 ? mostrarDataCompras() : sinCompras()}
+        {loading ? mostrarSpinner() : mostrarCompras()}
       </div>
     </main>
   )
@@ -69,3 +86,4 @@ const MisCompras = () => {
 
 export default MisCompras
 // }
+//
