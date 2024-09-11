@@ -1,18 +1,22 @@
 import { ENDPOINT } from '../config/constants.js'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { PetsContext } from '../context/PetsContext.jsx'
 import Swal from 'sweetalert2'
 
 const InformacionPersonal = () => {
   const { usuario, cambiarUsuario, cerrarSesion, alertaSweet } = useContext(PetsContext)
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
   // aqui enviar petición para traer información del usuario
   const traerDataUsuario = () => {
     const token = window.sessionStorage.getItem('token')
     axios.get(ENDPOINT.users, { headers: { Authorization: `Bearer ${token}` } })
-      .then(({ data: [user] }) => cambiarUsuario({ ...user }))
+      .then(({ data: [user] }) => {
+        setLoading(false)
+        cambiarUsuario({ ...user })
+      })
       .catch(({ response: { data } }) => {
         console.error(data)
         window.sessionStorage.removeItem('token')
@@ -64,8 +68,19 @@ const InformacionPersonal = () => {
       })
   }
 
-  return (
-    <main>
+  const mostrarSpinner = () => {
+    return (
+      <div className='pt-5 text-center'>
+        <div className='spinner-border' role='status'>
+          <span className='visually-hidden'>Loading...</span>
+        </div>
+      </div>
+
+    )
+  }
+
+  const mostrarDataUsuario = () => {
+    return (
       <div className='divInfoPersonal'>
         <h1>Información Personal </h1>
         <h2 className='h2PerfilYPersonal'>Nombre </h2>
@@ -90,6 +105,12 @@ const InformacionPersonal = () => {
           <button type='button' className='botonEstilosEliminar' onClick={preguntarEliminar}>Eliminar Cuenta</button>
         </div>
       </div>
+    )
+  }
+
+  return (
+    <main>
+      {loading ? mostrarSpinner() : mostrarDataUsuario()}
     </main>
   )
 }
