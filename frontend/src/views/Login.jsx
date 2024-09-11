@@ -14,6 +14,7 @@ const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 const Login = () => {
   const navigate = useNavigate()
   const [userTemp, setUserTemp] = useState(credencialesUsuario)
+  const [loading, setLoading] = useState(false)
   const { cambiarUsuario, alertaSweet } = useContext(PetsContext)
 
   const handleUser = (event) => setUserTemp({ ...userTemp, [event.target.name]: event.target.value })
@@ -34,12 +35,15 @@ const Login = () => {
 
   const handleForm = (event) => {
     event.preventDefault()
+    setLoading(true)
 
     if (!userTemp.correo.trim() || !userTemp.contrasena.trim()) {
+      setLoading(false)
       return alertaSweet('warning', 'Email y password obligatorias', '#FF0000')
     }
 
     if (!emailRegex.test(userTemp.correo)) {
+      setLoading(false)
       return alertaSweet('warning', 'El formato del email no es correcto!', '#FF0000')
     }
 
@@ -53,11 +57,32 @@ const Login = () => {
         navigate('/perfil')
       })
       .catch(({ response: { data } }) => {
+        setLoading(false)
         console.error(data)
         alertaSweet('error', data.message, '#FF0000')
       })
 
     navigate('/perfil')
+  }
+
+  const mostrarBotonInicioSesion = () => {
+    return (
+      <div>
+        <button type='submit' className='botonEstilos'>Iniciar Sesión</button>
+      </div>
+    )
+  }
+  const mostrarBotonCargando = () => {
+    return (
+      <>
+        <div className='d-flex justify-content-center'>
+          <button class=' botonEstilos btn d-flex align-items-center justify-content-center' type='button' disabled>
+            <span class='spinner-border spinner-border-sm' role='status' aria-hidden='true' />
+            <p className='p-0 ps-2 m-0'>Verificando...</p>
+          </button>
+        </div>
+      </>
+    )
   }
 
   return (
@@ -74,9 +99,7 @@ const Login = () => {
             <label htmlFor='exampleInputPassword1' className='form-label labelEstilos'>Contraseña</label>
             <input maxlength='9' type='password' name='contrasena' className='form-control text-center' id='exampleInputPassword1' placeholder='*********' value={userTemp.contrasena} onChange={handleUser} />
           </div>
-          <div>
-            <button type='submit' className='botonEstilos'>Iniciar Sesión</button>
-          </div>
+          {loading ? mostrarBotonCargando() : mostrarBotonInicioSesion()}
         </form>
       </div>
     </main>
