@@ -90,7 +90,7 @@ const Registrarse = () => {
       <>
         <button class='botonEstilos btn d-flex align-items-center justify-content-center' type='button' disabled>
           <span class='spinner-border spinner-border-sm' role='status' aria-hidden='true' />
-          <p className='p-0 ps-2 m-0 text-white '>Eliminando...</p>
+          <p className='p-0 ps-2 m-0 text-white '>Creando...</p>
         </button>
       </>
     )
