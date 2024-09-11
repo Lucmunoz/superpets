@@ -57,12 +57,10 @@ const Login = () => {
         navigate('/perfil')
       })
       .catch(({ response: { data } }) => {
-        // setLoading(false)
+        setLoading(false)
         console.error(data)
         alertaSweet('error', data.message, '#FF0000')
       })
-
-    navigate('/perfil')
   }
 
   const mostrarBotonInicioSesion = () => {
