@@ -13,7 +13,6 @@ const config = {
   ssl: true
 }
 
-
 const pool = new Pool(config)
 
 const db = async (consulta, values) => {

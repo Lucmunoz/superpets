@@ -1,5 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
+import { validarRut, limpiarRut, formatearRut } from 'validar-rut-chile'
+
 import { useNavigate } from 'react-router-dom'
 import { ENDPOINT } from '../config/constants.js'
 import { PetsContext } from '../context/PetsContext.jsx'
@@ -24,7 +26,10 @@ const Registrarse = () => {
   const enviarFormulario = (e) => {
     e.preventDefault()
 
-    if (nuevoUsuario.nombre.trim() === '' ||
+    const usuarioTemporal = nuevoUsuario
+
+    /* Se elimina porque react ya establece esta condición mínima */
+    /* if (nuevoUsuario.nombre.trim() === '' ||
       nuevoUsuario.apellido.trim() === '' ||
       nuevoUsuario.correo.trim() === '' ||
       nuevoUsuario.contrasena.trim() === '' ||
@@ -32,7 +37,9 @@ const Registrarse = () => {
       nuevoUsuario.telefono.trim() === '' ||
       nuevoUsuario.direccion.trim() === '') {
       return alertaSweet('warning', 'Campos vacíos', '#25D6FE')
-    }
+    } */
+
+    Object.keys(usuarioTemporal).forEach(propiedad => { usuarioTemporal[propiedad] = usuarioTemporal[propiedad].trim() })
 
     if (!emailRegex.test(nuevoUsuario.correo)) {
       return alertaSweet('warning', 'El formato del email ingresado no es correcto!', '#25D6FE')
@@ -41,6 +48,13 @@ const Registrarse = () => {
     if (nuevoUsuario.contrasena.length !== 8) {
       return alertaSweet('warning', 'La contraseña debe ser de 8 caracteres', '#25D6FE')
     }
+
+    const rutFormateado = formatearRut(limpiarRut(usuarioTemporal.rut))
+    if (!validarRut(rutFormateado)) {
+      return alertaSweet('warning', 'Ingrese un rut válido', '#25D6FE')
+    }
+    usuarioTemporal.rut = rutFormateado
+    setNuevoUsuario({ ...nuevoUsuario, usuarioTemporal })
 
     axios.post(ENDPOINT.registrarse, nuevoUsuario)
       .then(({ data }) => {
