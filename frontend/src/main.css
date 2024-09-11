@@ -413,6 +413,11 @@ footer div a:hover {
   border-radius: 20px;
 }
 
+.containerLogin {
+  width: 500px;
+  background-color: #fff;
+}
+
 /* media-queries first-mobile*/
 @media (max-width: 576px) {
   .imgCarrusel {
@@ -467,6 +472,12 @@ footer div a:hover {
 
   .divRegistroNuevo h1 {
     font-size: 20px;
+  }
+
+  /* login */
+  .containerLogin {
+    width: 90%;
+    background-color: #fff;
   }
 
   /* Información Personal */

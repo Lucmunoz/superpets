@@ -62,17 +62,17 @@ const Login = () => {
 
   return (
     <main className='d-flex align-items-center'>
-      <div className='container col-10 col-lg-5 text-center bg-white bordesRed' style={{ width: '600px' }}>
+      <div className='container text-center bordesRed containerLogin'>
         <h1 className='tituloForm'>Inicio de sesión</h1>
         <form onSubmit={handleForm}>
           <div className='mb-3 px-4'>
             <label htmlFor='exampleInputEmail1' className='form-label labelEstilos'>Correo electrónico</label>
-            <input style={{ width: '85%', margin: '0 auto' }} type='email' name='correo' className='form-control text-center' id='exampleInputEmail1' aria-describedby='emailHelp' placeholder='Correo electrónico de registro' value={userTemp.correo} onChange={handleUser} />
+            <input type='email' name='correo' className='form-control text-center' id='exampleInputEmail1' aria-describedby='emailHelp' placeholder='Correo electrónico de registro' value={userTemp.correo} onChange={handleUser} />
             <div id='emailHelp' className='form-text fst-italic'>Nunca compartiremos tu correo.</div>
           </div>
           <div className='mb-3 px-4'>
             <label htmlFor='exampleInputPassword1' className='form-label labelEstilos'>Contraseña</label>
-            <input maxlength='9' style={{ width: '85%', margin: '0 auto' }} type='password' name='contrasena' className='form-control text-center' id='exampleInputPassword1' placeholder='*********' value={userTemp.contrasena} onChange={handleUser} />
+            <input maxlength='9' type='password' name='contrasena' className='form-control text-center' id='exampleInputPassword1' placeholder='*********' value={userTemp.contrasena} onChange={handleUser} />
           </div>
           <div>
             <button type='submit' className='botonEstilos'>Iniciar Sesión</button>
