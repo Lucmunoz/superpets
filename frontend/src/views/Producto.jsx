@@ -77,8 +77,8 @@ const Producto = () => {
                   <span style={{ fontSize: '20px', color: '#ED5C01', fontWeight: '700' }}>${p.precio}</span>
                 </div>
                 <div className='d-flex flex-column align-items-center justify-content-sm-center flex-sm-row gap-2' style={{ textAlign: 'center' }}>
-                  <button type='button' className='botonEstilos' onClick={() => botonAgregar(p.id)}>Agregar al carro</button>
                   <button type='button' className='botonEstilos' onClick={() => navigate(-1)}>Regresar </button>
+                  <button type='button' className='botonEstilos' onClick={() => botonAgregar(p.id)}>Agregar al carro</button>
                 </div>
               </div>
             </div>
