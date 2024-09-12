@@ -114,8 +114,9 @@ const MisPublicaciones = () => {
           <div className='container-fluid p-0 pt-3 d-flex flex-column gap-2' />
           {loading ? mostrarSpinner() : mostrarPublicaciones()}
           <div className='pt-4 d-flex gap-4'>
-            <button type='button ' className='botonEstilos'><Link to='/crearpublicacion' className='text-white text-decoration-none'>Crear Publicación</Link></button>
-            <button type='button ' className='botonEstilos'> <Link to='/perfil' className='text-white text-decoration-none'>Regresar</Link> </button>
+            <Link to='/perfil' className='link'>Regresar</Link>
+            <Link to='/crearpublicacion' className='link'>Crear Publicación</Link>
+
           </div>
         </div>
       </div>
