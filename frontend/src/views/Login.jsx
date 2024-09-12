@@ -48,6 +48,8 @@ const Login = () => {
     }
 
     /* Al iniciar sesión para obtener token */
+    userTemp.correo = userTemp.correo.toLowerCase()
+
     axios.post(ENDPOINT.login, userTemp)
       .then(({ data }) => {
         window.sessionStorage.setItem('token', data.token)

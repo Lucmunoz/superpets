@@ -61,6 +61,7 @@ const Registrarse = () => {
       return alertaSweet('warning', 'Ingrese un rut válido', '#25D6FE')
     }
     usuarioTemporal.rut = rutFormateado
+    usuarioTemporal.correo = usuarioTemporal.correo.toLocaleLowerCase()
     setNuevoUsuario({ ...nuevoUsuario, usuarioTemporal })
 
     axios.post(ENDPOINT.registrarse, nuevoUsuario)
