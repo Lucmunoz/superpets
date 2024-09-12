@@ -62,7 +62,10 @@ const MisCompras = () => {
             <h2 style={{ fontSize: '22px' }}>¿Aún no has visto nuestras ofertas?</h2>
             <p>No pierdas mas tiempo, hay increibles productos esperando. <strong>  ¡Ellos, lo merecen!</strong></p>
             <br />
-            <Link to='/tienda' className='link'> Ir a la Tienda</Link>
+            <div style={{ width: '320px', margin: '0 auto', display: 'flex' }}>
+              <Link to='/perfil' className='link'>Regresar</Link>
+              <Link to='/tienda' className='link'> Ir a la Tienda</Link>
+            </div>
           </div>
         </div>
       </div>
