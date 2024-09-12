@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import CorazonFav from '../components/CorazonFav'
 import { PetsContext } from '../context/PetsContext'
 import { useNavigate } from 'react-router-dom'
@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 
 const Tienda = () => {
   const { productos, cambiarFavorito, setearFavoritos, select, cambiarSelect, usuario, agregarCarro, cambiarProductos, alertaSweet } = useContext(PetsContext)
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
   const sweetAlert2 = (nombre) => {
     Swal.fire({
@@ -57,6 +58,7 @@ const Tienda = () => {
     axios.get(ENDPOINT.home)
       .then(({ data }) => {
         cambiarProductos(data)
+        setLoading(false)
       })
       .catch(({ response: { data } }) => {
         console.log(data.message)
@@ -68,6 +70,56 @@ const Tienda = () => {
     getData()
   }, [])
 
+  const mostrarSpinner = () => {
+    return (
+      <div className='pt-5 text-center'>
+        <div className='spinner-border' role='status'>
+          <span className='visually-hidden'>Loading...</span>
+        </div>
+      </div>
+
+    )
+  }
+
+  const sinPublicaciones = () => {
+    return (
+      <h1 className='text-center py-5' style={{ color: 'white' }}>Aún no existe ninguna publicacion <i className='fa-solid fa-face-sad-tear fa-xl ps-3' /></h1>
+    )
+  }
+
+  const existenCards = () => {
+    return (
+      productos.length !== 0 ? mostrarCards() : sinPublicaciones()
+    )
+  }
+
+  const mostrarCards = () => {
+    return (
+      <div className='divProductosTienda'>
+        {productosOrdenados?.map((p) =>
+          <div className='card' key={p.id}>
+            <div className='text-end pe-3'>
+              <button className='buttonCorazon' onClick={() => cambiosFavorito(p.id)}>
+                <CorazonFav id={p.id} />
+              </button>
+            </div>
+            <img src={p.imagen} className='card-img-top' alt='disfraz-salchicha' />
+            <div className='card-body'>
+              <h5 className='card-title'>{p.nombre}</h5>
+              <p className='precioCardHome'>${p.precio}</p>
+            </div>
+            <div>
+              <button className='botonEstilos' onClick={() => irDetalleProducto(p.id)}>Ver detalle</button>
+              <br />
+              <button className='buttonAgregar' onClick={() => botonAgregar(p.id)}> <i className='fa-solid fa-cart-shopping fa-lg' /></button>
+            </div>
+          </div>
+        )}
+      </div>
+
+    )
+  }
+
   let productosTienda = [...productos]
   if (usuario !== null) productosTienda = [...productos].filter((p) => p.id_usuarios !== usuarioLogeado.id)
 
@@ -78,7 +130,7 @@ const Tienda = () => {
   if (select === 'mayor') productosOrdenados = [...productosTienda].sort((a, b) => b.precio - a.precio)
 
   return (
-    <main>
+    <main className='d-flex align-items-start'>
       <div className='divTienda'>
         <h1 className='text-white text-center pt-4'>Tienda <i className='fa-solid fa-bag-shopping ps-2' /></h1>
         <div className='divSelectorTienda'>
@@ -89,28 +141,7 @@ const Tienda = () => {
             <option value='mayor'>Precio Mayor a Menor</option>
           </select>
         </div>
-
-        <div className='divProductosTienda'>
-          {productosOrdenados?.map((p) =>
-            <div className='card' key={p.id}>
-              <div className='text-end pe-3'>
-                <button className='buttonCorazon' onClick={() => cambiosFavorito(p.id)}>
-                  <CorazonFav id={p.id} />
-                </button>
-              </div>
-              <img src={p.imagen} className='card-img-top' alt='disfraz-salchicha' />
-              <div className='card-body'>
-                <h5 className='card-title'>{p.nombre}</h5>
-                <p className='precioCardHome'>${p.precio}</p>
-              </div>
-              <div>
-                <button className='botonEstilos' onClick={() => irDetalleProducto(p.id)}>Ver detalle</button>
-                <br />
-                <button className='buttonAgregar' onClick={() => botonAgregar(p.id)}> <i className='fa-solid fa-cart-shopping fa-lg' /></button>
-              </div>
-            </div>
-          )}
-        </div>
+        {loading ? mostrarSpinner() : existenCards()}
       </div>
     </main>
   )

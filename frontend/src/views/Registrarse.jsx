@@ -18,6 +18,7 @@ const Registrarse = () => {
   }
 
   const [nuevoUsuario, setNuevoUsuario] = useState(usuarioInicial)
+  const [loading, setLoading] = useState(false)
   const { alertaSweet } = useContext(PetsContext)
   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
   const navigate = useNavigate()
@@ -25,6 +26,7 @@ const Registrarse = () => {
 
   const enviarFormulario = (e) => {
     e.preventDefault()
+    setLoading(true)
 
     const usuarioTemporal = nuevoUsuario
 
@@ -36,21 +38,26 @@ const Registrarse = () => {
       nuevoUsuario.rut.trim() === '' ||
       nuevoUsuario.telefono.trim() === '' ||
       nuevoUsuario.direccion.trim() === '') {
+      lucas
+      lucas
       return alertaSweet('warning', 'Campos vacíos', '#25D6FE')
     } */
 
     Object.keys(usuarioTemporal).forEach(propiedad => { usuarioTemporal[propiedad] = usuarioTemporal[propiedad].trim() })
 
     if (!emailRegex.test(nuevoUsuario.correo)) {
+      setLoading(false)
       return alertaSweet('warning', 'El formato del email ingresado no es correcto!', '#25D6FE')
     }
 
     if (nuevoUsuario.contrasena.length !== 8) {
+      setLoading(false)
       return alertaSweet('warning', 'La contraseña debe ser de 8 caracteres', '#25D6FE')
     }
 
     const rutFormateado = formatearRut(limpiarRut(usuarioTemporal.rut))
     if (!validarRut(rutFormateado)) {
+      setLoading(false)
       return alertaSweet('warning', 'Ingrese un rut válido', '#25D6FE')
     }
     usuarioTemporal.rut = rutFormateado
@@ -63,6 +70,7 @@ const Registrarse = () => {
         navigate('/perfil')
       })
       .catch(({ response: { data } }) => {
+        setLoading(false)
         alertaSweet('error', `${data.message}`, '#FF0000')
         setNuevoUsuario(usuarioInicial)
       })
@@ -73,6 +81,22 @@ const Registrarse = () => {
       navigate('/perfil')
     }
   }, [])
+
+  const mostrarBotonCrearRegistro = () => {
+    return (
+      <button type='submit' className='botonEstilos'>Crear cuenta</button>
+    )
+  }
+  const mostrarBotonCrearRegistroCargando = () => {
+    return (
+      <>
+        <button class='botonEstilos btn d-flex align-items-center justify-content-center' type='button' disabled>
+          <span class='spinner-border spinner-border-sm' role='status' aria-hidden='true' />
+          <p className='p-0 ps-2 m-0 text-white '>Creando...</p>
+        </button>
+      </>
+    )
+  }
 
   return (
     <main>
@@ -188,7 +212,7 @@ const Registrarse = () => {
             </div>
             <div className='d-flex flex-column align-items-center fw-lighter text-muted'>
               <span className='fst-italic fs-6 pb-2'>Todos los campos son obligatorios!</span>
-              <button type='submit' className='botonEstilos'>Crear cuenta</button>
+              {loading ? mostrarBotonCrearRegistroCargando() : mostrarBotonCrearRegistro()}
             </div>
 
           </form>
