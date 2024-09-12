@@ -92,7 +92,7 @@ const Carro = () => {
         </div>
         <div className='container-fluid bg-light'>
           <div className='row justify-content-center'>
-            <div className='col-6 col-sm-4 d-flex justify-content-center py-3'>
+            <div className='col-6 col-sm-4' style={{ height: '50px', display: 'flex', gap: '10px', justifyContent: 'center', alignItems: 'center' }}>
               <div className='pe-2'>
                 <span><strong>Total:</strong> ${(totalCarro / 1000).toFixed(3)}</span>
               </div>

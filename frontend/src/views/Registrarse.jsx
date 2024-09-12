@@ -90,12 +90,10 @@ const Registrarse = () => {
   }
   const mostrarBotonCrearRegistroCargando = () => {
     return (
-      <>
-        <button class='botonEstilos btn d-flex align-items-center justify-content-center' type='button' disabled>
-          <span class='spinner-border spinner-border-sm' role='status' aria-hidden='true' />
-          <p className='p-0 ps-2 m-0 text-white '>Creando...</p>
-        </button>
-      </>
+      <button className='botonEstilos btn d-flex align-items-center justify-content-center' type='button' disabled>
+        <span className='spinner-border spinner-border-sm' role='status' ariaHidden='true' />
+        <p className='p-0 ps-2 m-0 text-white'>Creando...</p>
+      </button>
     )
   }
 
@@ -108,7 +106,7 @@ const Registrarse = () => {
             <div className='mb-3'>
               <label htmlFor='nombre' className='form-label labelEstilos'>Nombre</label>
               <input
-                maxLenght='20'
+                maxlenght='20'
                 type='text'
                 className='form-control'
                 id='nombre'
@@ -122,7 +120,7 @@ const Registrarse = () => {
             <div className='mb-3'>
               <label htmlFor='apellido' className='form-label labelEstilos'>Apellido</label>
               <input
-                maxLenght='20'
+                maxlenght='20'
                 type='text'
                 className='form-control'
                 id='apellido'
@@ -136,7 +134,7 @@ const Registrarse = () => {
             <div className='mb-3'>
               <label htmlFor='email' className='form-label labelEstilos'>Email</label>
               <input
-                maxLenght='50'
+                maxlenght='50'
                 type='email'
                 className='form-control'
                 id='email'
@@ -151,7 +149,7 @@ const Registrarse = () => {
             <div className='mb-3'>
               <label htmlFor='password' className='form-label labelEstilos'>Contraseña</label>
               <input
-                maxLenght='8'
+                maxlenght='8'
                 type='password'
                 className='form-control'
                 id='password'
@@ -168,7 +166,7 @@ const Registrarse = () => {
             <div className='mb-3'>
               <label htmlFor='rut' className='form-label labelEstilos'>RUT</label>
               <input
-                maxLenght='12'
+                maxlenght='12'
                 type='text'
                 className='form-control'
                 placeholder='Sin puntos, con guión y digito verificador'
@@ -186,7 +184,7 @@ const Registrarse = () => {
               </div>
               <div className='container-fluid p-0'>
                 <input
-                  maxLenght='9'
+                  maxlenght='9'
                   type='text'
                   className='form-control m-0 w-100'
                   id='telefono'
