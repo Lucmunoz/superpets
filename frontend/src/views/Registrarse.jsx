@@ -38,6 +38,8 @@ const Registrarse = () => {
       nuevoUsuario.rut.trim() === '' ||
       nuevoUsuario.telefono.trim() === '' ||
       nuevoUsuario.direccion.trim() === '') {
+      lucas
+      lucas
       return alertaSweet('warning', 'Campos vacíos', '#25D6FE')
     } */
 
