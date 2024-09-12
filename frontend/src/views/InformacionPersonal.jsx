@@ -36,7 +36,6 @@ const InformacionPersonal = () => {
   }, [])
 
   const preguntarEliminar = (id) => {
-    setLoadingEliminar(true)
     Swal.fire({
       title: '¿Está seguro que desea eliminar su usuario?',
       text: '¡No podrás revertir esto!',
@@ -48,6 +47,7 @@ const InformacionPersonal = () => {
       customClass: 'alertaSweetEstilos'
     }).then((result) => {
       if (result.isConfirmed) {
+        setLoadingEliminar(true)
         eliminarCuenta()
       }
     })
