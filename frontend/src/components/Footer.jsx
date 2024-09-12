@@ -5,7 +5,7 @@ const Footer = () => {
     <footer>
       <div>
         <h3>Síguenos</h3>
-        <ul>
+        <ul className='p-0'>
           <li>
             <a target='_blank' href='https://www.facebook.com/' rel='noreferrer'>
               <i className='fa-brands fa-facebook fa-lg' />
@@ -22,7 +22,7 @@ const Footer = () => {
         <h3>
           Enlaces útiles
         </h3>
-        <ul>
+        <ul className='p-0'>
           <li>
             <i className='fa-solid fa-paw fa-lg' />
             <Link to='/acercadenosotros'> Acerca de nosotros</Link>
@@ -37,7 +37,7 @@ const Footer = () => {
       </div>
       <div>
         <h3>Información de Contacto</h3>
-        <ul>
+        <ul className='p-0'>
           <li>  <i className='fa-solid fa-paw fa-lg' /> Contacto: +569 00000000</li>
           <li>  <i className='fa-solid fa-paw fa-lg' />email: superpets@correo.com</li>
         </ul>
