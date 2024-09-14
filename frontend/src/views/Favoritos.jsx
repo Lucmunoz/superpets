@@ -35,20 +35,20 @@ const Favoritos = () => {
 
   const hayFavoritos = () => {
     return (
-      <div className='container-fluid col-11 col-xl-10 col-xxl-9 bg-white bordesRed'>
-        <div className={`container-fluid col-11 col-xl-10 col-xxl-9 p-4 bordesRed ${productosFavoritos.length >= 1 ? 'bg-white' : ''}`}>
+      <div className='container-fluid col-12 col-xl-10 col-xxl-9 bg-white bordesRed'>
+        <div className={`container-fluid col-12 col-xl-10 col-xxl-9 p-4 bordesRed ${productosFavoritos.length >= 1 ? 'bg-white' : ''}`}>
           <div className='d-flex flex-column '>
-            <h1 className='tituloForm'>Mis Productos Favoritos <i className='fa-solid fa-heart' /></h1>
+            <h1 className='tituloForm'>Mis Favoritos <i className='fa-solid fa-heart' /></h1>
             {productosFavoritos.map((producto) => {
               return (
-                <div className='container-fluid bg-light p-3' key={producto.id}>
+                <div className='container' key={producto.id}>
                   <div className='row'>
-                    <div className='col-3 col-sm-2 p-0'>
+                    <div className='col-12 col-sm-2'>
                       <div className='text-center'>
                         <img className='' style={{ height: '70px' }} src={producto.imagen} alt='MDN' />
                       </div>
                     </div>
-                    <div className='col-9 col-lg-5 col-xl-6 d-flex flex-column justify-content-center p-0'>
+                    <div className='col-12 col-lg-5 col-xl-6 d-flex flex-column justify-content-center p-0'>
                       <h6 className='p-0 m-0'>{producto.nombre}</h6>
                       <div className='text-truncate fst-italic fw-light text-muted'>
                         {producto.descripcion}
@@ -62,6 +62,7 @@ const Favoritos = () => {
                       </button>
                     </div>
                   </div>
+                  <hr />
                 </div>
               )
             })}
