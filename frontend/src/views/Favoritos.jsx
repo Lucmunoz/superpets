@@ -35,37 +35,31 @@ const Favoritos = () => {
 
   const hayFavoritos = () => {
     return (
-      <div className='container-fluid col-11 col-xl-10 col-xxl-9 bg-white bordesRed'>
-        <div className={`container-fluid col-11 col-xl-10 col-xxl-9 p-4 bordesRed ${productosFavoritos.length >= 1 ? 'bg-white' : ''}`}>
-          <div className='d-flex flex-column '>
-            <h1 className='tituloForm'>Mis Productos Favoritos <i className='fa-solid fa-heart' /></h1>
-            {productosFavoritos.map((producto) => {
-              return (
-                <div className='container-fluid bg-light p-3' key={producto.id}>
-                  <div className='row'>
-                    <div className='col-3 col-sm-2 p-0'>
-                      <div className='text-center'>
-                        <img className='' style={{ height: '70px' }} src={producto.imagen} alt='MDN' />
-                      </div>
-                    </div>
-                    <div className='col-9 col-lg-5 col-xl-6 d-flex flex-column justify-content-center p-0'>
+      <div className='container-fluid bg-white col-11 bordesRed p-2 px-md-4' style={{ maxWidth: '1020px' }}>
+        <h1 className='m-0 py-3 fs-2 text-center'>Mis Productos Favoritos <i className='fa-solid fa-heart' /></h1>
+        <div className='d-flex flex-column gap-1 gap-md-2 pb-4'>
+          {productosFavoritos.map((producto) => {
+            return (
+              <div key={producto.id}>
+                <div className='d-flex flex-column flex-md-row gap-md-5 bg-light p-2'>
+                  <div className='d-flex text-truncate gap-2'>
+                    <img className='' style={{ height: '70px' }} src={producto.imagen} alt='MDN' />
+                    <div className='p-0 text-truncate d-flex flex-column justify-content-center'>
                       <h6 className='p-0 m-0'>{producto.nombre}</h6>
-                      <div className='text-truncate fst-italic fw-light text-muted'>
-                        {producto.descripcion}
-                      </div>
-                    </div>
-                    <div className='d-flex col-lg-4 gap-2 justify-content-center align-items-center p-0 py-2 ms-auto'>
-                      <button className='botonEstilos' onClick={() => irDetalleProducto(producto.id)}>Ver detalle</button>
-                      <button className='buttonAgregar' onClick={() => agregarCarro(producto.id)}> <i className='fa-solid fa-cart-shopping fa-lg' /></button>
-                      <button className='buttonCorazon' onClick={() => cambiarFavorito(producto.id)}>
-                        <CorazonFav id={producto.id} />
-                      </button>
+                      <p className='text-truncate p-0 m-0'>{producto.descripcion}</p>
                     </div>
                   </div>
+                  <div className=' p-0 py-2 d-flex gap-2 justify-content-center align-items-center'>
+                    <button className='botonEstilos' onClick={() => irDetalleProducto(producto.id)}>Ver detalle</button>
+                    <button className='buttonAgregar' onClick={() => agregarCarro(producto.id)}> <i className='fa-solid fa-cart-shopping fa-lg' /></button>
+                    <button className='buttonCorazon' onClick={() => cambiarFavorito(producto.id)}>
+                      <CorazonFav id={producto.id} />
+                    </button>
+                  </div>
                 </div>
-              )
-            })}
-          </div>
+              </div>
+            )
+          })}
         </div>
       </div>
     )
@@ -84,10 +78,8 @@ const Favoritos = () => {
   }, [])
 
   return (
-    <main className='d-flex align-items-center'>
-      <div className='container-fluid col-11 col-xl-10 col-xxl-9 my-3'>
-        {cargando ? mostrarSpinner() : mostrarFavoritos()}
-      </div>
+    <main className=''>
+      {cargando ? mostrarSpinner() : mostrarFavoritos()}
     </main>
   )
 }
