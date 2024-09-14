@@ -16,16 +16,22 @@ const ActualizarPublicacion = () => {
   }
   const navigate = useNavigate()
   const [publicacionTemporal, setPublicacionTemporal] = useState(publicacionInicial)
+  const [loading, setLoading] = useState(false)
+
   const cambiarInput = (event) => {
     setPublicacionTemporal({ ...publicacionTemporal, [event.target.name]: event.target.value })
   }
 
   const handleForm = (event) => {
     event.preventDefault()
+    setLoading(true)
     const token = window.sessionStorage.getItem('token')
     axios.put(ENDPOINT.mispublicaciones, publicacionTemporal, { headers: { Authorization: `Bearer ${token}` } })
       .then(({ data }) => alertaSweet('success', `${data.message}`, '#8EC63D'))
-      .catch(({ response: { data } }) => alertaSweet('error', `${data.message}`, '#FF0000'))
+      .catch(({ response: { data } }) => {
+        setLoading(false)
+        alertaSweet('error', `${data.message}`, '#FF0000')
+      })
     navigate('/mispublicaciones')
   }
 
@@ -48,6 +54,26 @@ const ActualizarPublicacion = () => {
     }
     getData()
   }, [])
+
+  const mostrarBotonActualizarPublicacion = () => {
+    return (
+      <div>
+        <button type='submit' className='botonEstilos'>Guardar Cambios</button>
+      </div>
+    )
+  }
+  const mostrarBotonCargando = () => {
+    return (
+      <>
+        <div className='d-flex justify-content-center'>
+          <button class=' botonEstilos btn d-flex align-items-center justify-content-center' type='button' disabled>
+            <span class='spinner-border spinner-border-sm' role='status' aria-hidden='true' />
+            <p className='p-0 ps-2 m-0'>Guardando...</p>
+          </button>
+        </div>
+      </>
+    )
+  }
 
   return (
     <main className='d-flex align-items-center'>
@@ -78,7 +104,7 @@ const ActualizarPublicacion = () => {
             </div>
             <div className='d-flex gap-2 justify-content-center'>
               <button type='button' className='botonEstilos' onClick={() => goBack()}>Regresar</button>
-              <button type='submit' className='botonEstilos'>Guardar Cambios</button>
+              {loading ? mostrarBotonCargando() : mostrarBotonActualizarPublicacion()}
             </div>
           </form>
         </div>
