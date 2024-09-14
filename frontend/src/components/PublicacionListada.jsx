@@ -7,7 +7,7 @@ import { ENDPOINT } from '../config/constants.js'
 
 const PublicacionListada = () => {
   const navigate = useNavigate()
-  const { arregloMisPublicaciones, setearMisPublicaciones, alertaSweet } = useContext(PetsContext)
+  const { arregloMisPublicaciones, setearMisPublicaciones, alertaSweet, formatearMoneda } = useContext(PetsContext)
 
   const goToActualizarPublicacion = (id) => {
     /* Se debe ingresar petición al backend que permita actualizar la publicación */
@@ -63,6 +63,9 @@ const PublicacionListada = () => {
                 <span> <strong>{publicacion.nombre}</strong></span>
                 <div className='text-truncate fst-italic fw-light text-muted'>
                   {publicacion.descripcion}
+                </div>
+                <div>
+                  <span> <strong>${formatearMoneda({ valor: publicacion.precio })}</strong></span>
                 </div>
               </div>
               <div className='d-flex col-md-3 gap-1 justify-content-center align-items-center'>

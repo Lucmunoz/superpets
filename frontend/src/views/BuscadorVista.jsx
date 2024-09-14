@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 const BuscadorVista = () => {
-  const { productos, cambiarFavorito, busqueda, usuario, agregarCarro, cambiarProductos, alertaSweet } = useContext(PetsContext)
+  const { productos, cambiarFavorito, busqueda, usuario, agregarCarro, cambiarProductos, alertaSweet, formatearMoneda } = useContext(PetsContext)
   const navigate = useNavigate()
   const sweetAlert2 = (nombre) => {
     Swal.fire({
@@ -86,7 +86,7 @@ const BuscadorVista = () => {
                 <img src={p.imagen} className='card-img-top' alt='disfraz-salchicha' />
                 <div className='card-body'>
                   <h5 className='card-title'>{p.nombre}</h5>
-                  <p className='precioCardHome'>${p.precio}</p>
+                  <p className='precioCardHome'>${formatearMoneda({ valor: p.precio })}</p>
                 </div>
                 <div>
                   <button className='botonEstilos' onClick={() => irDetalleProducto(p.id)}>Ver detalle</button>
