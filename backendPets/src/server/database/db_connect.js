@@ -10,7 +10,7 @@ const config = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   allowExitOnIdle: true,
-  ssl: true
+  ssl: process.env.DB_SSL ?? false
 }
 
 const pool = new Pool(config)
