@@ -5,7 +5,7 @@ import axios from 'axios'
 import { ENDPOINT } from '../config/constants.js'
 
 const Card = () => {
-  const { productos, usuario, cambiarProductos, alertaSweet } = useContext(PetsContext)
+  const { productos, usuario, cambiarProductos, alertaSweet, formatearMoneda } = useContext(PetsContext)
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
   const irDetalleProducto = (id) => {
@@ -56,7 +56,7 @@ const Card = () => {
           <img src={p.imagen} className='card-img-top' alt='disfraz-salchicha' />
           <div className='card-body'>
             <h5 className='card-title'>{p.nombre}</h5>
-            <p className='precioCardHome'>${p.precio}</p>
+            <p className='precioCardHome'>${formatearMoneda({ valor: p.precio })}</p>
           </div>
           <div>
             <button className='botonEstilos' onClick={() => irDetalleProducto(p.id)}>Ver detalle</button>

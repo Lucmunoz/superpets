@@ -15,6 +15,16 @@ const PetsContextProvider = ({ children }) => {
   const [productosFavoritos, setProductosFavoritos] = useState([])
   const [comprasRealizadas, setComprasRealizadas] = useState('')
 
+  // formatearMoneda
+
+  const formatearMoneda = ({ valor }) => {
+    const formatter = new Intl.NumberFormat('es-Cl', {
+      minimumFractionDigits: 0,
+      currency: 'CLP'
+    })
+    return formatter.format(valor)
+  }
+
   // alerta
   const Toast = Swal.mixin({
     toast: true,
@@ -202,7 +212,8 @@ const PetsContextProvider = ({ children }) => {
     comprasRealizadas,
     setearComprasRealizadas,
     cambiarProductos,
-    alertaSweet
+    alertaSweet,
+    formatearMoneda
   }
 
   return (

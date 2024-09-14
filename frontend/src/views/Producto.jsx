@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 
 const Producto = () => {
   const { id } = useParams()
-  const { usuario, productos, cambiarFavorito, setearFavoritos, agregarCarro } = useContext(PetsContext)
+  const { usuario, productos, cambiarFavorito, setearFavoritos, agregarCarro, formatearMoneda } = useContext(PetsContext)
   const navigate = useNavigate()
   const sweetAlert2 = (nombre) => {
     Swal.fire({
@@ -74,7 +74,7 @@ const Producto = () => {
                 <div className='divTextProducto'>
                   <h1 className='m-0'>{p.nombre}</h1>
                   <p className='pt-3'>{p.descripcion}</p>
-                  <span style={{ fontSize: '20px', color: '#ED5C01', fontWeight: '700' }}>${p.precio}</span>
+                  <span style={{ fontSize: '20px', color: '#ED5C01', fontWeight: '700' }}>${formatearMoneda({ valor: p.precio })}</span>
                 </div>
                 <div className='d-flex flex-column align-items-center justify-content-sm-center flex-sm-row gap-2' style={{ textAlign: 'center' }}>
                   <button type='button' className='botonEstilos' onClick={() => navigate(-1)}>Regresar </button>

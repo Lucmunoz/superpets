@@ -7,7 +7,7 @@ import { PetsContext } from '../context/PetsContext'
 import { ENDPOINT } from '../config/constants'
 
 const Carro = () => {
-  const { productosCarro, totalCarro, setearProductosCarro, vaciarCarro, alertaSweet } = useContext(PetsContext)
+  const { productosCarro, totalCarro, setearProductosCarro, vaciarCarro, alertaSweet, formatearMoneda } = useContext(PetsContext)
   const [cargando, setCargando] = useState(true)
   const navigate = useNavigate()
 
@@ -94,7 +94,7 @@ const Carro = () => {
           <div className='row justify-content-center'>
             <div className='col-6 col-sm-4' style={{ height: '50px', display: 'flex', gap: '10px', justifyContent: 'center', alignItems: 'center' }}>
               <div className='pe-2'>
-                <span><strong>Total:</strong> ${(totalCarro / 1000).toFixed(3)}</span>
+                <span><strong>Total:</strong> ${formatearMoneda({ valor: totalCarro })}</span>
               </div>
               <div className='ps-2'>
                 <button type='button' className='botonEstilos' onClick={() => goToPagar()}>Ir a pagar</button>

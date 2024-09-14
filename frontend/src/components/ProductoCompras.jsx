@@ -6,7 +6,7 @@ import moment from 'moment'
 import { ENDPOINT } from '../config/constants'
 
 const ProductoCompras = (compra) => {
-  const { comprasRealizadas, alertaSweet } = useContext(PetsContext)
+  const { comprasRealizadas, alertaSweet, formatearMoneda } = useContext(PetsContext)
   const navigate = useNavigate()
 
   const goToPublicacion = async (id) => {
@@ -27,7 +27,7 @@ const ProductoCompras = (compra) => {
               <div className='d-flex flex-column flex-sm-row text-center'>
                 <div className='d-flex gap-4 justify-content-center'>
                   <div className='d-lg-flex flex-column flex-lg-row text-center align-items-center gap-1'><h6 className='p-0 m-0'>Fecha de Compra:</h6><span className='fw-light fst-italic ms-auto'>{moment(compra.fecha).format('MM/DD/YYYY')}</span></div>
-                  <div className='d-lg-flex flex-column flex-lg-row text-center align-items-center gap-1'><h6 className='p-0 m-0'>Total de la compra:</h6> <span className='fw-light fst-italic'>${(compra.total_boleta / 1000).toFixed(3)}</span></div>
+                  <div className='d-lg-flex flex-column flex-lg-row text-center align-items-center gap-1'><h6 className='p-0 m-0'>Total de la compra:</h6> <span className='fw-light fst-italic'>${formatearMoneda({ valor: compra.total_boleta })}</span></div>
                 </div>
               </div>
             </div>
@@ -53,7 +53,7 @@ const ProductoCompras = (compra) => {
                             </div>
                             <div className='d-flex align-items-center gap-2'>
                               <h6 className='m-0 p-0'>Precio pagado:</h6>
-                              <span className='m-0 p-0'>${(producto.precio_copy / 1000).toFixed(3)}</span>
+                              <span className='m-0 p-0'>${formatearMoneda({ valor: producto.precio_copy })}</span>
                             </div>
                           </div>
                           <div className='d-none d-lg-flex btn-sm gap-2 p-0 ms-auto pe-lg-4'>

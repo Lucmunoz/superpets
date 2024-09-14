@@ -77,8 +77,8 @@ const ActualizarPublicacion = () => {
               </div>
             </div>
             <div className='d-flex gap-2 justify-content-center'>
-              <button type='submit' className='botonEstilos'>Guardar Cambios</button>
               <button type='button' className='botonEstilos' onClick={() => goBack()}>Regresar</button>
+              <button type='submit' className='botonEstilos'>Guardar Cambios</button>
             </div>
           </form>
         </div>
