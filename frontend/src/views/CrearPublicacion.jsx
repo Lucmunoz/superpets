@@ -15,6 +15,7 @@ const CrearPublicacion = () => {
   const { alertaSweet } = useContext(PetsContext)
   const navigate = useNavigate()
   const [publicacion, setPublicacion] = useState(datosPublicacion)
+  const [loading, setLoading] = useState(false)
   const handlePublicacion = (event) => setPublicacion({ ...publicacion, [event.target.name]: event.target.value })
 
   const goBack = () => {
@@ -23,6 +24,7 @@ const CrearPublicacion = () => {
 
   const handleForm = (event) => {
     event.preventDefault()
+    setLoading(true)
 
     const token = window.sessionStorage.getItem('token')
     axios.post(ENDPOINT.producto, publicacion, { headers: { Authorization: `Bearer ${token}` } })
@@ -31,7 +33,10 @@ const CrearPublicacion = () => {
         setPublicacion(datosPublicacion)
         navigate('/mispublicaciones')
       })
-      .catch(({ response: { data } }) => alertaSweet('error', `${data.message}`, 'FF0000'))
+      .catch(({ response: { data } }) => {
+        setLoading(false)
+        alertaSweet('error', `${data.message}`, 'FF0000')
+      })
   }
 
   useEffect(() => {
@@ -39,6 +44,27 @@ const CrearPublicacion = () => {
       navigate('/ingresar')
     }
   }, [])
+
+  const mostrarBotonCrearPublicacion = () => {
+    return (
+      <div>
+        <button type='submit' className='botonEstilos'>Crear publicación</button>
+      </div>
+    )
+  }
+
+  const mostrarBotonCargando = () => {
+    return (
+      <>
+        <div className='d-flex justify-content-center'>
+          <button class=' botonEstilos btn d-flex align-items-center justify-content-center' type='button' disabled>
+            <span class='spinner-border spinner-border-sm' role='status' aria-hidden='true' />
+            <p className='p-0 ps-2 m-0'>Creando...</p>
+          </button>
+        </div>
+      </>
+    )
+  }
 
   return (
     <main className='d-flex align-items-center'>
@@ -70,7 +96,7 @@ const CrearPublicacion = () => {
             </div>
             <div className='d-flex gap-2 justify-content-center'>
               <button type='button' className='botonEstilos' onClick={() => goBack()}>Regresar</button>
-              <button type='submit' className='botonEstilos'>Crear publicación</button>
+              {loading ? mostrarBotonCargando() : mostrarBotonCrearPublicacion()}
             </div>
           </form>
         </div>
