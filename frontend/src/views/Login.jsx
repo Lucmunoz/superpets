@@ -74,14 +74,13 @@ const Login = () => {
   }
   const mostrarBotonCargando = () => {
     return (
-      <>
-        <div className='d-flex justify-content-center'>
-          <button class=' botonEstilos btn d-flex align-items-center justify-content-center' type='button' disabled>
-            <span class='spinner-border spinner-border-sm' role='status' aria-hidden='true' />
-            <p className='p-0 ps-2 m-0'>Verificando...</p>
-          </button>
-        </div>
-      </>
+      <div className='d-flex justify-content-center'>
+        <button className=' botonEstilos btn d-flex align-items-center justify-content-center' type='button' disabled>
+          <span className='spinner-border spinner-border-sm' role='status' aria-hidden='true' />
+          <p className='p-0 ps-2 m-0'>Verificando...</p>
+        </button>
+      </div>
+
     )
   }
 
