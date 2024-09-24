@@ -335,6 +335,13 @@ footer div a:hover {
     color: #fff;
   }
 
+.page-item .page-link {
+  color: #062D3D
+}
+.page-item.active .page-link  {
+  background-color: #ED5C01;
+  border: 1px solid #fff;
+}
 /* acerca de nosotros */
 .divAcerca {
   width: 800px;
@@ -418,15 +425,44 @@ footer div a:hover {
   background-color: #fff;
 }
 
+.divOrdenarYLimitPaginacion {
+  width:75% ;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 15px;
+  margin: 0 auto;
+}
+
 /* media-queries first-mobile*/
 @media (max-width: 576px) {
   .imgCarrusel {
-    height: 200px;
+    display: none;
   }
 
+  .divCarruselImg{
+    background-color:#fff;
+    height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  #div1ImagenCarrusel {
+    background-image: url("/banner-380X380-SP-01.png");
+  }
+
+  #div2ImagenCarrusel {
+    background-image: url("/banner-380X380-SP-02.png");
+  }
+
+  #div3ImagenCarrusel {
+    background-image: url("/banner-380X380-SP-03.png");
+  }
   /* componente CARD */
   .card {
-    width: 250px;
+    width: 300px;
   }
 
   .card img {
