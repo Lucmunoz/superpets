@@ -7,14 +7,14 @@ const Carrusel = () => {
         <button type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='2' aria-label='Slide 3' />
       </div>
       <div className='carousel-inner'>
-        <div className='carousel-item active'>
-          <img src='/banner-superpets-01.jpg' className='d-block imgCarrusel' alt='proplan' />
+        <div className='carousel-item active' data-bs-interval='7000'>
+          <img src='/banner-superpets-01.jpg' className='d-block w-100 imgCarrusel' alt='proplan' />
         </div>
-        <div className='carousel-item'>
-          <img src='/banner-superpets-02.jpg' className='d-block imgCarrusel' alt='proplan2' />
+        <div className='carousel-item' data-bs-interval='4000'>
+          <img src='/banner-superpets-02.jpg' className='d-block w-100 imgCarrusel' alt='proplan2' />
         </div>
-        <div className='carousel-item'>
-          <img src='/banner-superpets-03.jpg' className='d-block imgCarrusel' alt='proplan3' />
+        <div className='carousel-item' data-bs-interval='4000'>
+          <img src='/banner-superpets-03.jpg' className='d-block w-100 imgCarrusel' alt='proplan3' />
         </div>
       </div>
       <button className='carousel-control-prev' type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='prev'>
