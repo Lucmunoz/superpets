@@ -84,7 +84,7 @@ app.delete('/usuario', authToken, async (req, res) => {
   }
 })
 
-/** ******CREACIÓN DE NUEVA PUBLICACIÓN*****OK*****/
+/** ******CREACIÓN DE NUEVA PUBLICACIÓN**********/
 app.post('/tienda/producto', authToken, async (req, res) => {
   const { nombre, descripcion, precio, imagen } = req.body
   try {
@@ -98,20 +98,20 @@ app.post('/tienda/producto', authToken, async (req, res) => {
   }
 })
 
-// para traer mis productos publicados
+/** ******OBTENER PUBLICACIONES DEL USUARIO**********/
 app.get('/mispublicaciones', authToken, async (req, res) => {
   try {
     const authorization = req.header('Authorization')
     const [, token] = authorization.split(' ')
-    const { correo } = jwtDecode(token)
-    const mispublicaciones = await traerMisPublicaciones(correo)
+    const { id } = jwtDecode(token)
+    const mispublicaciones = await traerMisPublicaciones(id)
     res.status(200).json(mispublicaciones)
   } catch (error) {
     res.status(error.code).json({ message: error.message })
   }
 })
 
-/** ******CREACIÓN DE REGISTRO DE COMPRA*****OK*****/
+/** ******CREACIÓN DE REGISTRO DE COMPRA**********/
 app.post('/carrito', authToken, async (req, res) => {
   const { productos, totalBoleta, fecha } = req.body
   try {

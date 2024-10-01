@@ -81,11 +81,9 @@ export const crearPublicacion = async ({ id, nombre, descripcion, precio, imagen
   }
 }
 
-// OK-traerMisPublicaciones
-export const traerMisPublicaciones = async (correo) => {
-  const { rows } = await db('SELECT id FROM usuarios WHERE correo = $1', [correo])
-  const usuarioId = rows[0].id
-  const respuesta = await db('SELECT * FROM productos WHERE id_usuarios = $1', [usuarioId])
+/** ******MODELO OBTENER PUBLICACIONES DEL USUARIO**********/
+export const traerMisPublicaciones = async (id) => {
+  const respuesta = await db('SELECT * FROM productos WHERE id_usuarios = $1', [id])
   return respuesta.rows
 }
 
