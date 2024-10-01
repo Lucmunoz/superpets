@@ -69,7 +69,7 @@ export const verificarUsuarioExiste = async (correo, rut) => {
   }
 }
 
-// ok- crear publicación
+/** ****MODELO CREAR PUBLICACIÓN*****/
 export const crearPublicacion = async ({ id, nombre, descripcion, precio, imagen }) => {
   try {
     const consulta = 'INSERT INTO productos (id, id_usuarios, nombre, descripcion, precio, imagen) VALUES ($1, $2, $3, $4, $5, $6);'
@@ -156,7 +156,7 @@ export const crearRegistroCompra = async ({ correo, productos, totalBoleta, fech
 }
 
 /** ******CONSULTA REGISTROS DE COMPRA**********/
-export const traerMisCompras = async (id, correo) => {
+export const traerMisCompras = async (id) => {
   try {
     /* Defino un arreglo con dos consultas. La perimera a la tabla compras y la segunda a la tabla detalle_compras. Mas adelante se utilizarán para
 traer todos los registros asociados a un ID de un usuario */

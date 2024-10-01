@@ -111,6 +111,19 @@ app.get('/mispublicaciones', authToken, async (req, res) => {
   }
 })
 
+/** ******CONSULTA REGISTROS DE COMPRA**********/
+app.get('/miscompras', authToken, async (req, res) => {
+  try {
+    const authorization = req.header('Authorization')
+    const [, token] = authorization.split(' ')
+    const { id } = jwtDecode(token)
+    const miscompras = await traerMisCompras(id)
+    res.status(200).json(miscompras)
+  } catch (error) {
+    res.status(error.code).json({ message: error.message })
+  }
+})
+
 /** ******CREACIÓN DE REGISTRO DE COMPRA**********/
 app.post('/carrito', authToken, async (req, res) => {
   const { productos, totalBoleta, fecha } = req.body
@@ -125,19 +138,7 @@ app.post('/carrito', authToken, async (req, res) => {
   }
 })
 
-/** ******CONSULTA REGISTROS DE COMPRA**********/
-app.get('/miscompras', authToken, async (req, res) => {
-  try {
-    const authorization = req.header('Authorization')
-    const [, token] = authorization.split(' ')
-    const { id, correo } = jwtDecode(token)
-    const miscompras = await traerMisCompras(id, correo)
-    // console.log(miscompras)
-    res.status(200).json(miscompras)
-  } catch (error) {
-    res.status(error.code).json({ message: error.message })
-  }
-})
+
 
 app.put('/mispublicaciones', authToken, async (req, res) => {
   try {
