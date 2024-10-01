@@ -21,7 +21,7 @@ const PublicacionListada = () => {
         console.log(data.message)
       })
       .catch(({ response: { data } }) => console.log(data.message))
-      // Nueva petición para actualizar la data
+    // Nueva petición para actualizar la data
     axios.get(ENDPOINT.mispublicaciones, { headers: { Authorization: `Bearer ${token}` } })
       .then(({ data }) => {
         setearMisPublicaciones(data)
@@ -31,7 +31,6 @@ const PublicacionListada = () => {
   }
 
   const preguntarEliminar = (id) => {
-    /* Se debe ingresar petición al backend que permita eliminar la publicación */
     Swal.fire({
       title: '¿Está seguro que desea eliminar la publicación?',
       text: '¡No podrás revertir esto!',
