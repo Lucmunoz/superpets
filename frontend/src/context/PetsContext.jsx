@@ -113,23 +113,26 @@ const PetsContextProvider = ({ children }) => {
 
   // función que quita 1 del carro
   const quitarCarro = (id) => {
-    // Creo una copia del arreglo de productos que hay en el carro.
-    const carroActual = [...productosCarro]
+    let productosCarroTemp = []
+    if (window.sessionStorage.getItem('carro')) {
+      productosCarroTemp = JSON.parse(window.sessionStorage.getItem('carro'))
+      setProductosCarro(productosCarroTemp)
+    }
     // En el arreglo, busco el id del elemento a actualizar.
-    const index = carroActual.findIndex((p) => p.id === id)
+    const index = productosCarroTemp.findIndex((p) => p.id === id)
     // si findIndex devuelve un valor valido, quiere decir que producto ya existe en el carro->modifico cantidad
     if (index !== -1) {
-      if (carroActual[index].cantidad !== 0) {
-        carroActual[index].cantidad -= 1
+      if (productosCarroTemp[index].cantidad !== 0) {
+        productosCarroTemp[index].cantidad -= 1
       }
       // Si la cantidad es 0, tengo que eliminar el producto del arreglo
-      if (carroActual[index].cantidad === 0) {
-        carroActual.splice(index, 1)
+      if (productosCarroTemp[index].cantidad === 0) {
+        productosCarroTemp.splice(index, 1)
       }
     }
     // finalmente, seteo el arreglo de productosCarro con el arreglo temporal
-    setProductosCarro(carroActual)
-    window.sessionStorage.setItem('carro', JSON.stringify(carroActual))
+    setProductosCarro(productosCarroTemp)
+    window.sessionStorage.setItem('carro', JSON.stringify(productosCarroTemp))
   }
 
   const vaciarCarro = () => {
