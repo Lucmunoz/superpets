@@ -84,15 +84,15 @@ app.delete('/usuario', authToken, async (req, res) => {
   }
 })
 
-// para crear publicación-OK
+/** ******CREACIÓN DE NUEVA PUBLICACIÓN*****OK*****/
 app.post('/tienda/producto', authToken, async (req, res) => {
   const { nombre, descripcion, precio, imagen } = req.body
   try {
     const authorization = req.header('Authorization')
     const [, token] = authorization.split(' ')
     const { correo } = jwtDecode(token)
-    const productoAgregado = await crearPublicacion({ correo, nombre, descripcion, precio, imagen })
-    res.status(201).json({ message: 'Publicación agregada con éxito', producto: productoAgregado })
+    await crearPublicacion({ correo, nombre, descripcion, precio, imagen })
+    res.status(201).json({ message: 'Publicación agregada con éxito'})
   } catch (error) {
     res.status(error.code).json({ message: error.message })
   }
