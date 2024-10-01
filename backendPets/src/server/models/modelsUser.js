@@ -69,6 +69,16 @@ export const verificarUsuarioExiste = async (correo, rut) => {
   }
 }
 
+// OK. eliminar usuario
+export const eliminarUsuario = async (correo) => {
+  try {
+    await db('DELETE FROM usuarios WHERE correo = $1; ', [correo])
+  } catch (error) {
+    const newError = { message: 'En estos momentos no pudimos procesar tu solicitud', error }
+    throw newError
+  }
+}
+
 /** ****MODELO CREAR PUBLICACIÓN*****/
 export const crearPublicacion = async ({ id, nombre, descripcion, precio, imagen }) => {
   try {
@@ -100,17 +110,7 @@ export const actualizarProducto = async ({ id, nombre, descripcion, precio, imag
   }
 }
 
-// OK. eliminar usuario
-export const eliminarUsuario = async (correo) => {
-  try {
-    await db('DELETE FROM usuarios WHERE correo = $1; ', [correo])
-  } catch (error) {
-    const newError = { message: 'En estos momentos no pudimos procesar tu solicitud', error }
-    throw newError
-  }
-}
-
-/** ******CREACIÓN DE REGISTRO DE COMPRA*****OK*****/
+/** ******MODELO CREACIÓN DE REGISTRO DE COMPRA*****OK*****/
 export const crearRegistroCompra = async ({ id, productos, totalBoleta, fecha }) => {
   try {
     /* Con el ID del usuario, debo realizar dos insersiones en bases de datos:
@@ -153,7 +153,7 @@ export const crearRegistroCompra = async ({ id, productos, totalBoleta, fecha })
   }
 }
 
-/** ******CONSULTA REGISTROS DE COMPRA**********/
+/** ******MODELO CONSULTA REGISTROS DE COMPRA**********/
 export const traerMisCompras = async (id) => {
   try {
     /* Defino un arreglo con dos consultas. La perimera a la tabla compras y la segunda a la tabla detalle_compras. Mas adelante se utilizarán para
@@ -198,7 +198,7 @@ guardan en el arreglo "arregloPromesas" */
     throw newError
   }
 }
-
+/** ****** MODELO ELIMINAR PUBLICACIÓN**********/
 export const eliminarPublicacion = async (publicacionIdEliminar) => {
   try {
     const { rows } = await db('DELETE FROM productos WHERE id = $1 RETURNING *;', [publicacionIdEliminar])
@@ -209,7 +209,7 @@ export const eliminarPublicacion = async (publicacionIdEliminar) => {
     throw newError
   }
 }
-
+/** ******MODELO TRAER DATOS DE PUBLICACIÓN**********/
 export const traerPublicacionPorID = async (id) => {
   try {
     const respuesta = await db('SELECT * FROM productos WHERE id = $1;', [id])
