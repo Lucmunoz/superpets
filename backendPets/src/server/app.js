@@ -138,18 +138,7 @@ app.post('/carrito', authToken, async (req, res) => {
   }
 })
 
-
-
-app.put('/mispublicaciones', authToken, async (req, res) => {
-  try {
-    const { id, nombre, descripcion, precio, imagen } = req.body
-    await actualizarProducto({ id, nombre, descripcion, precio, imagen })
-    res.status(201).json({ message: 'La publicación ha sido actualizada con éxito' })
-  } catch (error) {
-    res.status(error.code).json({ message: error })
-  }
-})
-
+/** ****** ELIMINAR PUBLICACIÓN**********/
 app.delete('/mispublicaciones', authToken, async (req, res) => {
   try {
     const publicacionIdEliminar = req.body.IdEliminar
@@ -160,7 +149,18 @@ app.delete('/mispublicaciones', authToken, async (req, res) => {
   }
 })
 
-// para traer data de una publicacion
+/** ******ACTUALIZACIÓN DE PUBLICACIÓN**********/
+app.put('/mispublicaciones', authToken, async (req, res) => {
+  try {
+    const { id, nombre, descripcion, precio, imagen } = req.body
+    await actualizarProducto({ id, nombre, descripcion, precio, imagen })
+    res.status(201).json({ message: 'La publicación ha sido actualizada con éxito' })
+  } catch (error) {
+    res.status(error.code).json({ message: error })
+  }
+})
+
+/** ******TRAER DATOS DE PUBLICACIÓN**********/
 app.get('/tienda/producto/:id', async (req, res) => {
   try {
     const [result] = await traerPublicacionPorID(req.params.id)

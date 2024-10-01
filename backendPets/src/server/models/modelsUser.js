@@ -87,7 +87,7 @@ export const traerMisPublicaciones = async (id) => {
   return respuesta.rows
 }
 
-// OK- actualizaProducto
+/** ******MODELO ACTUALIZACIÓN DE PUBLICACIÓN**********/
 export const actualizarProducto = async ({ id, nombre, descripcion, precio, imagen }) => {
   try {
     const consulta = 'UPDATE productos SET nombre =$1, descripcion = $2, precio = $3, imagen = $4 WHERE id = $5 RETURNING *;'
