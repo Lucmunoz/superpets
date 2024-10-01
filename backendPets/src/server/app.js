@@ -130,8 +130,8 @@ app.post('/carrito', authToken, async (req, res) => {
   try {
     const authorization = req.header('Authorization')
     const [, token] = authorization.split(' ')
-    const { correo } = jwtDecode(token)
-    const registroAgregado = await crearRegistroCompra({ correo, productos, totalBoleta, fecha })
+    const { id } = jwtDecode(token)
+    const registroAgregado = await crearRegistroCompra({ id, productos, totalBoleta, fecha })
     res.status(201).json({ message: 'Su compra fue realizada exitosamente', compra: registroAgregado })
   } catch (error) {
     res.status(error.code).json({ message: error.message })

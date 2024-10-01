@@ -111,11 +111,9 @@ export const eliminarUsuario = async (correo) => {
 }
 
 /** ******CREACIÓN DE REGISTRO DE COMPRA*****OK*****/
-export const crearRegistroCompra = async ({ correo, productos, totalBoleta, fecha }) => {
+export const crearRegistroCompra = async ({ id, productos, totalBoleta, fecha }) => {
   try {
-    const { rows } = await db('SELECT id FROM usuarios WHERE correo = $1', [correo])
-    const usuarioId = rows[0].id
-    /* Habiendo obtenido el ID del usuario, debo realizar dos insersiones en bases de datos:
+    /* Con el ID del usuario, debo realizar dos insersiones en bases de datos:
       La primera insersión es en la tabla "compras" la cual guarda los siguientes valores:
       - id (N° boleta)
       - ID del usuario
@@ -134,7 +132,7 @@ export const crearRegistroCompra = async ({ correo, productos, totalBoleta, fech
     */
     // Insrsión en tabla compras
     const consultaCompras = 'INSERT INTO compras (id, id_usuarios, total_boleta, fecha) VALUES ($1, $2, $3, $4) RETURNING *;'
-    const valuesCompras = [uuidv4(), usuarioId, totalBoleta, fecha]
+    const valuesCompras = [uuidv4(), id, totalBoleta, fecha]
     const respuestaCompras = await db(consultaCompras, valuesCompras)
     const IDcompra = respuestaCompras.rows[0].id
     /* // Insersión en tabla detalle de compras
@@ -144,7 +142,7 @@ export const crearRegistroCompra = async ({ correo, productos, totalBoleta, fech
     const consultaDetalleCompras = 'INSERT INTO detalle_compras (id,id_compras, id_usuarios, id_productos_copy, nombre_copy, descripcion_copy, imagen_copy, precio_copy, cantidad_elemento) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *;'
     const promesas = productos.map(async (producto) => {
       const { rows: [datosProductoComprado] } = await db('SELECT * FROM productos WHERE id = $1;', [producto.id])
-      const valuesDetalleCompras = [uuidv4(), IDcompra, usuarioId, producto.id, datosProductoComprado.nombre, datosProductoComprado.descripcion, datosProductoComprado.imagen, producto.precio, producto.cantidad]
+      const valuesDetalleCompras = [uuidv4(), IDcompra, id, producto.id, datosProductoComprado.nombre, datosProductoComprado.descripcion, datosProductoComprado.imagen, producto.precio, producto.cantidad]
       await db(consultaDetalleCompras, valuesDetalleCompras)
     })
     const result = await Promise.all(promesas)
