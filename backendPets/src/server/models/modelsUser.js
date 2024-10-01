@@ -158,7 +158,7 @@ export const traerMisCompras = async (id) => {
   try {
     /* Defino un arreglo con dos consultas. La perimera a la tabla compras y la segunda a la tabla detalle_compras. Mas adelante se utilizarán para
 traer todos los registros asociados a un ID de un usuario */
-    const consultas = ['SELECT * FROM compras WHERE id_usuarios = $1;', 'SELECT * FROM detalle_compras WHERE id_usuarios = $1 ORDER BY fecha DESC;']
+    const consultas = ['SELECT * FROM compras WHERE id_usuarios = $1;', 'SELECT * FROM detalle_compras WHERE id_usuarios = $1;']
     /* Recorro el arreglo consultas y realizo los llamados a la BD. Cada llamado devolverá una promesa. En este caso serán 2 promesas las cuales se
 guardan en el arreglo "arregloPromesas" */
     const arregloPromesas = consultas.map(async (consulta) => { return await db(consulta, [id]) })
